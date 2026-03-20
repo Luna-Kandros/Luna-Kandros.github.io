@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THE WHISPERLANDS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0908;
+      --fg: #e8e4de;
+      --muted: #6b6560;
+      --accent: #c9a227;
+      --card: rgba(15, 13, 11, 0.85);
+      --border: rgba(201, 162, 39, 0.3);
+      
+      --raven-bg: #0d0c0b;
+      --raven-fg: #e8e4de;
+      --raven-accent: #c9a227;
+      
+      --elephant-bg: #1a1916;
+      --elephant-fg: #d4cfc7;
+      --elephant-accent: #8b7355;
+      
+      --scorpion-bg: #1c1510;
+      --scorpion-fg: #e0d5c5;
+      --scorpion-accent: #4a9c5d;
+      
+      --serpent-bg: #0f1612;
+      --serpent-fg: #dce5dc;
+      --serpent-accent: #50c878;
+      
+      --angler-bg: #080d12;
+      --angler-fg: #c5d5e0;
+      --angler-accent: #00ced1;
+      
+      --hyena-bg: #151210;
+      --hyena-fg: #ddd5c8;
+      --hyena-accent: #c9a227;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Crimson Text', Georgia, serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* Global Overlays */
+    .rain-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.15;
+    }
+
+    .film-grain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1001;
+      opacity: 0.08;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+      animation: grain 0.5s steps(10) infinite;
+    }
+
+    @keyframes grain {
+      0%, 100% { transform: translate(0, 0); }
+      10% { transform: translate(-5%, -10%); }
+      20% { transform: translate(-15%, 5%); }
+      30% { transform: translate(7%, -25%); }
+      40% { transform: translate(-5%, 25%); }
+      50% { transform: translate(-15%, 10%); }
+      60% { transform: translate(15%, 0%); }
+      70% { transform: translate(0%, 15%); }
+      80% { transform: translate(3%, 35%); }
+      90% { transform: translate(-10%, 10%); }
+    }
+
+    .scanlines {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1002;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15) 0px,
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 1px,
+        transparent 2px
+      );
+      opacity: 0.3;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      background: linear-gradient(
+        180deg,
+        #0a0908 0%,
+        #12100e 30%,
+        #0d0c0b 70%,
+        #080706 100%
+      );
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .hero-fog {
+      position: absolute;
+      width: 200%;
+      height: 100%;
+      background: 
+        radial-gradient(ellipse 80% 50% at 20% 80%, rgba(60, 50, 40, 0.3) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 70%, rgba(40, 35, 30, 0.25) 0%, transparent 50%),
+        radial-gradient(ellipse 100% 60% at 50% 90%, rgba(30, 25, 20, 0.4) 0%, transparent 60%);
+      animation: fogDrift 30s ease-in-out infinite alternate;
+    }
+
+    @keyframes fogDrift {
+      0% { transform: translateX(-10%); }
+      100% { transform: translateX(0%); }
+    }
+
+    .hero-lanterns {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    .lantern {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: #c9a227;
+      border-radius: 50%;
+      box-shadow: 
+        0 0 10px 2px rgba(201, 162, 39, 0.5),
+        0 0 20px 4px rgba(201, 162, 39, 0.3),
+        0 0 40px 8px rgba(201, 162, 39, 0.15);
+      animation: lanternFlicker 3s ease-in-out infinite;
+    }
+
+    @keyframes lanternFlicker {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+
+    .hero-sigil {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0.15;
+      animation: sigilPulse 8s ease-in-out infinite, sigilGlitch 12s ease-in-out infinite;
+    }
+
+    @keyframes sigilPulse {
+      0%, 100% { opacity: 0.1; transform: translate(-50%, -50%) scale(1); }
+      50% { opacity: 0.2; transform: translate(-50%, -50%) scale(1.05); }
+    }
+
+    @keyframes sigilGlitch {
+      0%, 90%, 100% { filter: none; }
+      91% { filter: hue-rotate(90deg) saturate(2); transform: translate(-50%, -50%) scale(1.1) skewX(5deg); }
+      92% { filter: none; transform: translate(-50%, -50%) scale(1); }
+      93% { filter: invert(1); transform: translate(-50%, -50%) scale(0.95) skewX(-3deg); }
+      94% { filter: none; transform: translate(-50%, -50%) scale(1); }
+    }
+
+    .sigil-svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .hero-title {
+      font-family: 'Cinzel', serif;
+      font-weight: 900;
+      font-size: clamp(2.5rem, 8vw, 6rem);
+      letter-spacing: 0.2em;
+      color: var(--fg);
+      text-transform: uppercase;
+      position: relative;
+      animation: titleGlitch 10s ease-in-out infinite;
+    }
+
+    .hero-title::before,
+    .hero-title::after {
+      content: 'THE WHISPERLANDS';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .hero-title::before {
+      color: #c9a227;
+      animation: glitchTop 3s ease-in-out infinite;
+      clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+    }
+
+    .hero-title::after {
+      color: #00ced1;
+      animation: glitchBottom 2s ease-in-out infinite;
+      clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+    }
+
+    @keyframes glitchTop {
+      0%, 90%, 100% { transform: translate(0); }
+      92% { transform: translate(-3px, -1px); }
+      94% { transform: translate(3px, 1px); }
+      96% { transform: translate(-1px, 2px); }
+      98% { transform: translate(1px, -1px); }
+    }
+
+    @keyframes glitchBottom {
+      0%, 85%, 100% { transform: translate(0); }
+      87% { transform: translate(3px, 1px); }
+      89% { transform: translate(-3px, -1px); }
+      91% { transform: translate(1px, -2px); }
+      93% { transform: translate(-1px, 1px); }
+    }
+
+    .hero-subtitle {
+      font-family: 'Cinzel', serif;
+      font-weight: 400;
+      font-size: clamp(1rem, 3vw, 1.5rem);
+      letter-spacing: 0.3em;
+      color: var(--muted);
+      margin-top: 1.5rem;
+      text-transform: uppercase;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 3rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--muted);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      animation: scrollBounce 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(10px); }
+    }
+
+    .scroll-arrow {
+      width: 20px;
+      height: 20px;
+      border-right: 2px solid var(--muted);
+      border-bottom: 2px solid var(--muted);
+      transform: rotate(45deg);
+    }
+
+    /* Seal Sections */
+    .seal-section {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 4rem 2rem;
+    }
+
+    .seal-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .seal-particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .seal-content {
+      position: relative;
+      z-index: 10;
+      max-width: 900px;
+      width: 100%;
+    }
+
+    .seal-card {
+      background: var(--card);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 3rem;
+      position: relative;
+      overflow: hidden;
+      transform: translateY(50px);
+      opacity: 0;
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .seal-card.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .seal-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+
+    .seal-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .seal-number {
+      font-family: 'Cinzel', serif;
+      font-weight: 900;
+      font-size: 0.875rem;
+      color: var(--accent);
+      letter-spacing: 0.3em;
+      opacity: 0.7;
+    }
+
+    .seal-name {
+      font-family: 'Cinzel', serif;
+      font-weight: 900;
+      font-size: clamp(1.75rem, 5vw, 2.5rem);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--fg);
+    }
+
+    .seal-god {
+      font-family: 'Cinzel', serif;
+      font-weight: 400;
+      font-size: clamp(0.875rem, 2vw, 1rem);
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .seal-description {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      line-height: 1.9;
+      color: var(--fg);
+      opacity: 0.85;
+    }
+
+    .seal-symbol {
+      position: absolute;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      width: 60px;
+      height: 60px;
+      opacity: 0.15;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .seal-card:hover .seal-symbol {
+      opacity: 0.3;
+      transform: scale(1.1);
+    }
+
+    /* Raven Section */
+    .seal-raven {
+      --accent: #c9a227;
+      --border: rgba(201, 162, 39, 0.2);
+      background: linear-gradient(135deg, #0d0c0b 0%, #151311 50%, #0a0908 100%);
+    }
+
+    .seal-raven .seal-bg {
+      background: 
+        radial-gradient(ellipse 100% 80% at 30% 20%, rgba(201, 162, 39, 0.05) 0%, transparent 50%),
+        radial-gradient(ellipse 80% 60% at 70% 80%, rgba(201, 162, 39, 0.03) 0%, transparent 50%);
+    }
+
+    /* Elephant Section */
+    .seal-elephant {
+      --accent: #8b7355;
+      --border: rgba(139, 115, 85, 0.2);
+      background: linear-gradient(135deg, #1a1916 0%, #1f1d19 50%, #15140f 100%);
+    }
+
+    .seal-elephant .seal-bg {
+      background: 
+        radial-gradient(ellipse 100% 80% at 70% 30%, rgba(139, 115, 85, 0.05) 0%, transparent 50%),
+        radial-gradient(ellipse 80% 60% at 30% 70%, rgba(139, 115, 85, 0.03) 0%, transparent 50%);
+    }
+
+    /* Scorpion Section */
+    .seal-scorpion {
+      --accent: #4a9c5d;
+      --border: rgba(74, 156, 93, 0.2);
+      background: linear-gradient(135deg, #1c1510 0%, #1f1810 50%, #18120d 100%);
+    }
+
+    .seal-scorpion .seal-bg {
+      background: 
+        radial-gradient(ellipse 100% 80% at 50% 20%, rgba(74, 156, 93, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(180, 50, 50, 0.05) 0%, transparent 50%);
+    }
+
+    /* Serpent Section */
+    .seal-serpent {
+      --accent: #50c878;
+      --border: rgba(80, 200, 120, 0.2);
+      background: linear-gradient(135deg, #0f1612 0%, #121a15 50%, #0a100d 100%);
+    }
+
+    .seal-serpent .seal-bg {
+      background: 
+        radial-gradient(ellipse 100% 80% at 20% 50%, rgba(80, 200, 120, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse 80% 60% at 80% 40%, rgba(138, 43, 226, 0.04) 0%, transparent 50%);
+    }
+
+    /* Angler Section */
+    .seal-angler {
+      --accent: #00ced1;
+      --border: rgba(0, 206, 209, 0.2);
+      background: linear-gradient(135deg, #080d12 0%, #0a1218 50%, #060a0e 100%);
+    }
+
+    .seal-angler .seal-bg {
+      background: 
+        radial-gradient(ellipse 100% 80% at 30% 60%, rgba(0, 206, 209, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 70% 30%, rgba(0, 100, 120, 0.04) 0%, transparent 50%);
+    }
+
+    /* Hyena Section */
+    .seal-hyena {
+      --accent: #c9a227;
+      --border: rgba(201, 162, 39, 0.2);
+      background: linear-gradient(135deg, #151210 0%, #1a1612 50%, #110f0d 100%);
+    }
+
+    .seal-hyena .seal-bg {
+      background: 
+        radial-gradient(ellipse 100% 80% at 50% 30%, rgba(201, 162, 39, 0.05) 0%, transparent 50%),
+        radial-gradient(ellipse 80% 60% at 20% 80%, rgba(139, 69, 19, 0.04) 0%, transparent 50%);
+    }
+
+    /* Quote Wall Section */
+    .quote-section {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 6rem 2rem;
+      background: linear-gradient(180deg, #080706 0%, #0a0908 50%, #080706 100%);
+      overflow: hidden;
+    }
+
+    .quote-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% 50%, rgba(201, 162, 39, 0.03) 0%, transparent 60%);
+    }
+
+    .quote-title {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: clamp(1rem, 3vw, 1.5rem);
+      letter-spacing: 0.4em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 4rem;
+      text-align: center;
+    }
+
+    .quote-container {
+      position: relative;
+      z-index: 10;
+      max-width: 800px;
+      width: 100%;
+    }
+
+    .quote-item {
+      font-family: 'Crimson Text', serif;
+      font-size: clamp(1.25rem, 4vw, 2rem);
+      font-style: italic;
+      color: var(--fg);
+      text-align: center;
+      margin-bottom: 3rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
+      line-height: 1.6;
+    }
+
+    .quote-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .quote-item::before {
+      content: '"';
+      font-size: 3em;
+      color: var(--accent);
+      opacity: 0.3;
+      line-height: 0;
+      vertical-align: -0.3em;
+      margin-right: 0.1em;
+    }
+
+    .quote-item::after {
+      content: '"';
+      font-size: 3em;
+      color: var(--accent);
+      opacity: 0.3;
+      line-height: 0;
+      vertical-align: -0.3em;
+      margin-left: 0.1em;
+    }
+
+    .typewriter-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1em;
+      background: var(--accent);
+      margin-left: 2px;
+      animation: cursorBlink 0.8s step-end infinite;
+    }
+
+    @keyframes cursorBlink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* Music Control */
+    .music-control {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 50px;
+      height: 50px;
+      background: rgba(15, 13, 11, 0.9);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 2000;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .music-control:hover {
+      background: rgba(25, 22, 18, 0.95);
+      border-color: var(--accent);
+      transform: scale(1.1);
+    }
+
+    .music-control:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.3);
+    }
+
+    .music-control svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--fg);
+      stroke-width: 2;
+      fill: none;
+      transition: all 0.3s ease;
+    }
+
+    .music-control.playing svg {
+      stroke: var(--accent);
+    }
+
+    .music-control .sound-waves {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .music-control.playing .sound-waves {
+      opacity: 1;
+    }
+
+    .sound-wave {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid var(--accent);
+      animation: soundWave 1.5s ease-out infinite;
+    }
+
+    .sound-wave:nth-child(1) { animation-delay: 0s; }
+    .sound-wave:nth-child(2) { animation-delay: 0.5s; }
+    .sound-wave:nth-child(3) { animation-delay: 1s; }
+
+    @keyframes soundWave {
+      0% {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        opacity: 0.6;
+      }
+      100% {
+        width: 200%;
+        height: 200%;
+        top: -50%;
+        left: -50%;
+        opacity: 0;
+      }
+    }
+
+    /* Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      
+      .film-grain,
+      .scanlines,
+      .rain-overlay {
+        display: none;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .seal-card {
+        padding: 2rem 1.5rem;
+      }
+      
+      .seal-header {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      
+      .music-control {
+        bottom: 1rem;
+        right: 1rem;
+        width: 44px;
+        height: 44px;
+      }
+      
+      .hero-title::before,
+      .hero-title::after {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-sigil {
+        width: 200px;
+        height: 200px;
+      }
+      
+      .seal-symbol {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    /* Parallax layers */
+    .parallax-layer {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Global Overlays -->
+  <canvas class="rain-overlay" id="rainCanvas"></canvas>
+  <div class="film-grain" aria-hidden="true"></div>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <!-- Hero Section -->
+  <section class="hero" role="banner" aria-label="The Whisperlands - Hero">
+    <div class="hero-bg">
+      <div class="hero-fog parallax-layer" data-parallax="0.3"></div>
+      <div class="hero-lanterns" id="lanterns"></div>
+    </div>
+    
+    <div class="hero-sigil" aria-hidden="true">
+      <svg class="sigil-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="100" cy="100" r="90" stroke="#c9a227" stroke-width="2" fill="none"/>
+        <circle cx="100" cy="100" r="75" stroke="#c9a227" stroke-width="1" fill="none" opacity="0.5"/>
+        <path d="M100 10 L100 190 M10 100 L190 100" stroke="#c9a227" stroke-width="1" opacity="0.3"/>
+        <path d="M100 25 L100 175 M25 100 L175 100" stroke="#c9a227" stroke-width="0.5" opacity="0.2"/>
+        <!-- Six points for six seals -->
+        <path d="M100 10 L120 60 L100 50 L80 60 Z" fill="#c9a227" opacity="0.6"/>
+        <path d="M190 100 L140 80 L150 100 L140 120 Z" fill="#c9a227" opacity="0.6"/>
+        <path d="M100 190 L80 140 L100 150 L120 140 Z" fill="#c9a227" opacity="0.6"/>
+        <path d="M10 100 L60 80 L50 100 L60 120 Z" fill="#c9a227" opacity="0.6"/>
+        <!-- Inner seal -->
+        <circle cx="100" cy="100" r="40" stroke="#c9a227" stroke-width="2" fill="none"/>
+        <circle cx="100" cy="100" r="30" stroke="#c9a227" stroke-width="1" fill="none" opacity="0.7"/>
+        <circle cx="100" cy="100" r="15" fill="#c9a227" opacity="0.3"/>
+        <!-- Drip effect -->
+        <path d="M100 25 Q110 60 100 75 Q90 60 100 25" fill="#c9a227" opacity="0.4"/>
+      </svg>
+    </div>
+    
+    <div class="hero-content">
+      <h1 class="hero-title">THE WHISPERLANDS</h1>
+      <p class="hero-subtitle">Six Seals. Six Gods. One Price.</p>
+    </div>
+    
+    <div class="hero-scroll" aria-hidden="true">
+      <span>Descend</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- Seal Sections -->
+  
+  <!-- Raven -->
+  <section class="seal-section seal-raven" data-seal="raven" aria-label="Sigillum Corvi - The Raven">
+    <div class="seal-bg"></div>
+    <canvas class="seal-particles" id="ravenParticles"></canvas>
+    
+    <div class="seal-content">
+      <article class="seal-card">
+        <header class="seal-header">
+          <span class="seal-number">I</span>
+          <h2 class="seal-name">Sigillum Corvi</h2>
+        </header>
+        <p class="seal-god">Corvus Iudex / Vesper</p>
+        <p class="seal-description">
+          The Raven rules through archives and verdicts. A seal on a document can take a city. 
+          His disciples lose their sight to gain record-sight. Under the Raven, your name is 
+          either property — or noise.
+        </p>
+        <svg class="seal-symbol" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+          <path d="M50 15 L30 45 L10 45 L25 65 L15 90 L50 70 L85 90 L75 65 L90 45 L70 45 Z" 
+                stroke="#c9a227" stroke-width="2" fill="none"/>
+          <circle cx="50" cy="50" r="10" stroke="#c9a227" stroke-width="1"/>
+        </svg>
+      </article>
+    </div>
+  </section>
+
+  <!-- Elephant -->
+  <section class="seal-section seal-elephant" data-seal="elephant" aria-label="Sigillum Elephanti - The Elephant">
+    <div class="seal-bg"></div>
+    <canvas class="seal-particles" id="elephantParticles"></canvas>
+    
+    <div class="seal-content">
+      <article class="seal-card">
+        <header class="seal-header">
+          <span class="seal-number">II</span>
+          <h2 class="seal-name">Sigillum Elephanti</h2>
+        </header>
+        <p class="seal-god">Elephas Fidelis / Maurus</p>
+        <p class="seal-description">
+          The Elephant conquers through infrastructure and oaths. Roads, bridges, garrisons — 
+          protection in exchange for binding loyalty. Betrayal is not a crime. It is a defect. 
+          Defects are corrected.
+        </p>
+        <svg class="seal-symbol" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+          <rect x="20" y="30" width="60" height="50" stroke="#8b7355" stroke-width="2" fill="none"/>
+          <line x1="20" y1="45" x2="80" y2="45" stroke="#8b7355" stroke-width="1"/>
+          <line x1="20" y1="60" x2="80" y2="60" stroke="#8b7355" stroke-width="1"/>
+          <circle cx="35" cy="80" r="5" stroke="#8b7355" stroke-width="1.5"/>
+          <circle cx="65" cy="80" r="5" stroke="#8b7355" stroke-width="1.5"/>
+        </svg>
+      </article>
+    </div>
+  </section>
+
+  <!-- Scorpion -->
+  <section class="seal-section seal-scorpion" data-seal="scorpion" aria-label="Sigillum Scorpii - The Scorpion">
+    <div class="seal-bg"></div>
+    <canvas class="seal-particles" id="scorpionParticles"></canvas>
+    
+    <div class="seal-content">
+      <article class="seal-card">
+        <header class="seal-header">
+          <span class="seal-number">III</span>
+          <h2 class="seal-name">Sigillum Scorpii</h2>
+        </header>
+        <p class="seal-god">Scorpius Aculeus / Nail</p>
+        <p class="seal-description">
+          The Scorpion sells fear with a receipt. Venom is law, leverage, and currency. 
+          One needle. One contract. One ruined dynasty. Antidote is a privilege, not a right.
+        </p>
+        <svg class="seal-symbol" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+          <path d="M50 10 L50 60" stroke="#4a9c5d" stroke-width="3"/>
+          <circle cx="50" cy="70" r="10" stroke="#4a9c5d" stroke-width="2" fill="none"/>
+          <path d="M30 30 L50 50 L70 30" stroke="#4a9c5d" stroke-width="2" fill="none"/>
+          <circle cx="50" cy="5" r="4" fill="#4a9c5d"/>
+        </svg>
+      </article>
+    </div>
+  </section>
+
+  <!-- Serpent -->
+  <section class="seal-section seal-serpent" data-seal="serpent" aria-label="Sigillum Serpentis - The Serpent">
+    <div class="seal-bg"></div>
+    <canvas class="seal-particles" id="serpentParticles"></canvas>
+    
+    <div class="seal-content">
+      <article class="seal-card">
+        <header class="seal-header">
+          <span class="seal-number">IV</span>
+          <h2 class="seal-name">Sigillum Serpentis</h2>
+        </header>
+        <p class="seal-god">Serpens Fascinator / Sibil</p>
+        <p class="seal-description">
+          The Serpent wins without siege. Sanctuaries, salons, healing — all doors open. 
+          Consent is a spiral. You enter at the open end. You don't notice when it closes.
+        </p>
+        <svg class="seal-symbol" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+          <path d="M50 10 Q80 30 50 50 Q20 70 50 90" stroke="#50c878" stroke-width="2" fill="none"/>
+          <circle cx="50" cy="15" r="5" fill="#50c878"/>
+          <circle cx="50" cy="85" r="8" stroke="#50c878" stroke-width="2" fill="none"/>
+        </svg>
+      </article>
+    </div>
+  </section>
+
+  <!-- Angler -->
+  <section class="seal-section seal-angler" data-seal="angler" aria-label="Sigillum Lophii - The Angler">
+    <div class="seal-bg"></div>
+    <canvas class="seal-particles" id="anglerParticles"></canvas>
+    
+    <div class="seal-content">
+      <article class="seal-card">
+        <header class="seal-header">
+          <span class="seal-number">V</span>
+          <h2 class="seal-name">Sigillum Lophii</h2>
+        </header>
+        <p class="seal-god">Lophius Pharos / Lumen</p>
+        <p class="seal-description">
+          The Angler owns the sea by owning navigation. Lure-lighthouses guide the lost — 
+          but rescue becomes debt. The broken come willingly. And they stay.
+        </p>
+        <svg class="seal-symbol" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+          <path d="M50 10 L50 50" stroke="#00ced1" stroke-width="2"/>
+          <circle cx="50" cy="8" r="6" fill="#00ced1"/>
+          <path d="M20 60 Q50 40 80 60 L80 90 L20 90 Z" stroke="#00ced1" stroke-width="2" fill="none"/>
+          <line x1="35" y1="70" x2="65" y2="70" stroke="#00ced1" stroke-width="1"/>
+          <line x1="35" y1="80" x2="65" y2="80" stroke="#00ced1" stroke-width="1"/>
+        </svg>
+      </article>
+    </div>
+  </section>
+
+  <!-- Hyena -->
+  <section class="seal-section seal-hyena" data-seal="hyena" aria-label="Sigillum Hyaenae - The Hyena">
+    <div class="seal-bg"></div>
+    <canvas class="seal-particles" id="hyenaParticles"></canvas>
+    
+    <div class="seal-content">
+      <article class="seal-card">
+        <header class="seal-header">
+          <span class="seal-number">VI</span>
+          <h2 class="seal-name">Sigillum Hyaenae</h2>
+        </header>
+        <p class="seal-god">Hyaena Risoria / Rictus</p>
+        <p class="seal-description">
+          The Hyena thrives on what remains. Ruins, battlefields, secrets — all become inventory. 
+          The pack enforces neutral ground. Nothing is sacred if it can be carried. 
+          Even mercy has a rate.
+        </p>
+        <svg class="seal-symbol" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+          <ellipse cx="50" cy="50" rx="35" ry="25" stroke="#c9a227" stroke-width="2" fill="none"/>
+          <circle cx="35" cy="45" r="5" fill="#c9a227"/>
+          <circle cx="65" cy="45" r="5" fill="#c9a227"/>
+          <path d="M35 65 Q50 75 65 65" stroke="#c9a227" stroke-width="2" fill="none"/>
+        </svg>
+      </article>
+    </div>
+  </section>
+
+  <!-- Quote Wall -->
+  <section class="quote-section" aria-label="Words of the Seals">
+    <div class="quote-bg"></div>
+    <h2 class="quote-title">Words of the Seals</h2>
+    <div class="quote-container" id="quoteContainer">
+      <!-- Quotes will be injected by JS -->
+    </div>
+  </section>
+
+  <!-- Audio -->
+  <audio id="bgMusic" loop preload="auto">
+    <source src="Wax. Iron. Ink. Bone.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Music Control Button -->
+  <button class="music-control" id="musicControl" aria-label="Toggle background music" title="Toggle music">
+    <div class="sound-waves" aria-hidden="true">
+      <div class="sound-wave"></div>
+      <div class="sound-wave"></div>
+      <div class="sound-wave"></div>
+    </div>
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M11 5L6 9H2v6h4l5 4V5z" class="speaker-cone"/>
+      <path d="M15.54 8.46a5 5 0 0 1 0 7.07" class="sound-wave-line"/>
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14" class="sound-wave-line"/>
+    </svg>
+  </button>
+
+  <script>
+    // ==================== INITIALIZATION ====================
+    
+    // Audio and music state
+    const bgMusic = document.getElementById('bgMusic');
+    const musicControl = document.getElementById('musicControl');
+    let isPlaying = false;
+    let hasInteracted = false;
+    
+    // Quotes data
+    const quotes = [
+      "A name without a seal is only noise.",
+      "We offer light to the lost. The broken come willingly — and stay.",
+      "Consent is a spiral. You enter at the open end. You don't notice when it closes.",
+      "Betrayal is not a crime. Betrayal is a defect. Defects are corrected or removed.",
+      "Everything has a price. Even mercy has a rate.",
+      "Being thrown into the Abyss is not death. It is deletion."
+    ];
+    
+    // Seal colors for particles
+    const sealColors = {
+      raven: { primary: '#c9a227', secondary: '#8b7355', bg: 'rgba(201, 162, 39, 0.1)' },
+      elephant: { primary: '#8b7355', secondary: '#5c4d3d', bg: 'rgba(139, 115, 85, 0.1)' },
+      scorpion: { primary: '#4a9c5d', secondary: '#b43232', bg: 'rgba(74, 156, 93, 0.1)' },
+      serpent: { primary: '#50c878', secondary: '#8a2be2', bg: 'rgba(80, 200, 120, 0.1)' },
+      angler: { primary: '#00ced1', secondary: '#006478', bg: 'rgba(0, 206, 209, 0.1)' },
+      hyena: { primary: '#c9a227', secondary: '#8b4513', bg: 'rgba(201, 162, 39, 0.1)' }
+    };
+    
+    // Particle systems storage
+    const particleSystems = {};
+    
+    // ==================== RAIN EFFECT ====================
+    
+    const rainCanvas = document.getElementById('rainCanvas');
+    const rainCtx = rainCanvas.getContext('2d');
+    let rainDrops = [];
+    
+    function initRain() {
+      rainCanvas.width = window.innerWidth;
+      rainCanvas.height = window.innerHeight;
+      
+      rainDrops = [];
+      const dropCount = Math.floor((rainCanvas.width * rainCanvas.height) / 15000);
+      
+      for (let i = 0; i < dropCount; i++) {
+        rainDrops.push({
+          x: Math.random() * rainCanvas.width,
+          y: Math.random() * rainCanvas.height,
+          length: Math.random() * 20 + 10,
+          speed: Math.random() * 3 + 2,
+          opacity: Math.random() * 0.3 + 0.1
+        });
+      }
+    }
+    
+    function animateRain() {
+      rainCtx.clearRect(0, 0, rainCanvas.width, rainCanvas.height);
+      
+      rainDrops.forEach(drop => {
+        rainCtx.beginPath();
+        rainCtx.moveTo(drop.x, drop.y);
+        rainCtx.lineTo(drop.x + 1, drop.y + drop.length);
+        rainCtx.strokeStyle = `rgba(150, 140, 130, ${drop.opacity})`;
+        rainCtx.lineWidth = 1;
+        rainCtx.stroke();
+        
+        drop.y += drop.speed;
+        
+        if (drop.y > rainCanvas.height) {
+          drop.y = -drop.length;
+          drop.x = Math.random() * rainCanvas.width;
+        }
+      });
+      
+      requestAnimationFrame(animateRain);
+    }
+    
+    // ==================== LANTERNS ====================
+    
+    function createLanterns() {
+      const lanternsContainer = document.getElementById('lanterns');
+      const lanternCount = 15;
+      
+      for (let i = 0; i < lanternCount; i++) {
+        const lantern = document.createElement('div');
+        lantern.className = 'lantern';
+        lantern.style.left = `${Math.random() * 100}%`;
+        lantern.style.top = `${60 + Math.random() * 30}%`;
+        lantern.style.animationDelay = `${Math.random() * 3}s`;
+        lantern.style.animationDuration = `${2 + Math.random() * 2}s`;
+        lanternsContainer.appendChild(lantern);
+      }
+    }
+    
+    // ==================== PARTICLE SYSTEMS ====================
+    
+    class ParticleSystem {
+      constructor(canvas, type, colors) {
+        this.canvas = canvas;
+        this.ctx = canvas.getContext('2d');
+        this.type = type;
+        this.colors = colors;
+        this.particles = [];
+        this.isActive = false;
+        this.resize();
+      }
+      
+      resize() {
+        const rect = this.canvas.parentElement.getBoundingClientRect();
+        this.canvas.width = rect.width;
+        this.canvas.height = rect.height;
+      }
+      
+      createParticle() {
+        const types = {
+          raven: () => ({
+            x: Math.random() * this.canvas.width,
+            y: Math.random() * this.canvas.height - this.canvas.height,
+            size: Math.random() * 3 + 1,
+            speedY: Math.random() * 1 + 0.5,
+            speedX: (Math.random() - 0.5) * 0.5,
+            rotation: Math.random() * 360,
+            rotationSpeed: (Math.random() - 0.5) * 2,
+            opacity: Math.random() * 0.6 + 0.2,
+            type: 'feather'
+          }),
+          elephant: () => ({
+            x: Math.random() * this.canvas.width,
+            y: Math.random() * this.canvas.height,
+            size: Math.random() * 4 + 2,
+            speedY: Math.random() * 0.3,
+            speedX: (Math.random() - 0.5) * 0.3,
+            opacity: Math.random() * 0.4 + 0.1,
+            type: 'chain'
+          }),
+          scorpion: () => ({
+            x: Math.random() * this.canvas.width,
+            y: Math.random() * this.canvas.height,
+            size: Math.random() * 2 + 1,
+            speedY: -Math.random() * 0.5 - 0.2,
+            speedX: (Math.random() - 0.5) * 0.3,
+            opacity: Math.random() * 0.7 + 0.3,
+            glow: Math.random() > 0.7,
+            type: 'needle'
+          }),
+          serpent: () => ({
+            x: Math.random() * this.canvas.width,
+            y: Math.random() * this.canvas.height,
+            size: Math.random() * 30 + 20,
+            angle: Math.random() * Math.PI * 2,
+            speed: Math.random() * 0.01 + 0.005,
+            opacity: Math.random() * 0.3 + 0.1,
+            type: 'spiral'
+          }),
+          angler: () => ({
+            x: Math.random() * this.canvas.width,
+            y: Math.random() * this.canvas.height,
+            size: Math.random() * 3 + 1,
+            pulse: Math.random() * Math.PI * 2,
+            pulseSpeed: Math.random() * 0.05 + 0.02,
+            opacity: Math.random() * 0.6 + 0.2,
+            type: 'lure'
+          }),
+          hyena: () => ({
+            x: Math.random() * this.canvas.width,
+            y: Math.random() * this.canvas.height,
+            size: Math.random() * 4 + 2,
+            speedY: Math.random() * 0.5 + 0.2,
+            speedX: (Math.random() - 0.5) * 0.5,
+            rotation: Math.random() * 360,
+            opacity: Math.random() * 0.5 + 0.2,
+            type: 'bone'
+          })
+        };
+        
+        return types[this.type] ? types[this.type]() : null;
+      }
+      
+      drawParticle(p) {
+        this.ctx.save();
+        
+        switch(p.type) {
+          case 'feather':
+            this.ctx.translate(p.x, p.y);
+            this.ctx.rotate(p.rotation * Math.PI / 180);
+            this.ctx.beginPath();
+            this.ctx.ellipse(0, 0, p.size, p.size * 3, 0, 0, Math.PI * 2);
+            this.ctx.fillStyle = `rgba(201, 162, 39, ${p.opacity})`;
+            this.ctx.fill();
+            break;
+            
+          case 'chain':
+            this.ctx.translate(p.x, p.y);
+            this.ctx.strokeStyle = `rgba(139, 115, 85, ${p.opacity})`;
+            this.ctx.lineWidth = 1;
+            for (let i = 0; i < 3; i++) {
+              this.ctx.beginPath();
+              this.ctx.arc(i * p.size * 1.5, 0, p.size, 0, Math.PI, true);
+              this.ctx.stroke();
+            }
+            break;
+            
+          case 'needle':
+            this.ctx.translate(p.x, p.y);
+            if (p.glow) {
+              this.ctx.shadowBlur = 10;
+              this.ctx.shadowColor = this.colors.primary;
+            }
+            this.ctx.beginPath();
+            this.ctx.moveTo(0, -p.size * 5);
+            this.ctx.lineTo(p.size, 0);
+            this.ctx.lineTo(0, p.size);
+            this.ctx.lineTo(-p.size, 0);
+            this.ctx.closePath();
+            this.ctx.fillStyle = p.glow ? 
+              this.colors.primary : 
+              `rgba(74, 156, 93, ${p.opacity})`;
+            this.ctx.fill();
+            break;
+            
+          case 'spiral':
+            this.ctx.translate(this.canvas.width / 2, this.canvas.height / 2);
+            this.ctx.strokeStyle = `rgba(80, 200, 120, ${p.opacity})`;
+            this.ctx.lineWidth = 1;
+            this.ctx.beginPath();
+            for (let i = 0; i < p.size; i++) {
+              const angle = p.angle + (i * 0.2);
+              const radius = i * 2;
+              const x = Math.cos(angle) * radius;
+              const y = Math.sin(angle) * radius;
+              if (i === 0) this.ctx.moveTo(x, y);
+              else this.ctx.lineTo(x, y);
+            }
+            this.ctx.stroke();
+            break;
+            
+          case 'lure':
+            const glow = Math.sin(p.pulse) * 0.5 + 0.5;
+            this.ctx.beginPath();
+            this.ctx.arc(p.x, p.y, p.size * (1 + glow * 0.5), 0, Math.PI * 2);
+            this.ctx.fillStyle = `rgba(0, 206, 209, ${p.opacity * glow})`;
+            this.ctx.shadowBlur = 15 * glow;
+            this.ctx.shadowColor = '#00ced1';
+            this.ctx.fill();
+            break;
+            
+          case 'bone':
+            this.ctx.translate(p.x, p.y);
+            this.ctx.rotate(p.rotation * Math.PI / 180);
+            this.ctx.fillStyle = `rgba(221, 213, 200, ${p.opacity})`;
+            this.ctx.beginPath();
+            this.ctx.ellipse(0, 0, p.size * 2, p.size, 0, 0, Math.PI * 2);
+            this.ctx.fill();
+            this.ctx.beginPath();
+            this.ctx.arc(-p.size * 2, 0, p.size * 0.7, 0, Math.PI * 2);
+            this.ctx.arc(p.size * 2, 0, p.size * 0.7, 0, Math.PI * 2);
+            this.ctx.fillStyle = `rgba(201, 162, 39, ${p.opacity * 0.7})`;
+            this.ctx.fill();
+            break;
+        }
+        
+        this.ctx.restore();
+      }
+      
+      updateParticle(p) {
+        switch(p.type) {
+          case 'feather':
+            p.y += p.speedY;
+            p.x += p.speedX;
+            p.rotation += p.rotationSpeed;
+            if (p.y > this.canvas.height + 20) {
+              p.y = -20;
+              p.x = Math.random() * this.canvas.width;
+            }
+            break;
+            
+          case 'chain':
+            p.y += p.speedY;
+            p.x += p.speedX;
+            if (p.y > this.canvas.height) p.y = 0;
+            if (p.x < 0) p.x = this.canvas.width;
+            if (p.x > this.canvas.width) p.x = 0;
+            break;
+            
+          case 'needle':
+            p.y += p.speedY;
+            p.x += p.speedX;
+            if (p.y < -20) {
+              p.y = this.canvas.height + 20;
+              p.x = Math.random() * this.canvas.width;
+            }
+            break;
+            
+          case 'spiral':
+            p.angle += p.speed;
+            break;
+            
+          case 'lure':
+            p.pulse += p.pulseSpeed;
+            break;
+            
+          case 'bone':
+            p.y += p.speedY;
+            p.x += p.speedX;
+            p.rotation += 0.5;
+            if (p.y > this.canvas.height + 20) {
+              p.y = -20;
+              p.x = Math.random() * this.canvas.width;
+            }
+            break;
+        }
+      }
+      
+      start() {
+        this.isActive = true;
+        this.particles = [];
+        const count = this.type === 'spiral' ? 5 : 30;
+        for (let i = 0; i < count; i++) {
+          const p = this.createParticle();
+          if (p) this.particles.push(p);
+        }
+        this.animate();
+      }
+      
+      stop() {
+        this.isActive = false;
+      }
+      
+      animate() {
+        if (!this.isActive) return;
+        
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        
+        this.particles.forEach(p => {
+          this.updateParticle(p);
+          this.drawParticle(p);
+        });
+        
+        requestAnimationFrame(() => this.animate());
+      }
+    }
+    
+    // ==================== SCROLL OBSERVERS ====================
+    
+    function initScrollObservers() {
+      const sealCards = document.querySelectorAll('.seal-card');
+      const sealSections = document.querySelectorAll('.seal-section');
+      
+      // Card reveal observer
+      const cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.2, rootMargin: '-50px' });
+      
+      sealCards.forEach(card => cardObserver.observe(card));
+      
+      // Particle system observer
+      const particleObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const seal = entry.target.dataset.seal;
+          const canvas = entry.target.querySelector('.seal-particles');
+          
+          if (entry.isIntersecting) {
+            if (!particleSystems[seal] && canvas) {
+              particleSystems[seal] = new ParticleSystem(canvas, seal, sealColors[seal]);
+            }
+            if (particleSystems[seal]) {
+              particleSystems[seal].start();
+            }
+          } else {
+            if (particleSystems[seal]) {
+              particleSystems[seal].stop();
+            }
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      sealSections.forEach(section => particleObserver.observe(section));
+    }
+    
+    // ==================== QUOTE TYPEWRITER ====================
+    
+    function initQuotes() {
+      const container = document.getElementById('quoteContainer');
+      let currentQuote = 0;
+      let currentChar = 0;
+      let isTyping = false;
+      
+      function createQuoteElement(text) {
+        const div = document.createElement('div');
+        div.className = 'quote-item';
+        div.innerHTML = `<span class="quote-text"></span><span class="typewriter-cursor"></span>`;
+        return div;
+      }
+      
+      function typeQuote(element, text, callback) {
+        const textSpan = element.querySelector('.quote-text');
+        const cursor = element.querySelector('.typewriter-cursor');
+        let index = 0;
+        
+        element.classList.add('visible');
+        
+        function type() {
+          if (index < text.length) {
+            textSpan.textContent += text[index];
+            index++;
+            setTimeout(type, 30 + Math.random() * 30);
+          } else {
+            setTimeout(() => {
+              cursor.style.display = 'none';
+              if (callback) callback();
+            }, 1500);
+          }
+        }
+        
+        type();
+      }
+      
+      function showNextQuote() {
+        if (currentQuote >= quotes.length) {
+          currentQuote = 0;
+          container.innerHTML = '';
+        }
+        
+        const quoteElement = createQuoteElement(quotes[currentQuote]);
+        container.appendChild(quoteElement);
+        
+        typeQuote(quoteElement, quotes[currentQuote], () => {
+          currentQuote++;
+          setTimeout(showNextQuote, 1000);
+        });
+      }
+      
+      // Start quotes when section is visible
+      const quoteSection = document.querySelector('.quote-section');
+      const quoteObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !isTyping) {
+            isTyping = true;
+            showNextQuote();
+            quoteObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      
+      quoteObserver.observe(quoteSection);
+    }
+    
+    // ==================== PARALLAX ====================
+    
+    function initParallax() {
+      const parallaxLayers = document.querySelectorAll('[data-parallax]');
+      
+      let ticking = false;
+      
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            const scrollY = window.pageYOffset;
+            
+            parallaxLayers.forEach(layer => {
+              const speed = parseFloat(layer.dataset.parallax) || 0.5;
+              layer.style.transform = `translateY(${scrollY * speed}px)`;
+            });
+            
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+    }
+    
+    // ==================== MUSIC CONTROL ====================
+    
+    function initMusic() {
+      bgMusic.volume = 0.5;
+      
+      function toggleMusic() {
+        if (isPlaying) {
+          bgMusic.pause();
+          musicControl.classList.remove('playing');
+        } else {
+          bgMusic.play().catch(e => console.log('Audio play failed:', e));
+          musicControl.classList.add('playing');
+        }
+        isPlaying = !isPlaying;
+      }
+      
+      musicControl.addEventListener('click', toggleMusic);
+      
+      // Enable audio on first interaction
+      document.addEventListener('click', function enableAudio() {
+        if (!hasInteracted) {
+          hasInteracted = true;
+          bgMusic.muted = false;
+        }
+      }, { once: true });
+      
+      // Keyboard accessibility
+      musicControl.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleMusic();
+        }
+      });
+    }
+    
+    // ==================== HOVER EFFECTS ====================
+    
+    function initHoverEffects() {
+      const sealCards = document.querySelectorAll('.seal-card');
+      
+      sealCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width;
+          const y = (e.clientY - rect.top) / rect.height;
+          
+          card.style.background = `
+            radial-gradient(
+              circle at ${x * 100}% ${y * 100}%,
+              rgba(201, 162, 39, 0.08) 0%,
+              transparent 50%
+            ),
+            rgba(15, 13, 11, 0.85)
+          `;
+        });
+        
+        card.addEventListener('mouseleave', () => {
+          card.style.background = 'rgba(15, 13, 11, 0.85)';
+        });
+      });
+    }
+    
+    // ==================== RESIZE HANDLER ====================
+    
+    function handleResize() {
+      initRain();
+      
+      Object.values(particleSystems).forEach(system => {
+        if (system && system.resize) {
+          system.resize();
+        }
+      });
+    }
+    
+    // ==================== INIT ====================
+    
+    function init() {
+      initRain();
+      animateRain();
+      createLanterns();
+      initScrollObservers();
+      initQuotes();
+      initParallax();
+      initMusic();
+      initHoverEffects();
+      
+      window.addEventListener('resize', handleResize);
+    }
+    
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    
+    if (!prefersReducedMotion.matches) {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      document.addEventListener('DOMContentLoaded', () => {
+        initMusic();
+        initScrollObservers();
+        initQuotes();
+      });
+    }
+  </script>
+</body>
+</html>
