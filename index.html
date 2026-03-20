@@ -3,45 +3,98 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>THE WHISPERLANDS</title>
+  <title>THE WHISPERLANDS — Terrae Susurrorum</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
   <style>
+    /* ==========================================
+       CUSTOM ASSETS: Replace these URLs with your images
+       ========================================== */
     :root {
-      --bg: #0a0908;
-      --fg: #e8e4de;
-      --muted: #6b6560;
-      --accent: #c9a227;
-      --card: rgba(15, 13, 11, 0.85);
-      --border: rgba(201, 162, 39, 0.3);
+      /* Raven Assets */
+      --raven-bg-url: url(''); /* REPLACE: Raven art - basalt tribunals, archives */
       
-      --raven-bg: #0d0c0b;
-      --raven-fg: #e8e4de;
-      --raven-accent: #c9a227;
+      /* Elephant Assets */
+      --elephant-bg-url: url(''); /* REPLACE: Elephant art - stone fortress, oath hall */
       
-      --elephant-bg: #1a1916;
-      --elephant-fg: #d4cfc7;
-      --elephant-accent: #8b7355;
+      /* Scorpion Assets */
+      --scorpion-bg-url: url(''); /* REPLACE: Scorpion art - salt flats, caravans */
       
-      --scorpion-bg: #1c1510;
-      --scorpion-fg: #e0d5c5;
-      --scorpion-accent: #4a9c5d;
+      /* Serpent Assets */
+      --serpent-bg-url: url(''); /* REPLACE: Serpent art - mirror shrine, green haze */
       
-      --serpent-bg: #0f1612;
-      --serpent-fg: #dce5dc;
-      --serpent-accent: #50c878;
+      /* Angler Assets */
+      --angler-bg-url: url(''); /* REPLACE: Angler art - lighthouse, fog coast */
       
-      --angler-bg: #080d12;
-      --angler-fg: #c5d5e0;
-      --angler-accent: #00ced1;
-      
-      --hyena-bg: #151210;
-      --hyena-fg: #ddd5c8;
-      --hyena-accent: #c9a227;
+      /* Hyena Assets */
+      --hyena-bg-url: url(''); /* REPLACE: Hyena art - bone market, candlelit feast */
     }
 
-    * {
+    /* ==========================================
+       CSS VARIABLES - COLOR PALETTE
+       ========================================== */
+    :root {
+      /* Global */
+      --bg: #080706;
+      --fg: #e5e0d8;
+      --fg-dim: #9a948a;
+      --muted: #5a554d;
+      --accent: #c9a227;
+      --card-bg: rgba(12, 10, 8, 0.88);
+      --card-border: rgba(201, 162, 39, 0.25);
+      
+      /* Raven - Administrative Horror */
+      --raven-bg: #0a0908;
+      --raven-fg: #e8e4dc;
+      --raven-accent: #d4a84b;
+      --raven-dim: #8a8070;
+      --raven-glow: rgba(212, 168, 75, 0.4);
+      
+      /* Elephant - Infrastructure Discipline */
+      --elephant-bg: #0e0d0a;
+      --elephant-fg: #d8d4cc;
+      --elephant-accent: #a08050;
+      --elephant-dim: #6a645a;
+      --elephant-glow: rgba(160, 128, 80, 0.4);
+      
+      /* Scorpion - Venom & Debt */
+      --scorpion-bg: #0d0a08;
+      --scorpion-fg: #e0d8c8;
+      --scorpion-accent: #5cb870;
+      --scorpion-accent-alt: #a83030;
+      --scorpion-dim: #7a7060;
+      --scorpion-glow: rgba(92, 184, 112, 0.5);
+      
+      /* Serpent - Consent & Desire */
+      --serpent-bg: #080a09;
+      --serpent-fg: #d8e0d8;
+      --serpent-accent: #50a070;
+      --serpent-accent-alt: #2a1a3a;
+      --serpent-dim: #6a7a6a;
+      --serpent-glow: rgba(80, 160, 112, 0.4);
+      
+      /* Angler - Navigation & Debt */
+      --angler-bg: #060a0d;
+      --angler-fg: #c8d8e0;
+      --angler-accent: #20a8b0;
+      --angler-dim: #506a78;
+      --angler-glow: rgba(32, 168, 176, 0.5);
+      
+      /* Hyena - Salvage & Markets */
+      --hyena-bg: #0a0908;
+      --hyena-fg: #e0d8c8;
+      --hyena-accent: #c8a030;
+      --hyena-accent-alt: #8a4020;
+      --hyena-dim: #807060;
+      --hyena-glow: rgba(200, 160, 48, 0.4);
+    }
+
+    /* ==========================================
+       BASE RESET & TYPOGRAPHY
+       ========================================== */
+    *, *::before, *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -49,28 +102,52 @@
 
     html {
       scroll-behavior: smooth;
+      font-size: 16px;
     }
 
     body {
-      font-family: 'Crimson Text', Georgia, serif;
+      font-family: 'Crimson Text', Georgia, 'Times New Roman', serif;
       background: var(--bg);
       color: var(--fg);
       line-height: 1.7;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* Global Overlays */
-    .rain-overlay {
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Cinzel Decorative', serif;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    ::selection {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    /* Focus styles for accessibility */
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    /* ==========================================
+       GLOBAL OVERLAYS
+       ========================================== */
+    
+    /* Rain Canvas */
+    .rain-canvas {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       pointer-events: none;
-      z-index: 1000;
-      opacity: 0.15;
+      z-index: 9998;
+      opacity: 0.18;
     }
 
+    /* Film Grain */
     .film-grain {
       position: fixed;
       top: 0;
@@ -78,25 +155,26 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
-      z-index: 1001;
-      opacity: 0.08;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
-      animation: grain 0.5s steps(10) infinite;
+      z-index: 9999;
+      opacity: 0.06;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      animation: grainShift 0.4s steps(8) infinite;
     }
 
-    @keyframes grain {
+    @keyframes grainShift {
       0%, 100% { transform: translate(0, 0); }
-      10% { transform: translate(-5%, -10%); }
-      20% { transform: translate(-15%, 5%); }
-      30% { transform: translate(7%, -25%); }
-      40% { transform: translate(-5%, 25%); }
-      50% { transform: translate(-15%, 10%); }
-      60% { transform: translate(15%, 0%); }
-      70% { transform: translate(0%, 15%); }
-      80% { transform: translate(3%, 35%); }
-      90% { transform: translate(-10%, 10%); }
+      10% { transform: translate(-2%, -2%); }
+      20% { transform: translate(2%, 1%); }
+      30% { transform: translate(-1%, 2%); }
+      40% { transform: translate(2%, -1%); }
+      50% { transform: translate(-2%, 1%); }
+      60% { transform: translate(1%, -2%); }
+      70% { transform: translate(-1%, 1%); }
+      80% { transform: translate(2%, 2%); }
+      90% { transform: translate(-2%, -1%); }
     }
 
+    /* CRT Scanlines */
     .scanlines {
       position: fixed;
       top: 0;
@@ -104,18 +182,20 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
-      z-index: 1002;
+      z-index: 10000;
       background: repeating-linear-gradient(
         0deg,
-        rgba(0, 0, 0, 0.15) 0px,
-        rgba(0, 0, 0, 0.15) 1px,
+        rgba(0, 0, 0, 0.12) 0px,
+        rgba(0, 0, 0, 0.12) 1px,
         transparent 1px,
         transparent 2px
       );
-      opacity: 0.3;
+      opacity: 0.35;
     }
 
-    /* Hero Section */
+    /* ==========================================
+       HERO SECTION
+       ========================================== */
     .hero {
       position: relative;
       min-height: 100vh;
@@ -123,23 +203,23 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      padding: 2rem;
       overflow: hidden;
-      background: linear-gradient(
-        180deg,
-        #0a0908 0%,
-        #12100e 30%,
-        #0d0c0b 70%,
-        #080706 100%
-      );
     }
 
     .hero-bg {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 120% 80% at 50% 120%, rgba(20, 35, 50, 0.4) 0%, transparent 60%),
+        radial-gradient(ellipse 80% 50% at 20% 80%, rgba(30, 25, 15, 0.3) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(25, 20, 30, 0.25) 0%, transparent 50%),
+        linear-gradient(180deg, #060504 0%, #0a0908 40%, #080706 100%);
+    }
+
+    .hero-parallax {
+      position: absolute;
+      inset: 0;
     }
 
     .hero-fog {
@@ -147,191 +227,220 @@
       width: 200%;
       height: 100%;
       background: 
-        radial-gradient(ellipse 80% 50% at 20% 80%, rgba(60, 50, 40, 0.3) 0%, transparent 50%),
-        radial-gradient(ellipse 60% 40% at 80% 70%, rgba(40, 35, 30, 0.25) 0%, transparent 50%),
-        radial-gradient(ellipse 100% 60% at 50% 90%, rgba(30, 25, 20, 0.4) 0%, transparent 60%);
-      animation: fogDrift 30s ease-in-out infinite alternate;
+        radial-gradient(ellipse 50% 30% at 30% 85%, rgba(40, 50, 60, 0.25) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 25% at 70% 75%, rgba(35, 40, 45, 0.2) 0%, transparent 50%);
+      animation: fogDrift 35s ease-in-out infinite alternate;
     }
 
     @keyframes fogDrift {
-      0% { transform: translateX(-10%); }
+      0% { transform: translateX(-15%); }
       100% { transform: translateX(0%); }
     }
 
     .hero-lanterns {
       position: absolute;
-      width: 100%;
-      height: 100%;
+      inset: 0;
     }
 
     .lantern {
       position: absolute;
-      width: 4px;
-      height: 4px;
-      background: #c9a227;
       border-radius: 50%;
+      background: var(--accent);
       box-shadow: 
-        0 0 10px 2px rgba(201, 162, 39, 0.5),
-        0 0 20px 4px rgba(201, 162, 39, 0.3),
-        0 0 40px 8px rgba(201, 162, 39, 0.15);
-      animation: lanternFlicker 3s ease-in-out infinite;
+        0 0 8px 3px rgba(201, 162, 39, 0.5),
+        0 0 20px 6px rgba(201, 162, 39, 0.25),
+        0 0 40px 10px rgba(201, 162, 39, 0.1);
+      animation: lanternFlicker 2.5s ease-in-out infinite;
     }
 
     @keyframes lanternFlicker {
-      0%, 100% { opacity: 0.6; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.2); }
+      0%, 100% { opacity: 0.5; transform: scale(0.9); }
+      25% { opacity: 0.7; transform: scale(0.95); }
+      50% { opacity: 1; transform: scale(1.1); }
+      75% { opacity: 0.6; transform: scale(0.92); }
     }
 
     .hero-sigil {
       position: absolute;
-      width: 300px;
-      height: 300px;
+      width: 350px;
+      height: 350px;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      opacity: 0.15;
-      animation: sigilPulse 8s ease-in-out infinite, sigilGlitch 12s ease-in-out infinite;
+      opacity: 0.12;
+      animation: sigilPulse 6s ease-in-out infinite, sigilGlitch 15s ease-in-out infinite;
+      pointer-events: none;
     }
 
     @keyframes sigilPulse {
-      0%, 100% { opacity: 0.1; transform: translate(-50%, -50%) scale(1); }
-      50% { opacity: 0.2; transform: translate(-50%, -50%) scale(1.05); }
+      0%, 100% { opacity: 0.08; transform: translate(-50%, -50%) scale(1); }
+      50% { opacity: 0.15; transform: translate(-50%, -50%) scale(1.03); }
     }
 
     @keyframes sigilGlitch {
-      0%, 90%, 100% { filter: none; }
-      91% { filter: hue-rotate(90deg) saturate(2); transform: translate(-50%, -50%) scale(1.1) skewX(5deg); }
+      0%, 88%, 100% { filter: none; }
+      89% { filter: hue-rotate(60deg) saturate(1.5); transform: translate(-50%, -50%) scale(1.08) skewX(3deg); }
+      90% { filter: none; transform: translate(-50%, -50%) scale(1); }
+      91% { filter: brightness(2) contrast(1.2); transform: translate(-50%, -50%) scale(0.96) skewX(-2deg); }
       92% { filter: none; transform: translate(-50%, -50%) scale(1); }
-      93% { filter: invert(1); transform: translate(-50%, -50%) scale(0.95) skewX(-3deg); }
-      94% { filter: none; transform: translate(-50%, -50%) scale(1); }
-    }
-
-    .sigil-svg {
-      width: 100%;
-      height: 100%;
     }
 
     .hero-content {
       position: relative;
       z-index: 10;
       text-align: center;
-      padding: 2rem;
+      max-width: 1000px;
     }
 
     .hero-title {
-      font-family: 'Cinzel', serif;
-      font-weight: 900;
-      font-size: clamp(2.5rem, 8vw, 6rem);
-      letter-spacing: 0.2em;
-      color: var(--fg);
+      font-size: clamp(2.5rem, 10vw, 5.5rem);
+      letter-spacing: 0.15em;
       text-transform: uppercase;
+      color: var(--fg);
+      margin-bottom: 0.5rem;
       position: relative;
-      animation: titleGlitch 10s ease-in-out infinite;
+      animation: titleReveal 1.5s ease-out forwards;
     }
 
     .hero-title::before,
     .hero-title::after {
-      content: 'THE WHISPERLANDS';
+      content: attr(data-text);
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
+      pointer-events: none;
     }
 
     .hero-title::before {
-      color: #c9a227;
-      animation: glitchTop 3s ease-in-out infinite;
-      clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+      color: var(--accent);
+      animation: glitchTop 4s ease-in-out infinite;
+      clip-path: polygon(0 0, 100% 0, 100% 42%, 0 42%);
+      opacity: 0.8;
     }
 
     .hero-title::after {
-      color: #00ced1;
-      animation: glitchBottom 2s ease-in-out infinite;
-      clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+      color: #20a8b0;
+      animation: glitchBottom 3.5s ease-in-out infinite;
+      clip-path: polygon(0 58%, 100% 58%, 100% 100%, 0 100%);
+      opacity: 0.6;
+    }
+
+    @keyframes titleReveal {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes glitchTop {
-      0%, 90%, 100% { transform: translate(0); }
-      92% { transform: translate(-3px, -1px); }
-      94% { transform: translate(3px, 1px); }
-      96% { transform: translate(-1px, 2px); }
-      98% { transform: translate(1px, -1px); }
+      0%, 85%, 100% { transform: translate(0); opacity: 0; }
+      86% { transform: translate(-4px, -2px); opacity: 0.8; }
+      87% { transform: translate(3px, 1px); opacity: 0.6; }
+      88% { transform: translate(-2px, 1px); opacity: 0.8; }
+      89% { transform: translate(0); opacity: 0; }
     }
 
     @keyframes glitchBottom {
-      0%, 85%, 100% { transform: translate(0); }
-      87% { transform: translate(3px, 1px); }
-      89% { transform: translate(-3px, -1px); }
-      91% { transform: translate(1px, -2px); }
-      93% { transform: translate(-1px, 1px); }
+      0%, 88%, 100% { transform: translate(0); opacity: 0; }
+      89% { transform: translate(3px, 1px); opacity: 0.6; }
+      90% { transform: translate(-3px, -1px); opacity: 0.4; }
+      91% { transform: translate(1px, -1px); opacity: 0.6; }
+      92% { transform: translate(0); opacity: 0; }
     }
 
     .hero-subtitle {
-      font-family: 'Cinzel', serif;
-      font-weight: 400;
-      font-size: clamp(1rem, 3vw, 1.5rem);
-      letter-spacing: 0.3em;
-      color: var(--muted);
-      margin-top: 1.5rem;
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(0.9rem, 2.5vw, 1.4rem);
+      letter-spacing: 0.4em;
+      color: var(--fg-dim);
       text-transform: uppercase;
+      margin-bottom: 3rem;
+      animation: subtitleReveal 1.5s ease-out 0.3s forwards;
+      opacity: 0;
+    }
+
+    @keyframes subtitleReveal {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-intro {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 2.5rem;
+      background: var(--card-bg);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid var(--card-border);
+      border-radius: 3px;
+      animation: introReveal 1.5s ease-out 0.6s forwards;
+      opacity: 0;
+    }
+
+    @keyframes introReveal {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-intro p {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      line-height: 1.85;
+      color: var(--fg);
+      opacity: 0.9;
     }
 
     .hero-scroll {
       position: absolute;
-      bottom: 3rem;
+      bottom: 2.5rem;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.75rem;
       color: var(--muted);
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
       text-transform: uppercase;
-      animation: scrollBounce 2s ease-in-out infinite;
+      animation: scrollBounce 2.5s ease-in-out infinite;
     }
 
     @keyframes scrollBounce {
       0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(10px); }
+      50% { transform: translateX(-50%) translateY(12px); }
     }
 
     .scroll-arrow {
-      width: 20px;
-      height: 20px;
-      border-right: 2px solid var(--muted);
-      border-bottom: 2px solid var(--muted);
+      width: 18px;
+      height: 18px;
+      border-right: 2px solid var(--fg-dim);
+      border-bottom: 2px solid var(--fg-dim);
       transform: rotate(45deg);
     }
 
-    /* Seal Sections */
+    /* ==========================================
+       SEAL SECTION BASE STYLES
+       ========================================== */
     .seal-section {
       position: relative;
       min-height: 100vh;
+      padding: 6rem 1.5rem;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      padding: 4rem 2rem;
     }
 
     .seal-bg {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      inset: 0;
       z-index: 0;
     }
 
     .seal-particles {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      inset: 0;
       z-index: 1;
       pointer-events: none;
     }
@@ -339,22 +448,23 @@
     .seal-content {
       position: relative;
       z-index: 10;
-      max-width: 900px;
+      max-width: 1100px;
       width: 100%;
     }
 
     .seal-card {
-      background: var(--card);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      padding: 3rem;
+      background: var(--card-bg);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid var(--card-border);
+      border-radius: 4px;
+      padding: 2.5rem;
       position: relative;
       overflow: hidden;
-      transform: translateY(50px);
+      transform: translateY(60px);
       opacity: 0;
-      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), 
+                  opacity 0.8s ease-out;
     }
 
     .seal-card.visible {
@@ -369,198 +479,367 @@
       left: 0;
       right: 0;
       height: 3px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      background: linear-gradient(90deg, transparent 0%, var(--section-accent, var(--accent)) 50%, transparent 100%);
     }
 
     .seal-header {
       display: flex;
-      align-items: baseline;
-      gap: 1.5rem;
-      margin-bottom: 1rem;
       flex-wrap: wrap;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
     }
 
     .seal-number {
-      font-family: 'Cinzel', serif;
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 0.8rem;
       font-weight: 900;
-      font-size: 0.875rem;
-      color: var(--accent);
+      color: var(--section-accent, var(--accent));
       letter-spacing: 0.3em;
       opacity: 0.7;
     }
 
     .seal-name {
-      font-family: 'Cinzel', serif;
-      font-weight: 900;
-      font-size: clamp(1.75rem, 5vw, 2.5rem);
-      letter-spacing: 0.15em;
+      font-size: clamp(1.6rem, 5vw, 2.4rem);
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--fg);
     }
 
     .seal-god {
-      font-family: 'Cinzel', serif;
-      font-weight: 400;
-      font-size: clamp(0.875rem, 2vw, 1rem);
-      color: var(--accent);
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(0.85rem, 2vw, 1.1rem);
+      color: var(--section-accent, var(--accent));
       letter-spacing: 0.2em;
       text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      opacity: 0.85;
+    }
+
+    .seal-main-desc {
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      line-height: 1.9;
+      color: var(--fg);
       margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--card-border);
+      opacity: 0.92;
+    }
+
+    .lore-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .lore-block {
+      padding: 1.25rem;
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 3px;
+      border-left: 2px solid var(--section-accent, var(--accent));
+    }
+
+    .lore-label {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--section-accent, var(--accent));
+      margin-bottom: 0.75rem;
       opacity: 0.9;
     }
 
-    .seal-description {
-      font-size: clamp(1rem, 2vw, 1.25rem);
-      line-height: 1.9;
-      color: var(--fg);
-      opacity: 0.85;
+    .lore-text {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--fg-dim);
     }
 
     .seal-symbol {
       position: absolute;
-      bottom: 1.5rem;
-      right: 1.5rem;
-      width: 60px;
-      height: 60px;
-      opacity: 0.15;
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      bottom: 1rem;
+      right: 1rem;
+      width: 80px;
+      height: 80px;
+      opacity: 0.08;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      pointer-events: none;
     }
 
     .seal-card:hover .seal-symbol {
-      opacity: 0.3;
-      transform: scale(1.1);
+      opacity: 0.18;
+      transform: scale(1.1) rotate(5deg);
     }
 
-    /* Raven Section */
+    /* ==========================================
+       RAVEN SECTION
+       ========================================== */
     .seal-raven {
-      --accent: #c9a227;
-      --border: rgba(201, 162, 39, 0.2);
-      background: linear-gradient(135deg, #0d0c0b 0%, #151311 50%, #0a0908 100%);
+      --section-accent: var(--raven-accent);
+      --card-border: rgba(212, 168, 75, 0.2);
     }
 
     .seal-raven .seal-bg {
       background: 
-        radial-gradient(ellipse 100% 80% at 30% 20%, rgba(201, 162, 39, 0.05) 0%, transparent 50%),
-        radial-gradient(ellipse 80% 60% at 70% 80%, rgba(201, 162, 39, 0.03) 0%, transparent 50%);
+        radial-gradient(ellipse 80% 60% at 20% 30%, rgba(212, 168, 75, 0.04) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 50% at 80% 70%, rgba(212, 168, 75, 0.03) 0%, transparent 50%),
+        repeating-linear-gradient(
+          90deg,
+          transparent 0px,
+          transparent 100px,
+          rgba(212, 168, 75, 0.01) 100px,
+          rgba(212, 168, 75, 0.01) 101px
+        ),
+        linear-gradient(180deg, #0a0908 0%, #0d0c0a 50%, #080706 100%);
     }
 
-    /* Elephant Section */
+    /* ==========================================
+       ELEPHANT SECTION
+       ========================================== */
     .seal-elephant {
-      --accent: #8b7355;
-      --border: rgba(139, 115, 85, 0.2);
-      background: linear-gradient(135deg, #1a1916 0%, #1f1d19 50%, #15140f 100%);
+      --section-accent: var(--elephant-accent);
+      --card-border: rgba(160, 128, 80, 0.2);
     }
 
     .seal-elephant .seal-bg {
       background: 
-        radial-gradient(ellipse 100% 80% at 70% 30%, rgba(139, 115, 85, 0.05) 0%, transparent 50%),
-        radial-gradient(ellipse 80% 60% at 30% 70%, rgba(139, 115, 85, 0.03) 0%, transparent 50%);
+        radial-gradient(ellipse 70% 50% at 70% 40%, rgba(160, 128, 80, 0.04) 0%, transparent 50%),
+        radial-gradient(ellipse 50% 40% at 30% 80%, rgba(160, 128, 80, 0.03) 0%, transparent 50%),
+        repeating-linear-gradient(
+          0deg,
+          transparent 0px,
+          transparent 80px,
+          rgba(160, 128, 80, 0.02) 80px,
+          rgba(160, 128, 80, 0.02) 81px
+        ),
+        linear-gradient(135deg, #0e0d0a 0%, #12110e 50%, #0a0908 100%);
     }
 
-    /* Scorpion Section */
+    /* ==========================================
+       SCORPION SECTION
+       ========================================== */
     .seal-scorpion {
-      --accent: #4a9c5d;
-      --border: rgba(74, 156, 93, 0.2);
-      background: linear-gradient(135deg, #1c1510 0%, #1f1810 50%, #18120d 100%);
+      --section-accent: var(--scorpion-accent);
+      --card-border: rgba(92, 184, 112, 0.2);
     }
 
     .seal-scorpion .seal-bg {
       background: 
-        radial-gradient(ellipse 100% 80% at 50% 20%, rgba(74, 156, 93, 0.08) 0%, transparent 50%),
-        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(180, 50, 50, 0.05) 0%, transparent 50%);
+        radial-gradient(ellipse 80% 50% at 50% 20%, rgba(92, 184, 112, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse 40% 30% at 85% 75%, rgba(168, 48, 48, 0.04) 0%, transparent 50%),
+        repeating-conic-gradient(
+          from 0deg at 50% 50%,
+          transparent 0deg,
+          transparent 30deg,
+          rgba(92, 184, 112, 0.008) 30deg,
+          rgba(92, 184, 112, 0.008) 31deg
+        ),
+        linear-gradient(180deg, #0d0a08 0%, #100d0a 50%, #0a0806 100%);
     }
 
-    /* Serpent Section */
+    /* ==========================================
+       SERPENT SECTION
+       ========================================== */
+    .seal-scorpion {
+      --section-accent: var(--serpent-accent);
+      --card-border: rgba(80, 160, 112, 0.2);
+    }
+
     .seal-serpent {
-      --accent: #50c878;
-      --border: rgba(80, 200, 120, 0.2);
-      background: linear-gradient(135deg, #0f1612 0%, #121a15 50%, #0a100d 100%);
+      --section-accent: var(--serpent-accent);
+      --card-border: rgba(80, 160, 112, 0.2);
     }
 
     .seal-serpent .seal-bg {
       background: 
-        radial-gradient(ellipse 100% 80% at 20% 50%, rgba(80, 200, 120, 0.06) 0%, transparent 50%),
-        radial-gradient(ellipse 80% 60% at 80% 40%, rgba(138, 43, 226, 0.04) 0%, transparent 50%);
+        radial-gradient(ellipse 90% 70% at 30% 50%, rgba(80, 160, 112, 0.05) 0%, transparent 50%),
+        radial-gradient(ellipse 50% 40% at 80% 30%, rgba(42, 26, 58, 0.06) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(80, 160, 112, 0.02) 0%, transparent 70%),
+        linear-gradient(160deg, #080a09 0%, #0a0d0b 50%, #060807 100%);
     }
 
-    /* Angler Section */
+    /* ==========================================
+       ANGLER SECTION
+       ========================================== */
     .seal-angler {
-      --accent: #00ced1;
-      --border: rgba(0, 206, 209, 0.2);
-      background: linear-gradient(135deg, #080d12 0%, #0a1218 50%, #060a0e 100%);
+      --section-accent: var(--angler-accent);
+      --card-border: rgba(32, 168, 176, 0.2);
     }
 
     .seal-angler .seal-bg {
       background: 
-        radial-gradient(ellipse 100% 80% at 30% 60%, rgba(0, 206, 209, 0.06) 0%, transparent 50%),
-        radial-gradient(ellipse 60% 40% at 70% 30%, rgba(0, 100, 120, 0.04) 0%, transparent 50%);
+        radial-gradient(ellipse 100% 80% at 50% 100%, rgba(32, 168, 176, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 20% 30%, rgba(32, 100, 120, 0.04) 0%, transparent 50%),
+        repeating-linear-gradient(
+          180deg,
+          transparent 0px,
+          transparent 40px,
+          rgba(32, 168, 176, 0.015) 40px,
+          rgba(32, 168, 176, 0.015) 41px
+        ),
+        linear-gradient(180deg, #060a0d 0%, #081015 50%, #040810 100%);
     }
 
-    /* Hyena Section */
+    /* ==========================================
+       HYENA SECTION
+       ========================================== */
     .seal-hyena {
-      --accent: #c9a227;
-      --border: rgba(201, 162, 39, 0.2);
-      background: linear-gradient(135deg, #151210 0%, #1a1612 50%, #110f0d 100%);
+      --section-accent: var(--hyena-accent);
+      --card-border: rgba(200, 160, 48, 0.2);
     }
 
     .seal-hyena .seal-bg {
       background: 
-        radial-gradient(ellipse 100% 80% at 50% 30%, rgba(201, 162, 39, 0.05) 0%, transparent 50%),
-        radial-gradient(ellipse 80% 60% at 20% 80%, rgba(139, 69, 19, 0.04) 0%, transparent 50%);
+        radial-gradient(ellipse 70% 50% at 40% 40%, rgba(200, 160, 48, 0.04) 0%, transparent 50%),
+        radial-gradient(ellipse 50% 40% at 70% 80%, rgba(138, 64, 32, 0.05) 0%, transparent 50%),
+        repeating-linear-gradient(
+          45deg,
+          transparent 0px,
+          transparent 60px,
+          rgba(200, 160, 48, 0.01) 60px,
+          rgba(200, 160, 48, 0.01) 61px
+        ),
+        linear-gradient(135deg, #0a0908 0%, #0e0c0a 50%, #080706 100%);
     }
 
-    /* Quote Wall Section */
-    .quote-section {
+    /* ==========================================
+       THEMES SECTION
+       ========================================== */
+    .themes-section {
       position: relative;
-      min-height: 100vh;
+      padding: 6rem 1.5rem;
+      background: linear-gradient(180deg, #060504 0%, #080706 50%, #060504 100%);
+      overflow: hidden;
+    }
+
+    .themes-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 50% at 50% 50%, rgba(201, 162, 39, 0.03) 0%, transparent 60%);
+    }
+
+    .themes-content {
+      position: relative;
+      z-index: 10;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(1rem, 3vw, 1.5rem);
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .themes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .theme-card {
+      padding: 1.75rem;
+      background: var(--card-bg);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid var(--card-border);
+      border-radius: 3px;
+      transform: translateY(40px);
+      opacity: 0;
+      transition: all 0.7s ease-out;
+    }
+
+    .theme-card.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .theme-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .theme-text {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--fg-dim);
+    }
+
+    /* Codex Display */
+    .codex-display {
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
       justify-content: center;
-      align-items: center;
-      padding: 6rem 2rem;
+      gap: 1rem;
+      margin-bottom: 4rem;
+      padding: 2rem;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 4px;
+    }
+
+    .codex-item {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.75rem 1.25rem;
+      background: rgba(201, 162, 39, 0.08);
+      border: 1px solid rgba(201, 162, 39, 0.2);
+      border-radius: 2px;
+      color: var(--fg-dim);
+      transition: all 0.3s ease;
+    }
+
+    .codex-item:hover {
+      background: rgba(201, 162, 39, 0.15);
+      border-color: var(--accent);
+      color: var(--fg);
+    }
+
+    /* ==========================================
+       QUOTES SECTION
+       ========================================== */
+    .quotes-section {
+      position: relative;
+      padding: 6rem 1.5rem;
       background: linear-gradient(180deg, #080706 0%, #0a0908 50%, #080706 100%);
       overflow: hidden;
     }
 
-    .quote-bg {
+    .quotes-bg {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      inset: 0;
       background: 
-        radial-gradient(ellipse 80% 50% at 50% 50%, rgba(201, 162, 39, 0.03) 0%, transparent 60%);
+        radial-gradient(ellipse 60% 40% at 20% 80%, rgba(201, 162, 39, 0.03) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 20%, rgba(32, 168, 176, 0.02) 0%, transparent 50%);
     }
 
-    .quote-title {
-      font-family: 'Cinzel', serif;
-      font-weight: 700;
-      font-size: clamp(1rem, 3vw, 1.5rem);
-      letter-spacing: 0.4em;
-      color: var(--muted);
-      text-transform: uppercase;
-      margin-bottom: 4rem;
-      text-align: center;
-    }
-
-    .quote-container {
+    .quotes-container {
       position: relative;
       z-index: 10;
-      max-width: 800px;
-      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
     }
 
     .quote-item {
-      font-family: 'Crimson Text', serif;
-      font-size: clamp(1.25rem, 4vw, 2rem);
+      font-size: clamp(1.2rem, 3.5vw, 1.8rem);
       font-style: italic;
-      color: var(--fg);
       text-align: center;
-      margin-bottom: 3rem;
+      color: var(--fg);
+      margin-bottom: 2.5rem;
+      line-height: 1.5;
       opacity: 0;
       transform: translateY(20px);
-      transition: all 0.6s ease;
-      line-height: 1.6;
+      transition: all 0.6s ease-out;
     }
 
     .quote-item.visible {
@@ -568,24 +847,29 @@
       transform: translateY(0);
     }
 
-    .quote-item::before {
-      content: '"';
-      font-size: 3em;
-      color: var(--accent);
-      opacity: 0.3;
-      line-height: 0;
-      vertical-align: -0.3em;
-      margin-right: 0.1em;
+    .quote-text {
+      position: relative;
+      display: inline;
     }
 
-    .quote-item::after {
+    .quote-text::before {
       content: '"';
-      font-size: 3em;
+      font-size: 1.5em;
       color: var(--accent);
-      opacity: 0.3;
+      opacity: 0.4;
       line-height: 0;
-      vertical-align: -0.3em;
-      margin-left: 0.1em;
+      vertical-align: -0.25em;
+      margin-right: 0.05em;
+    }
+
+    .quote-text::after {
+      content: '"';
+      font-size: 1.5em;
+      color: var(--accent);
+      opacity: 0.4;
+      line-height: 0;
+      vertical-align: -0.25em;
+      margin-left: 0.05em;
     }
 
     .typewriter-cursor {
@@ -593,8 +877,9 @@
       width: 2px;
       height: 1em;
       background: var(--accent);
-      margin-left: 2px;
-      animation: cursorBlink 0.8s step-end infinite;
+      margin-left: 3px;
+      animation: cursorBlink 0.7s step-end infinite;
+      vertical-align: text-bottom;
     }
 
     @keyframes cursorBlink {
@@ -602,126 +887,184 @@
       50% { opacity: 0; }
     }
 
-    /* Music Control */
+    /* ==========================================
+       LOCATIONS SECTION
+       ========================================== */
+    .locations-section {
+      position: relative;
+      padding: 5rem 1.5rem;
+      background: linear-gradient(180deg, #0a0908 0%, #080706 100%);
+    }
+
+    .locations-content {
+      position: relative;
+      z-index: 10;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .locations-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .location-item {
+      padding: 1.25rem;
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(201, 162, 39, 0.1);
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
+
+    .location-item:hover {
+      border-color: var(--accent);
+      background: rgba(201, 162, 39, 0.05);
+    }
+
+    .location-name {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      color: var(--fg);
+      margin-bottom: 0.5rem;
+    }
+
+    .location-desc {
+      font-size: 0.85rem;
+      color: var(--fg-dim);
+      line-height: 1.5;
+    }
+
+    /* ==========================================
+       MUSIC CONTROL
+       ========================================== */
     .music-control {
       position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      width: 50px;
-      height: 50px;
-      background: rgba(15, 13, 11, 0.9);
-      border: 1px solid var(--border);
+      bottom: 1.5rem;
+      right: 1.5rem;
+      width: 52px;
+      height: 52px;
+      background: rgba(12, 10, 8, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      z-index: 2000;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      z-index: 10001;
+      transition: all 0.35s ease;
     }
 
     .music-control:hover {
-      background: rgba(25, 22, 18, 0.95);
+      background: rgba(20, 18, 15, 0.95);
       border-color: var(--accent);
-      transform: scale(1.1);
-    }
-
-    .music-control:focus {
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.3);
+      transform: scale(1.08);
     }
 
     .music-control svg {
-      width: 24px;
-      height: 24px;
+      width: 22px;
+      height: 22px;
       stroke: var(--fg);
       stroke-width: 2;
       fill: none;
-      transition: all 0.3s ease;
+      transition: stroke 0.3s ease;
     }
 
     .music-control.playing svg {
       stroke: var(--accent);
     }
 
-    .music-control .sound-waves {
+    .music-control .pulse-ring {
       position: absolute;
-      width: 100%;
-      height: 100%;
+      inset: -4px;
+      border-radius: 50%;
+      border: 1px solid var(--accent);
       opacity: 0;
-      transition: opacity 0.3s ease;
+      animation: pulseRing 2s ease-out infinite;
     }
 
-    .music-control.playing .sound-waves {
+    .music-control.playing .pulse-ring {
       opacity: 1;
     }
 
-    .sound-wave {
-      position: absolute;
-      border-radius: 50%;
-      border: 1px solid var(--accent);
-      animation: soundWave 1.5s ease-out infinite;
+    @keyframes pulseRing {
+      0% { transform: scale(1); opacity: 0.6; }
+      100% { transform: scale(1.5); opacity: 0; }
     }
 
-    .sound-wave:nth-child(1) { animation-delay: 0s; }
-    .sound-wave:nth-child(2) { animation-delay: 0.5s; }
-    .sound-wave:nth-child(3) { animation-delay: 1s; }
-
-    @keyframes soundWave {
-      0% {
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        opacity: 0.6;
-      }
-      100% {
-        width: 200%;
-        height: 200%;
-        top: -50%;
-        left: -50%;
-        opacity: 0;
-      }
+    /* ==========================================
+       FOOTER
+       ========================================== */
+    .footer {
+      padding: 3rem 1.5rem;
+      background: #050403;
+      text-align: center;
     }
 
-    /* Reduced Motion */
+    .footer-text {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ==========================================
+       REDUCED MOTION
+       ========================================== */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
-        animation-duration: 0.01ms !important;
+        animation-duration: 0.001ms !important;
         animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
+        transition-duration: 0.001ms !important;
       }
       
-      .film-grain,
-      .scanlines,
-      .rain-overlay {
-        display: none;
-      }
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .seal-card {
-        padding: 2rem 1.5rem;
-      }
-      
-      .seal-header {
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-      
-      .music-control {
-        bottom: 1rem;
-        right: 1rem;
-        width: 44px;
-        height: 44px;
+      .film-grain, .scanlines, .rain-canvas {
+        display: none !important;
       }
       
       .hero-title::before,
       .hero-title::after {
         display: none;
+      }
+    }
+
+    /* ==========================================
+       RESPONSIVE
+       ========================================== */
+    @media (max-width: 768px) {
+      .seal-card {
+        padding: 1.75rem 1.25rem;
+      }
+      
+      .lore-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      
+      .hero-intro {
+        padding: 1.5rem;
+      }
+      
+      .seal-symbol {
+        width: 50px;
+        height: 50px;
+      }
+      
+      .music-control {
+        width: 46px;
+        height: 46px;
+        bottom: 1rem;
+        right: 1rem;
+      }
+      
+      .codex-item {
+        font-size: 0.65rem;
+        padding: 0.6rem 1rem;
       }
     }
 
@@ -731,263 +1074,888 @@
         height: 200px;
       }
       
-      .seal-symbol {
-        width: 40px;
-        height: 40px;
+      .seal-header {
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+      
+      .lore-block {
+        padding: 1rem;
       }
     }
 
-    /* Parallax layers */
-    .parallax-layer {
+    /* ==========================================
+       UTILITY
+       ========================================== */
+    .sr-only {
       position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
   </style>
 </head>
 <body>
   <!-- Global Overlays -->
-  <canvas class="rain-overlay" id="rainCanvas"></canvas>
+  <canvas class="rain-canvas" id="rainCanvas" aria-hidden="true"></canvas>
   <div class="film-grain" aria-hidden="true"></div>
   <div class="scanlines" aria-hidden="true"></div>
 
   <!-- Hero Section -->
-  <section class="hero" role="banner" aria-label="The Whisperlands - Hero">
+  <header class="hero" role="banner">
     <div class="hero-bg">
-      <div class="hero-fog parallax-layer" data-parallax="0.3"></div>
-      <div class="hero-lanterns" id="lanterns"></div>
+      <div class="hero-parallax">
+        <div class="hero-fog"></div>
+      </div>
+      <div class="hero-lanterns" id="lanternsContainer" aria-hidden="true"></div>
     </div>
     
     <div class="hero-sigil" aria-hidden="true">
-      <svg class="sigil-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="100" cy="100" r="90" stroke="#c9a227" stroke-width="2" fill="none"/>
-        <circle cx="100" cy="100" r="75" stroke="#c9a227" stroke-width="1" fill="none" opacity="0.5"/>
-        <path d="M100 10 L100 190 M10 100 L190 100" stroke="#c9a227" stroke-width="1" opacity="0.3"/>
-        <path d="M100 25 L100 175 M25 100 L175 100" stroke="#c9a227" stroke-width="0.5" opacity="0.2"/>
-        <!-- Six points for six seals -->
-        <path d="M100 10 L120 60 L100 50 L80 60 Z" fill="#c9a227" opacity="0.6"/>
-        <path d="M190 100 L140 80 L150 100 L140 120 Z" fill="#c9a227" opacity="0.6"/>
-        <path d="M100 190 L80 140 L100 150 L120 140 Z" fill="#c9a227" opacity="0.6"/>
-        <path d="M10 100 L60 80 L50 100 L60 120 Z" fill="#c9a227" opacity="0.6"/>
-        <!-- Inner seal -->
-        <circle cx="100" cy="100" r="40" stroke="#c9a227" stroke-width="2" fill="none"/>
-        <circle cx="100" cy="100" r="30" stroke="#c9a227" stroke-width="1" fill="none" opacity="0.7"/>
-        <circle cx="100" cy="100" r="15" fill="#c9a227" opacity="0.3"/>
-        <!-- Drip effect -->
-        <path d="M100 25 Q110 60 100 75 Q90 60 100 25" fill="#c9a227" opacity="0.4"/>
+      <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="100" cy="100" r="88" stroke="#c9a227" stroke-width="1.5" fill="none"/>
+        <circle cx="100" cy="100" r="72" stroke="#c9a227" stroke-width="0.8" fill="none" opacity="0.6"/>
+        <circle cx="100" cy="100" r="56" stroke="#c9a227" stroke-width="0.5" fill="none" opacity="0.4"/>
+        
+        <path d="M100 12 L100 188" stroke="#c9a227" stroke-width="0.5" opacity="0.3"/>
+        <path d="M12 100 L188 100" stroke="#c9a227" stroke-width="0.5" opacity="0.3"/>
+        
+        <path d="M100 12 L115 55 L100 45 L85 55 Z" fill="#c9a227" opacity="0.5"/>
+        <path d="M188 100 L145 85 L155 100 L145 115 Z" fill="#c9a227" opacity="0.5"/>
+        <path d="M100 188 L85 145 L100 155 L115 145 Z" fill="#c9a227" opacity="0.5"/>
+        <path d="M12 100 L55 85 L45 100 L55 115 Z" fill="#c9a227" opacity="0.5"/>
+        
+        <path d="M155 45 L125 75 L120 70 L150 40 Z" fill="#c9a227" opacity="0.4"/>
+        <path d="M155 155 L125 125 L120 130 L150 160 Z" fill="#c9a227" opacity="0.4"/>
+        <path d="M45 155 L75 125 L80 130 L50 160 Z" fill="#c9a227" opacity="0.4"/>
+        <path d="M45 45 L75 75 L80 70 L50 40 Z" fill="#c9a227" opacity="0.4"/>
+        
+        <circle cx="100" cy="100" r="25" stroke="#c9a227" stroke-width="1.5" fill="none"/>
+        <circle cx="100" cy="100" r="12" fill="#c9a227" opacity="0.25"/>
+        
+        <path d="M100 28 Q110 55 100 68 Q90 55 100 28" fill="#c9a227" opacity="0.35"/>
       </svg>
     </div>
     
     <div class="hero-content">
-      <h1 class="hero-title">THE WHISPERLANDS</h1>
+      <h1 class="hero-title" data-text="THE WHISPERLANDS">THE WHISPERLANDS</h1>
       <p class="hero-subtitle">Six Seals. Six Gods. One Price.</p>
+      
+      <div class="hero-intro">
+        <p>
+          The continent is shaped like an uneven crescent around the <strong>Mare Susurrorum</strong> — the Sea of Whispers. 
+          Technology is pre-industrial: steel weapons, caravans, sail ships, parchment records, wax seals, lanterns, lighthouses, stone forts. 
+          Power is held by six cult institutions that control ports, courts, roads, wells, archives, and markets through ritual law, logistics, fear, seduction, and monopolies. 
+          Law is not universal morality — it is recognition under a Seal. "Legal" means "recognized by a cult." 
+          Real power flows through node control and monopoly pricing. Value forms include salt, bronze, iron, parchment, wax, incense, antidotes, pilotage fees, tolls, salvage, and secrets.
+        </p>
+      </div>
     </div>
     
     <div class="hero-scroll" aria-hidden="true">
       <span>Descend</span>
       <div class="scroll-arrow"></div>
     </div>
-  </section>
+  </header>
 
-  <!-- Seal Sections -->
-  
-  <!-- Raven -->
-  <section class="seal-section seal-raven" data-seal="raven" aria-label="Sigillum Corvi - The Raven">
+  <!-- SEAL I: RAVEN -->
+  <section class="seal-section seal-raven" data-seal="raven" aria-labelledby="raven-title">
     <div class="seal-bg"></div>
-    <canvas class="seal-particles" id="ravenParticles"></canvas>
+    <canvas class="seal-particles" id="ravenParticles" aria-hidden="true"></canvas>
     
     <div class="seal-content">
       <article class="seal-card">
         <header class="seal-header">
-          <span class="seal-number">I</span>
-          <h2 class="seal-name">Sigillum Corvi</h2>
+          <span class="seal-number">Seal I</span>
+          <h2 class="seal-name" id="raven-title">Sigillum Corvi</h2>
         </header>
-        <p class="seal-god">Corvus Iudex / Vesper</p>
-        <p class="seal-description">
+        <p class="seal-god">Corvus Iudex / Vesper — The Raven</p>
+        
+        <p class="seal-main-desc">
           The Raven rules through archives and verdicts. A seal on a document can take a city. 
-          His disciples lose their sight to gain record-sight. Under the Raven, your name is 
-          either property — or noise.
+          His disciples lose their sight to gain record-sight. Under the Raven, your name is either property — or noise.
         </p>
+        
+        <div class="lore-grid">
+          <div class="lore-block">
+            <div class="lore-label">The God</div>
+            <p class="lore-text">
+              Chthonic entity with raven traits — feathers, blind eyes that see seals, lies, debts. 
+              Wants the world legible: names recorded, claims sealed, disputes judged. 
+              Expands by turning people into documents and towns into registries.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Disciple Rite — Closing of the Eyes</div>
+            <p class="lore-text">
+              Disciples undergo the Closing of the Eyes: the god takes their sight (blindness or ritual ruin of vision) 
+              and replaces it with record-sight. They perceive seals, lies, debts, and identity marks as patterns. 
+              They become living registries and verdict-bearers.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Codex Iudicii</div>
+            <p class="lore-text">
+              Themes: sealed testimony; names and identity in archives; verdict marks; judgment requires payment. 
+              Original chained in inner sanctum; towns use incomplete stamped extracts.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Magic Discipline</div>
+            <p class="lore-text">
+              Record-magic: seals that bind identity, verdict marks that alter social reality, 
+              rites that expose lies, and archive oaths that make testimony "heavy." 
+              Manifests as ink-black signs, cold candlelight, and key-and-seal symbolism.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Hierarchy</div>
+            <p class="lore-text">
+              God → Disciples (blind record-sight) → Cultists (scribes, tribunal speakers, archivists) 
+              → Sealed Settlements (civilians under Raven law) → Unsealed Pockets
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Punishment Style</div>
+            <p class="lore-text">
+              Identity and record: loss of name, verdict marks, social death, forced testimony, 
+              relocation to Oppidum Sigillatum (the prison-town), or being legally erased 
+              so nobody may aid you without becoming guilty.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Settlement Aesthetic</div>
+            <p class="lore-text">
+              Administrative and quiet. Notices, registries, and seals are everywhere; candles burn even at midday; 
+              keys hang like jewelry. People speak carefully, avoid unsealed statements, and treat scribes like judges. 
+              Public spaces resemble courts, archives, and inspection halls.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Sigillati Treatment</div>
+            <p class="lore-text">
+              The Raven treats Sigillati as evidence: living exhibits that must be recorded, audited, and controlled. 
+              They are offered status through documentation, but also constant surveillance. 
+              Raven courts may use Sigillati as truth weights in public judgments.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Region — Tractus Corvi</div>
+            <p class="lore-text">
+              Basalt plateaus and tribunal-fortresses. The cult holds archives and legal nodes; 
+              nearby towns become "legalized" over time.
+            </p>
+          </div>
+        </div>
+        
         <svg class="seal-symbol" viewBox="0 0 100 100" fill="none" aria-hidden="true">
-          <path d="M50 15 L30 45 L10 45 L25 65 L15 90 L50 70 L85 90 L75 65 L90 45 L70 45 Z" 
-                stroke="#c9a227" stroke-width="2" fill="none"/>
-          <circle cx="50" cy="50" r="10" stroke="#c9a227" stroke-width="1"/>
+          <path d="M50 10 L30 40 L15 35 L25 55 L10 75 L35 65 L50 90 L65 65 L90 75 L75 55 L85 35 L70 40 Z" 
+                stroke="#d4a84b" stroke-width="1.5" fill="none"/>
+          <circle cx="50" cy="45" r="12" stroke="#d4a84b" stroke-width="1"/>
+          <circle cx="50" cy="45" r="5" fill="#d4a84b" opacity="0.4"/>
         </svg>
       </article>
     </div>
   </section>
 
-  <!-- Elephant -->
-  <section class="seal-section seal-elephant" data-seal="elephant" aria-label="Sigillum Elephanti - The Elephant">
+  <!-- SEAL II: ELEPHANT -->
+  <section class="seal-section seal-elephant" data-seal="elephant" aria-labelledby="elephant-title">
     <div class="seal-bg"></div>
-    <canvas class="seal-particles" id="elephantParticles"></canvas>
+    <canvas class="seal-particles" id="elephantParticles" aria-hidden="true"></canvas>
     
     <div class="seal-content">
       <article class="seal-card">
         <header class="seal-header">
-          <span class="seal-number">II</span>
-          <h2 class="seal-name">Sigillum Elephanti</h2>
+          <span class="seal-number">Seal II</span>
+          <h2 class="seal-name" id="elephant-title">Sigillum Elephanti</h2>
         </header>
-        <p class="seal-god">Elephas Fidelis / Maurus</p>
-        <p class="seal-description">
+        <p class="seal-god">Elephas Fidelis / Maurus — The Elephant</p>
+        
+        <p class="seal-main-desc">
           The Elephant conquers through infrastructure and oaths. Roads, bridges, garrisons — 
-          protection in exchange for binding loyalty. Betrayal is not a crime. It is a defect. 
-          Defects are corrected.
+          protection in exchange for binding loyalty. Betrayal is not a crime. It is a defect. Defects are corrected.
         </p>
+        
+        <div class="lore-grid">
+          <div class="lore-block">
+            <div class="lore-label">The God</div>
+            <p class="lore-text">
+              Chthonic entity with elephant traits — tusks, trunk structure, crushing presence. 
+              Wants the world stable: roads held, oaths honored, bodies disciplined. 
+              Expands by building infrastructure that requires obedience to function.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Disciple Rite — Chain Vow</div>
+            <p class="lore-text">
+              Disciples take the Chain Vow: a night and a day bound beneath stone, reciting oaths while bearing weight. 
+              Their true name is branded into a metal token or chain link worn on the body. 
+              They become oath-judges and road-wardens.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Codex Iuramenti</div>
+            <p class="lore-text">
+              Themes: oath binding under stone; chain-links as service; tolls as duty; 
+              betrayal punished by loss of name.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Magic Discipline</div>
+            <p class="lore-text">
+              Oath-magic: binding vows, chain-link accounting of service, warding roads and bridges, 
+              and strengthening garrisons through discipline rites. 
+              Manifests as stone, iron resonance, and branded tokens.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Hierarchy</div>
+            <p class="lore-text">
+              God → Disciples (chain-branded oath-keepers) → Cultists (road-masters, garrison wardens, oath-judges) 
+              → Sealed Settlements → Unsealed Pockets
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Punishment Style</div>
+            <p class="lore-text">
+              Service and discipline: chain-service terms, road labor, garrison conscription, 
+              oath branding, and confiscation for sabotage. Escape attempts trigger pursuit and public oath-shaming.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Settlement Aesthetic</div>
+            <p class="lore-text">
+              Built to last: stone roads, bridges, waystations, and garrisons. 
+              Oath halls and toll gates define daily rhythm. People wear tokens of service, chain links, or stamped duty marks. 
+              Safety is real; freedom is conditional.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Sigillati Treatment</div>
+            <p class="lore-text">
+              The Elephant treats Sigillati as sacred assets and potential command figures—if disciplined. 
+              They are given protection and training, then bound by heavy oaths. 
+              A Sigillati who refuses service is treated as dangerous instability.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Region — Marchia Elephanti</div>
+            <p class="lore-text">
+              Quarries and mountain roads. The cult holds bridges, patrol routes, and oath citadels; 
+              stability is enforced physically.
+            </p>
+          </div>
+        </div>
+        
         <svg class="seal-symbol" viewBox="0 0 100 100" fill="none" aria-hidden="true">
-          <rect x="20" y="30" width="60" height="50" stroke="#8b7355" stroke-width="2" fill="none"/>
-          <line x1="20" y1="45" x2="80" y2="45" stroke="#8b7355" stroke-width="1"/>
-          <line x1="20" y1="60" x2="80" y2="60" stroke="#8b7355" stroke-width="1"/>
-          <circle cx="35" cy="80" r="5" stroke="#8b7355" stroke-width="1.5"/>
-          <circle cx="65" cy="80" r="5" stroke="#8b7355" stroke-width="1.5"/>
+          <rect x="18" y="25" width="64" height="55" stroke="#a08050" stroke-width="1.5" fill="none"/>
+          <line x1="18" y1="42" x2="82" y2="42" stroke="#a08050" stroke-width="0.8"/>
+          <line x1="18" y1="55" x2="82" y2="55" stroke="#a08050" stroke-width="0.8"/>
+          <circle cx="32" cy="80" r="6" stroke="#a08050" stroke-width="1.2"/>
+          <circle cx="50" cy="80" r="6" stroke="#a08050" stroke-width="1.2"/>
+          <circle cx="68" cy="80" r="6" stroke="#a08050" stroke-width="1.2"/>
+          <path d="M35 12 L50 25 L65 12" stroke="#a08050" stroke-width="1.5" fill="none"/>
         </svg>
       </article>
     </div>
   </section>
 
-  <!-- Scorpion -->
-  <section class="seal-section seal-scorpion" data-seal="scorpion" aria-label="Sigillum Scorpii - The Scorpion">
+  <!-- SEAL III: SCORPION -->
+  <section class="seal-section seal-scorpion" data-seal="scorpion" aria-labelledby="scorpion-title">
     <div class="seal-bg"></div>
-    <canvas class="seal-particles" id="scorpionParticles"></canvas>
+    <canvas class="seal-particles" id="scorpionParticles" aria-hidden="true"></canvas>
     
     <div class="seal-content">
       <article class="seal-card">
         <header class="seal-header">
-          <span class="seal-number">III</span>
-          <h2 class="seal-name">Sigillum Scorpii</h2>
+          <span class="seal-number">Seal III</span>
+          <h2 class="seal-name" id="scorpion-title">Sigillum Scorpii</h2>
         </header>
-        <p class="seal-god">Scorpius Aculeus / Nail</p>
-        <p class="seal-description">
+        <p class="seal-god">Scorpius Aculeus / Nail — The Scorpion</p>
+        
+        <p class="seal-main-desc">
           The Scorpion sells fear with a receipt. Venom is law, leverage, and currency. 
           One needle. One contract. One ruined dynasty. Antidote is a privilege, not a right.
         </p>
+        
+        <div class="lore-grid">
+          <div class="lore-block">
+            <div class="lore-label">The God</div>
+            <p class="lore-text">
+              Chthonic entity with scorpion traits — segmented tail arched overhead, red eyes. 
+              Wants leverage: debts that cannot be paid, contracts that cannot be undone, fear that behaves. 
+              Expands by owning water, antidote, and consequences.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Disciple Rite — Needle Covenant</div>
+            <p class="lore-text">
+              Disciples sign the Needle Covenant: a contract written in blood, sealed by a controlled sting. 
+              The venom never fully leaves them; it grants resistance and authority to administer "legal venom," 
+              but binds them in permanent debt to the Sting.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Codex Veneni</div>
+            <p class="lore-text">
+              Themes: needle contracts; debt spreads like poison; antidote is privilege; right of the sting.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Magic Discipline</div>
+            <p class="lore-text">
+              Venom-law: needle contracts, controlled toxins, antidote privileges, fear conditioning, 
+              and coercion rites that turn pain into binding consent. 
+              Manifests as stingers, red lacquer, and ritual syringes/needles.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Hierarchy</div>
+            <p class="lore-text">
+              God → Disciples (venom-bound) → Cultists (venom-scribes, antidote keepers, caravan brokers) 
+              → Sealed Settlements → Unsealed Pockets
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Punishment Style</div>
+            <p class="lore-text">
+              Pain and debt: venom contracts, controlled paralysis, antidote denial, and staged proof in the Amphitheatrum. 
+              A punished person may live—so they can pay longer.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Settlement Aesthetic</div>
+            <p class="lore-text">
+              Dry, tense, and transactional. Water is controlled; contracts are common; antidote is a luxury. 
+              Guards are precise and quiet. "Friendly" interactions often carry leverage. 
+              Clinics and poison-houses exist beside wells and caravan offices.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Sigillati Treatment</div>
+            <p class="lore-text">
+              The Scorpion treats Sigillati as leverage and prestige. 
+              They may be offered antidote privileges and luxury—at the cost of permanent obligations. 
+              Many become bargaining chips in high-level coercion.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Region — Vasta Scorpii</div>
+            <p class="lore-text">
+              Salt flats, wells, and caravan chokepoints. The cult holds water and fear; treaties are written in venom.
+            </p>
+          </div>
+        </div>
+        
         <svg class="seal-symbol" viewBox="0 0 100 100" fill="none" aria-hidden="true">
-          <path d="M50 10 L50 60" stroke="#4a9c5d" stroke-width="3"/>
-          <circle cx="50" cy="70" r="10" stroke="#4a9c5d" stroke-width="2" fill="none"/>
-          <path d="M30 30 L50 50 L70 30" stroke="#4a9c5d" stroke-width="2" fill="none"/>
-          <circle cx="50" cy="5" r="4" fill="#4a9c5d"/>
+          <path d="M50 8 L50 55" stroke="#5cb870" stroke-width="2.5"/>
+          <circle cx="50" cy="65" r="12" stroke="#5cb870" stroke-width="1.5" fill="none"/>
+          <path d="M25 25 L50 48 L75 25" stroke="#5cb870" stroke-width="1.5" fill="none"/>
+          <circle cx="50" cy="4" r="4" fill="#a83030"/>
+          <path d="M35 78 Q50 95 65 78" stroke="#a83030" stroke-width="1" fill="none"/>
         </svg>
       </article>
     </div>
   </section>
 
-  <!-- Serpent -->
-  <section class="seal-section seal-serpent" data-seal="serpent" aria-label="Sigillum Serpentis - The Serpent">
+  <!-- SEAL IV: SERPENT -->
+  <section class="seal-section seal-serpent" data-seal="serpent" aria-labelledby="serpent-title">
     <div class="seal-bg"></div>
-    <canvas class="seal-particles" id="serpentParticles"></canvas>
+    <canvas class="seal-particles" id="serpentParticles" aria-hidden="true"></canvas>
     
     <div class="seal-content">
       <article class="seal-card">
         <header class="seal-header">
-          <span class="seal-number">IV</span>
-          <h2 class="seal-name">Sigillum Serpentis</h2>
+          <span class="seal-number">Seal IV</span>
+          <h2 class="seal-name" id="serpent-title">Sigillum Serpentis</h2>
         </header>
-        <p class="seal-god">Serpens Fascinator / Sibil</p>
-        <p class="seal-description">
+        <p class="seal-god">Serpens Fascinator / Sibil — The Serpent</p>
+        
+        <p class="seal-main-desc">
           The Serpent wins without siege. Sanctuaries, salons, healing — all doors open. 
           Consent is a spiral. You enter at the open end. You don't notice when it closes.
         </p>
+        
+        <div class="lore-grid">
+          <div class="lore-block">
+            <div class="lore-label">The God</div>
+            <p class="lore-text">
+              Chthonic entity with serpent traits — scales, slit pupils, fangs, long tongue. 
+              Wants willing submission: desire that polices itself. 
+              Expands by converting the decision-makers and making bondage feel like choice.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Disciple Rite — Spiral Union</div>
+            <p class="lore-text">
+              Disciples are made through the Spiral Union: prolonged intimacy, ritualized consent, and fascination binding. 
+              They awaken unable to refuse the Serpent's call; desire becomes a leash. 
+              They become recruiters, confessors, and "healers."
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Codex Fascinationis</div>
+            <p class="lore-text">
+              Themes: consent in smoke; mirrors as witnesses; desire as evidence; 
+              release requires replacement vow/debt/name.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Magic Discipline</div>
+            <p class="lore-text">
+              Consent and memory: smoke spirals, mirror-witness rites, fascination binding, 
+              and subtle rewriting of desire. Manifests as green haze, spiral motifs, and trance speech.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Hierarchy</div>
+            <p class="lore-text">
+              God → Disciples (fascination-bound) → Cultists (mirror-confessors, sanctuary matrons, recruiters) 
+              → Sealed Settlements → Unsealed Pockets
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Punishment Style</div>
+            <p class="lore-text">
+              Consent traps and reputation: forced vows, public healing, memory confusion, social isolation, 
+              and making the victim beg to stay. The Serpent prefers obedience that looks voluntary.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Settlement Aesthetic</div>
+            <p class="lore-text">
+              Welcoming in a way that turns predatory. Soft lights, incense, mirrors, salons, sanctuaries, 
+              and "healing houses" dominate. Social power matters more than guards. 
+              People smile and forget what they promised until the promise collects them.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Sigillati Treatment</div>
+            <p class="lore-text">
+              The Serpent treats Sigillati as living icons of fascination and authority. 
+              They are placed in salons and sanctuaries, used to convert elites, and protected as beauty that proves the Seal. 
+              Their autonomy is softened away, not broken openly.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Region — Gyrus Serpentis</div>
+            <p class="lore-text">
+              Terraced land of canyons and mirror shrines. The cult governs through desire, salons, and sanctuaries.
+            </p>
+          </div>
+        </div>
+        
         <svg class="seal-symbol" viewBox="0 0 100 100" fill="none" aria-hidden="true">
-          <path d="M50 10 Q80 30 50 50 Q20 70 50 90" stroke="#50c878" stroke-width="2" fill="none"/>
-          <circle cx="50" cy="15" r="5" fill="#50c878"/>
-          <circle cx="50" cy="85" r="8" stroke="#50c878" stroke-width="2" fill="none"/>
+          <path d="M50 8 Q85 25 50 45 Q15 65 50 85 Q75 95 50 92" stroke="#50a070" stroke-width="2" fill="none"/>
+          <circle cx="50" cy="8" r="5" fill="#50a070"/>
+          <ellipse cx="45" cy="7" rx="1.5" ry="2" fill="#080a09"/>
+          <ellipse cx="55" cy="7" rx="1.5" ry="2" fill="#080a09"/>
+          <circle cx="50" cy="88" r="6" stroke="#50a070" stroke-width="1" fill="none"/>
         </svg>
       </article>
     </div>
   </section>
 
-  <!-- Angler -->
-  <section class="seal-section seal-angler" data-seal="angler" aria-label="Sigillum Lophii - The Angler">
+  <!-- SEAL V: ANGLER -->
+  <section class="seal-section seal-angler" data-seal="angler" aria-labelledby="angler-title">
     <div class="seal-bg"></div>
-    <canvas class="seal-particles" id="anglerParticles"></canvas>
+    <canvas class="seal-particles" id="anglerParticles" aria-hidden="true"></canvas>
     
     <div class="seal-content">
       <article class="seal-card">
         <header class="seal-header">
-          <span class="seal-number">V</span>
-          <h2 class="seal-name">Sigillum Lophii</h2>
+          <span class="seal-number">Seal V</span>
+          <h2 class="seal-name" id="angler-title">Sigillum Lophii</h2>
         </header>
-        <p class="seal-god">Lophius Pharos / Lumen</p>
-        <p class="seal-description">
+        <p class="seal-god">Lophius Pharos / Lumen — The Angler</p>
+        
+        <p class="seal-main-desc">
           The Angler owns the sea by owning navigation. Lure-lighthouses guide the lost — 
           but rescue becomes debt. The broken come willingly. And they stay.
         </p>
+        
+        <div class="lore-grid">
+          <div class="lore-block">
+            <div class="lore-label">The God</div>
+            <p class="lore-text">
+              Chthonic entity with anglerfish traits — anatomical lure-light, deep-sea eyes, gill-like marks. 
+              Wants passage owned: every crossing paid, every rescue remembered. 
+              Expands by making safety dependent on his light.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Disciple Rite — First Drowning</div>
+            <p class="lore-text">
+              Disciples endure the First Drowning: submerged at night, they must follow a lure-light through black water. 
+              Surviving binds part of their breath to Lophius. 
+              They read fog and currents, detect false lights, and serve as pilots and lantern-keepers.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Codex Pharorum</div>
+            <p class="lore-text">
+              Themes: light is law; pilots are sacred; false lights punished; salvage belongs to the Seal; 
+              the lost may be guided once without questions.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Magic Discipline</div>
+            <p class="lore-text">
+              Navigation-as-ritual: lure-lighthouse rites, pilot oaths, fog-reading, false-light detection, 
+              and rescue-debt bindings. Manifests as cold blue-green light, salt stains, and lantern sigils.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Hierarchy</div>
+            <p class="lore-text">
+              God → Disciples (pilots, lantern-keepers) → Cultists (pilot-masters, lighthouse keepers) 
+              → Sealed Settlements → Unsealed Pockets
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Punishment Style</div>
+            <p class="lore-text">
+              Routes: denying passage, declaring someone unlit or illegal, revoking pilot service, 
+              debt sentences, or casting offenders into wreck waters. False-light crimes are punished severely.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Settlement Aesthetic</div>
+            <p class="lore-text">
+              Defined by fog, salt, and ledgers. Lanterns and lighthouse signals are treated like law. 
+              Pilots are sacred professionals. Every rescue, passage, and cargo is recorded as debt or privilege. 
+              The coast feels safe—if you are subscribed.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Special Rule — One Welcome</div>
+            <p class="lore-text">
+              On Litus Lophii the Angler cult grants "one welcome": the lost may enter and be guided once without questions. 
+              Repeated straying is treated as choosing the deep and becoming property/debt of the Angler.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Sigillati Treatment</div>
+            <p class="lore-text">
+              The Angler treats Sigillati as proof that the deep answers. 
+              They are often trained as high-status pilots, lantern-keepers, or debt adjudicators. 
+              They can move more freely than most—so long as they keep the ledgers.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Region — Litus Lophii + Phari Escae</div>
+            <p class="lore-text">
+              Fog coast defined by lure-lighthouses and pilot sanctuaries. Safety is subscription-based; navigation is owned.
+            </p>
+          </div>
+        </div>
+        
         <svg class="seal-symbol" viewBox="0 0 100 100" fill="none" aria-hidden="true">
-          <path d="M50 10 L50 50" stroke="#00ced1" stroke-width="2"/>
-          <circle cx="50" cy="8" r="6" fill="#00ced1"/>
-          <path d="M20 60 Q50 40 80 60 L80 90 L20 90 Z" stroke="#00ced1" stroke-width="2" fill="none"/>
-          <line x1="35" y1="70" x2="65" y2="70" stroke="#00ced1" stroke-width="1"/>
-          <line x1="35" y1="80" x2="65" y2="80" stroke="#00ced1" stroke-width="1"/>
+          <path d="M50 5 L50 40" stroke="#20a8b0" stroke-width="1.5"/>
+          <circle cx="50" cy="3" r="5" fill="#20a8b0"/>
+          <circle cx="50" cy="3" r="3" fill="#60d0d8"/>
+          <path d="M22 55 Q50 35 78 55 L78 92 L22 92 Z" stroke="#20a8b0" stroke-width="1.5" fill="none"/>
+          <line x1="35" y1="68" x2="65" y2="68" stroke="#20a8b0" stroke-width="0.8"/>
+          <line x1="35" y1="78" x2="65" y2="78" stroke="#20a8b0" stroke-width="0.8"/>
+          <circle cx="50" cy="50" r="3" fill="#20a8b0" opacity="0.5"/>
         </svg>
       </article>
     </div>
   </section>
 
-  <!-- Hyena -->
-  <section class="seal-section seal-hyena" data-seal="hyena" aria-label="Sigillum Hyaenae - The Hyena">
+  <!-- SEAL VI: HYENA -->
+  <section class="seal-section seal-hyena" data-seal="hyena" aria-labelledby="hyena-title">
     <div class="seal-bg"></div>
-    <canvas class="seal-particles" id="hyenaParticles"></canvas>
+    <canvas class="seal-particles" id="hyenaParticles" aria-hidden="true"></canvas>
     
     <div class="seal-content">
       <article class="seal-card">
         <header class="seal-header">
-          <span class="seal-number">VI</span>
-          <h2 class="seal-name">Sigillum Hyaenae</h2>
+          <span class="seal-number">Seal VI</span>
+          <h2 class="seal-name" id="hyena-title">Sigillum Hyaenae</h2>
         </header>
-        <p class="seal-god">Hyaena Risoria / Rictus</p>
-        <p class="seal-description">
+        <p class="seal-god">Hyaena Risoria / Rictus — The Hyena</p>
+        
+        <p class="seal-main-desc">
           The Hyena thrives on what remains. Ruins, battlefields, secrets — all become inventory. 
-          The pack enforces neutral ground. Nothing is sacred if it can be carried. 
-          Even mercy has a rate.
+          The pack enforces neutral ground. Nothing is sacred if it can be carried. Even mercy has a rate.
         </p>
+        
+        <div class="lore-grid">
+          <div class="lore-block">
+            <div class="lore-label">The God</div>
+            <p class="lore-text">
+              Chthonic entity with hyena traits — spotted hyena head, unsettling grin, tooth jewelry. 
+              Wants the leftovers: collapse harvested, ruins priced, secrets traded. 
+              Expands by waiting for failure and arriving with a market.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Disciple Rite — Bone Feast</div>
+            <p class="lore-text">
+              Disciples pass the Bone Feast: survive a night on neutral market ground, 
+              then divide spoils publicly without provoking the pack. 
+              The rite ends with laughter and a bite-mark token (tooth jewelry). 
+              They become pack-law enforcers and market masters.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Codex Spoliorum</div>
+            <p class="lore-text">
+              Themes: what's left behind is unowned; captive is currency; bone-market neutrality; 
+              pack claims a tenth; refusal marks one as meat.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Magic Discipline</div>
+            <p class="lore-text">
+              Pack-law and salvage: market neutrality rites, spoil division rules, ransom binding, 
+              intimidation choruses, and "ruin rights." 
+              Manifests as bone tokens, tooth jewelry, and candlelit chants.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Hierarchy</div>
+            <p class="lore-text">
+              God → Disciples (pack-law enforcers) → Cultists (market overseers, pack-brokers, ransom clerks) 
+              → Sealed Settlements → Unsealed Pockets
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Punishment Style</div>
+            <p class="lore-text">
+              Economic and social: fines in teeth or fingers, pack-blacklisting, ransom debt, 
+              staged humiliation, or being declared meat. Market violence triggers swift response.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Settlement Aesthetic</div>
+            <p class="lore-text">
+              Feels temporary even when it isn't. Markets move, prices shift, and neutrality is enforced by pack response. 
+              Bone tokens, tooth jewelry, and ransom clerks are common. Nothing is free; even mercy has a rate.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Sigillati Treatment</div>
+            <p class="lore-text">
+              The Hyena treats Sigillati as valuable market anomalies: respected, joked about, and priced. 
+              They may be given neutral protection in exchange for favors. 
+              The pack will not worship them, but will not waste them.
+            </p>
+          </div>
+          
+          <div class="lore-block">
+            <div class="lore-label">Region — Risus Hyaenae</div>
+            <p class="lore-text">
+              Badlands and ossuaries with moving markets and shifting pack territory. 
+              Everything has a price; the pack enforces "neutral ground."
+            </p>
+          </div>
+        </div>
+        
         <svg class="seal-symbol" viewBox="0 0 100 100" fill="none" aria-hidden="true">
-          <ellipse cx="50" cy="50" rx="35" ry="25" stroke="#c9a227" stroke-width="2" fill="none"/>
-          <circle cx="35" cy="45" r="5" fill="#c9a227"/>
-          <circle cx="65" cy="45" r="5" fill="#c9a227"/>
-          <path d="M35 65 Q50 75 65 65" stroke="#c9a227" stroke-width="2" fill="none"/>
+          <ellipse cx="50" cy="50" rx="38" ry="28" stroke="#c8a030" stroke-width="1.5" fill="none"/>
+          <circle cx="35" cy="42" r="6" stroke="#c8a030" stroke-width="1"/>
+          <circle cx="65" cy="42" r="6" stroke="#c8a030" stroke-width="1"/>
+          <circle cx="35" cy="42" r="2.5" fill="#c8a030"/>
+          <circle cx="65" cy="42" r="2.5" fill="#c8a030"/>
+          <ellipse cx="50" cy="55" rx="12" ry="6" stroke="#c8a030" stroke-width="0.8"/>
+          <path d="M40 72 Q50 82 60 72" stroke="#c8a030" stroke-width="1.5" fill="none"/>
+          <path d="M42 68 L42 76 M50 70 L50 78 M58 68 L58 76" stroke="#c8a030" stroke-width="1"/>
         </svg>
       </article>
     </div>
   </section>
 
-  <!-- Quote Wall -->
-  <section class="quote-section" aria-label="Words of the Seals">
-    <div class="quote-bg"></div>
-    <h2 class="quote-title">Words of the Seals</h2>
-    <div class="quote-container" id="quoteContainer">
-      <!-- Quotes will be injected by JS -->
+  <!-- THEMES SECTION -->
+  <section class="themes-section" aria-labelledby="themes-title">
+    <div class="themes-bg"></div>
+    <div class="themes-content">
+      <h2 class="section-title" id="themes-title">Themes of Power</h2>
+      
+      <div class="themes-grid">
+        <div class="theme-card">
+          <h3 class="theme-title">Identity as Property</h3>
+          <p class="theme-text">
+            A name without a seal is only noise. Your record defines your existence. 
+            The Raven turns people into documents; the Elephant brands names into iron tokens. 
+            To be unrecorded is to be vulnerable.
+          </p>
+        </div>
+        
+        <div class="theme-card">
+          <h3 class="theme-title">Consent That Cannot Be Refused</h3>
+          <p class="theme-text">
+            Serpent and Scorpion specialize in making coercion feel like choice, 
+            then treating it as binding law. Spirals and needles—pleasure and pain—both create debts 
+            that cannot be undone.
+          </p>
+        </div>
+        
+        <div class="theme-card">
+          <h3 class="theme-title">Infrastructure as Control</h3>
+          <p class="theme-text">
+            Roads, lighthouses, wells, and archives are weapons. 
+            Owning a node means owning the people who depend on it. 
+            The Angler's lighthouses guide the lost into ledgers.
+          </p>
+        </div>
+        
+        <div class="theme-card">
+          <h3 class="theme-title">The Cost of Being Unsealed</h3>
+          <p class="theme-text">
+            Freedom exists in pockets—Spina Noctis valleys, remote islands—but survival 
+            requires tribute, hiding, or playing cults against each other. 
+            The unsealed are prey. The sealed are property.
+          </p>
+        </div>
+      </div>
+      
+      <h3 class="section-title" style="margin-bottom: 1.5rem; font-size: 0.85rem;">The Six Codices</h3>
+      <div class="codex-display">
+        <span class="codex-item">Codex Iudicii — Raven</span>
+        <span class="codex-item">Codex Iuramenti — Elephant</span>
+        <span class="codex-item">Codex Veneni — Scorpion</span>
+        <span class="codex-item">Codex Fascinationis — Serpent</span>
+        <span class="codex-item">Codex Pharorum — Angler</span>
+        <span class="codex-item">Codex Spoliorum — Hyena</span>
+      </div>
     </div>
   </section>
 
-  <!-- Audio -->
+  <!-- QUOTES SECTION -->
+  <section class="quotes-section" aria-labelledby="quotes-title">
+    <div class="quotes-bg"></div>
+    <div class="quotes-container">
+      <h2 class="section-title" id="quotes-title">Words of the Seals</h2>
+      <div id="quotesContainer"></div>
+    </div>
+  </section>
+
+  <!-- LOCATIONS SECTION -->
+  <section class="locations-section" aria-labelledby="locations-title">
+    <div class="locations-content">
+      <h2 class="section-title" id="locations-title">Key Locations</h2>
+      <div class="locations-grid">
+        <div class="location-item">
+          <div class="location-name">Portus Susurrorum</div>
+          <div class="location-desc">Main port of the Inner Sea. All cults operate in shadows; overt domination avoided to preserve trade.</div>
+        </div>
+        <div class="location-item">
+          <div class="location-name">Civitas Mutabilis</div>
+          <div class="location-desc">The turn-oath city. Changes rulers regularly; survives by bargaining and switching patrons.</div>
+        </div>
+        <div class="location-item">
+          <div class="location-name">Oppidum Sigillatum</div>
+          <div class="location-desc">Raven-designed prison-town. Detention under record and seal, enforced by paperwork and witness chains.</div>
+        </div>
+        <div class="location-item">
+          <div class="location-name">Palus Nebularis</div>
+          <div class="location-desc">Toxic magical swamp. Deep zones lethal; only gods and Sigillati can reliably survive.</div>
+        </div>
+        <div class="location-item">
+          <div class="location-name">Spina Noctis</div>
+          <div class="location-desc">Northern mountain spine dividing spheres of influence. Natural refuge for unsealed pockets and smugglers.</div>
+        </div>
+        <div class="location-item">
+          <div class="location-name">Abyssus Magna</div>
+          <div class="location-desc">Eastern world-edge. Used for rites and disposal. Being thrown into the Abyss is not death—it is deletion.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p class="footer-text">Wax. Iron. Ink. Bone. — The Whisperlands</p>
+  </footer>
+
+  <!-- AUDIO -->
   <audio id="bgMusic" loop preload="auto">
     <source src="Wax. Iron. Ink. Bone.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- Music Control Button -->
+  <!-- MUSIC CONTROL -->
   <button class="music-control" id="musicControl" aria-label="Toggle background music" title="Toggle music">
-    <div class="sound-waves" aria-hidden="true">
-      <div class="sound-wave"></div>
-      <div class="sound-wave"></div>
-      <div class="sound-wave"></div>
-    </div>
+    <span class="pulse-ring" aria-hidden="true"></span>
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <path d="M11 5L6 9H2v6h4l5 4V5z" class="speaker-cone"/>
-      <path d="M15.54 8.46a5 5 0 0 1 0 7.07" class="sound-wave-line"/>
-      <path d="M19.07 4.93a10 10 0 0 1 0 14.14" class="sound-wave-line"/>
+      <path d="M15.54 8.46a5 5 0 0 1 0 7.07" class="sound-wave" stroke-linecap="round"/>
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14" class="sound-wave" stroke-linecap="round"/>
     </svg>
   </button>
 
   <script>
-    // ==================== INITIALIZATION ====================
+    // ============================================================
+    // INITIALIZATION & CONFIGURATION
+    // ============================================================
     
-    // Audio and music state
+    // DOM Elements - Initialize early
+    const rainCanvas = document.getElementById('rainCanvas');
+    const rainCtx = rainCanvas.getContext('2d');
     const bgMusic = document.getElementById('bgMusic');
     const musicControl = document.getElementById('musicControl');
+    const lanternsContainer = document.getElementById('lanternsContainer');
+    const quotesContainer = document.getElementById('quotesContainer');
+    
+    // State variables
     let isPlaying = false;
     let hasInteracted = false;
+    let rainDrops = [];
+    let animationFrameId = null;
+    const particleSystems = {};
     
     // Quotes data
     const quotes = [
@@ -999,51 +1967,53 @@
       "Being thrown into the Abyss is not death. It is deletion."
     ];
     
-    // Seal colors for particles
+    // Seal colors configuration
     const sealColors = {
-      raven: { primary: '#c9a227', secondary: '#8b7355', bg: 'rgba(201, 162, 39, 0.1)' },
-      elephant: { primary: '#8b7355', secondary: '#5c4d3d', bg: 'rgba(139, 115, 85, 0.1)' },
-      scorpion: { primary: '#4a9c5d', secondary: '#b43232', bg: 'rgba(74, 156, 93, 0.1)' },
-      serpent: { primary: '#50c878', secondary: '#8a2be2', bg: 'rgba(80, 200, 120, 0.1)' },
-      angler: { primary: '#00ced1', secondary: '#006478', bg: 'rgba(0, 206, 209, 0.1)' },
-      hyena: { primary: '#c9a227', secondary: '#8b4513', bg: 'rgba(201, 162, 39, 0.1)' }
+      raven: { primary: '#d4a84b', secondary: '#8a8070' },
+      elephant: { primary: '#a08050', secondary: '#6a645a' },
+      scorpion: { primary: '#5cb870', secondary: '#a83030' },
+      serpent: { primary: '#50a070', secondary: '#408060' },
+      angler: { primary: '#20a8b0', secondary: '#106080' },
+      hyena: { primary: '#c8a030', secondary: '#8a4020' }
     };
     
-    // Particle systems storage
-    const particleSystems = {};
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     
-    // ==================== RAIN EFFECT ====================
-    
-    const rainCanvas = document.getElementById('rainCanvas');
-    const rainCtx = rainCanvas.getContext('2d');
-    let rainDrops = [];
+    // ============================================================
+    // RAIN EFFECT
+    // ============================================================
     
     function initRain() {
+      if (prefersReducedMotion) return;
+      
       rainCanvas.width = window.innerWidth;
       rainCanvas.height = window.innerHeight;
       
+      const dropCount = Math.floor((rainCanvas.width * rainCanvas.height) / 12000);
       rainDrops = [];
-      const dropCount = Math.floor((rainCanvas.width * rainCanvas.height) / 15000);
       
       for (let i = 0; i < dropCount; i++) {
         rainDrops.push({
           x: Math.random() * rainCanvas.width,
           y: Math.random() * rainCanvas.height,
-          length: Math.random() * 20 + 10,
-          speed: Math.random() * 3 + 2,
-          opacity: Math.random() * 0.3 + 0.1
+          length: Math.random() * 18 + 8,
+          speed: Math.random() * 2.5 + 1.5,
+          opacity: Math.random() * 0.25 + 0.08
         });
       }
     }
     
     function animateRain() {
+      if (prefersReducedMotion) return;
+      
       rainCtx.clearRect(0, 0, rainCanvas.width, rainCanvas.height);
       
       rainDrops.forEach(drop => {
         rainCtx.beginPath();
         rainCtx.moveTo(drop.x, drop.y);
-        rainCtx.lineTo(drop.x + 1, drop.y + drop.length);
-        rainCtx.strokeStyle = `rgba(150, 140, 130, ${drop.opacity})`;
+        rainCtx.lineTo(drop.x + 0.5, drop.y + drop.length);
+        rainCtx.strokeStyle = `rgba(160, 150, 140, ${drop.opacity})`;
         rainCtx.lineWidth = 1;
         rainCtx.stroke();
         
@@ -1055,27 +2025,34 @@
         }
       });
       
-      requestAnimationFrame(animateRain);
+      animationFrameId = requestAnimationFrame(animateRain);
     }
     
-    // ==================== LANTERNS ====================
+    // ============================================================
+    // LANTERNS
+    // ============================================================
     
     function createLanterns() {
-      const lanternsContainer = document.getElementById('lanterns');
-      const lanternCount = 15;
+      if (prefersReducedMotion || !lanternsContainer) return;
+      
+      const lanternCount = 18;
       
       for (let i = 0; i < lanternCount; i++) {
         const lantern = document.createElement('div');
         lantern.className = 'lantern';
         lantern.style.left = `${Math.random() * 100}%`;
-        lantern.style.top = `${60 + Math.random() * 30}%`;
-        lantern.style.animationDelay = `${Math.random() * 3}s`;
+        lantern.style.top = `${55 + Math.random() * 35}%`;
+        lantern.style.width = `${2 + Math.random() * 3}px`;
+        lantern.style.height = lantern.style.width;
+        lantern.style.animationDelay = `${Math.random() * 2.5}s`;
         lantern.style.animationDuration = `${2 + Math.random() * 2}s`;
         lanternsContainer.appendChild(lantern);
       }
     }
     
-    // ==================== PARTICLE SYSTEMS ====================
+    // ============================================================
+    // PARTICLE SYSTEM CLASS
+    // ============================================================
     
     class ParticleSystem {
       constructor(canvas, type, colors) {
@@ -1089,70 +2066,69 @@
       }
       
       resize() {
+        if (!this.canvas.parentElement) return;
         const rect = this.canvas.parentElement.getBoundingClientRect();
-        this.canvas.width = rect.width;
-        this.canvas.height = rect.height;
+        this.canvas.width = Math.max(1, rect.width);
+        this.canvas.height = Math.max(1, rect.height);
       }
       
       createParticle() {
+        const w = Math.max(1, this.canvas.width);
+        const h = Math.max(1, this.canvas.height);
+        
         const types = {
           raven: () => ({
-            x: Math.random() * this.canvas.width,
-            y: Math.random() * this.canvas.height - this.canvas.height,
-            size: Math.random() * 3 + 1,
-            speedY: Math.random() * 1 + 0.5,
-            speedX: (Math.random() - 0.5) * 0.5,
+            x: Math.random() * w,
+            y: -20,
+            size: Math.max(1, Math.random() * 3 + 1),
+            speedY: Math.random() * 0.8 + 0.4,
+            speedX: (Math.random() - 0.5) * 0.4,
             rotation: Math.random() * 360,
             rotationSpeed: (Math.random() - 0.5) * 2,
-            opacity: Math.random() * 0.6 + 0.2,
-            type: 'feather'
+            opacity: Math.random() * 0.5 + 0.2
           }),
           elephant: () => ({
-            x: Math.random() * this.canvas.width,
-            y: Math.random() * this.canvas.height,
-            size: Math.random() * 4 + 2,
-            speedY: Math.random() * 0.3,
-            speedX: (Math.random() - 0.5) * 0.3,
-            opacity: Math.random() * 0.4 + 0.1,
-            type: 'chain'
+            x: Math.random() * w,
+            y: Math.random() * h,
+            size: Math.max(1, Math.random() * 3 + 1),
+            speedY: Math.random() * 0.2 + 0.05,
+            speedX: (Math.random() - 0.5) * 0.2,
+            opacity: Math.random() * 0.35 + 0.1
           }),
           scorpion: () => ({
-            x: Math.random() * this.canvas.width,
-            y: Math.random() * this.canvas.height,
-            size: Math.random() * 2 + 1,
-            speedY: -Math.random() * 0.5 - 0.2,
-            speedX: (Math.random() - 0.5) * 0.3,
-            opacity: Math.random() * 0.7 + 0.3,
-            glow: Math.random() > 0.7,
-            type: 'needle'
+            x: Math.random() * w,
+            y: Math.random() * h,
+            size: Math.max(1, Math.random() * 2 + 1),
+            speedY: -Math.random() * 0.4 - 0.2,
+            speedX: (Math.random() - 0.5) * 0.2,
+            opacity: Math.random() * 0.6 + 0.3,
+            glow: Math.random() > 0.7
           }),
           serpent: () => ({
-            x: Math.random() * this.canvas.width,
-            y: Math.random() * this.canvas.height,
-            size: Math.random() * 30 + 20,
+            x: w / 2,
+            y: h / 2,
+            size: Math.max(5, Math.random() * 40 + 20),
             angle: Math.random() * Math.PI * 2,
-            speed: Math.random() * 0.01 + 0.005,
-            opacity: Math.random() * 0.3 + 0.1,
-            type: 'spiral'
+            speed: Math.random() * 0.008 + 0.004,
+            opacity: Math.random() * 0.25 + 0.08
           }),
           angler: () => ({
-            x: Math.random() * this.canvas.width,
-            y: Math.random() * this.canvas.height,
-            size: Math.random() * 3 + 1,
+            x: Math.random() * w,
+            y: Math.random() * h,
+            size: Math.max(1, Math.random() * 3 + 1),
             pulse: Math.random() * Math.PI * 2,
-            pulseSpeed: Math.random() * 0.05 + 0.02,
-            opacity: Math.random() * 0.6 + 0.2,
-            type: 'lure'
+            pulseSpeed: Math.random() * 0.04 + 0.02,
+            opacity: Math.random() * 0.5 + 0.2
           }),
           hyena: () => ({
-            x: Math.random() * this.canvas.width,
-            y: Math.random() * this.canvas.height,
-            size: Math.random() * 4 + 2,
-            speedY: Math.random() * 0.5 + 0.2,
+            x: Math.random() * w,
+            y: -20,
+            size: Math.max(1, Math.random() * 4 + 2),
+            speedY: Math.random() * 0.6 + 0.3,
             speedX: (Math.random() - 0.5) * 0.5,
             rotation: Math.random() * 360,
-            opacity: Math.random() * 0.5 + 0.2,
-            type: 'bone'
+            rotationSpeed: (Math.random() - 0.5) * 1.5,
+            opacity: Math.random() * 0.4 + 0.15
           })
         };
         
@@ -1160,144 +2136,143 @@
       }
       
       drawParticle(p) {
-        this.ctx.save();
+        const ctx = this.ctx;
+        ctx.save();
         
-        switch(p.type) {
-          case 'feather':
-            this.ctx.translate(p.x, p.y);
-            this.ctx.rotate(p.rotation * Math.PI / 180);
-            this.ctx.beginPath();
-            this.ctx.ellipse(0, 0, p.size, p.size * 3, 0, 0, Math.PI * 2);
-            this.ctx.fillStyle = `rgba(201, 162, 39, ${p.opacity})`;
-            this.ctx.fill();
+        switch(this.type) {
+          case 'raven':
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.rotation * Math.PI / 180);
+            ctx.beginPath();
+            ctx.ellipse(0, 0, Math.max(0.5, p.size), Math.max(0.5, p.size * 3), 0, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(212, 168, 75, ${p.opacity})`;
+            ctx.fill();
             break;
             
-          case 'chain':
-            this.ctx.translate(p.x, p.y);
-            this.ctx.strokeStyle = `rgba(139, 115, 85, ${p.opacity})`;
-            this.ctx.lineWidth = 1;
-            for (let i = 0; i < 3; i++) {
-              this.ctx.beginPath();
-              this.ctx.arc(i * p.size * 1.5, 0, p.size, 0, Math.PI, true);
-              this.ctx.stroke();
-            }
+          case 'elephant':
+            ctx.translate(p.x, p.y);
+            ctx.strokeStyle = `rgba(160, 128, 80, ${p.opacity})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.arc(0, 0, Math.max(0.5, p.size), 0, Math.PI, true);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(p.size * 2, 0, Math.max(0.5, p.size), 0, Math.PI, true);
+            ctx.stroke();
             break;
             
-          case 'needle':
-            this.ctx.translate(p.x, p.y);
+          case 'scorpion':
+            ctx.translate(p.x, p.y);
             if (p.glow) {
-              this.ctx.shadowBlur = 10;
-              this.ctx.shadowColor = this.colors.primary;
+              ctx.shadowBlur = 12;
+              ctx.shadowColor = this.colors.primary;
             }
-            this.ctx.beginPath();
-            this.ctx.moveTo(0, -p.size * 5);
-            this.ctx.lineTo(p.size, 0);
-            this.ctx.lineTo(0, p.size);
-            this.ctx.lineTo(-p.size, 0);
-            this.ctx.closePath();
-            this.ctx.fillStyle = p.glow ? 
-              this.colors.primary : 
-              `rgba(74, 156, 93, ${p.opacity})`;
-            this.ctx.fill();
+            ctx.beginPath();
+            ctx.moveTo(0, -p.size * 4);
+            ctx.lineTo(p.size, 0);
+            ctx.lineTo(0, p.size);
+            ctx.lineTo(-p.size, 0);
+            ctx.closePath();
+            ctx.fillStyle = p.glow ? this.colors.primary : `rgba(92, 184, 112, ${p.opacity})`;
+            ctx.fill();
             break;
             
-          case 'spiral':
-            this.ctx.translate(this.canvas.width / 2, this.canvas.height / 2);
-            this.ctx.strokeStyle = `rgba(80, 200, 120, ${p.opacity})`;
-            this.ctx.lineWidth = 1;
-            this.ctx.beginPath();
-            for (let i = 0; i < p.size; i++) {
-              const angle = p.angle + (i * 0.2);
-              const radius = i * 2;
+          case 'serpent':
+            ctx.translate(this.canvas.width / 2, this.canvas.height / 2);
+            ctx.strokeStyle = `rgba(80, 160, 112, ${p.opacity})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            const spiralSize = Math.max(5, p.size);
+            for (let i = 0; i < spiralSize; i++) {
+              const angle = p.angle + (i * 0.15);
+              const radius = Math.max(0, i * 1.5);
               const x = Math.cos(angle) * radius;
               const y = Math.sin(angle) * radius;
-              if (i === 0) this.ctx.moveTo(x, y);
-              else this.ctx.lineTo(x, y);
+              if (i === 0) ctx.moveTo(x, y);
+              else ctx.lineTo(x, y);
             }
-            this.ctx.stroke();
+            ctx.stroke();
             break;
             
-          case 'lure':
+          case 'angler':
             const glow = Math.sin(p.pulse) * 0.5 + 0.5;
-            this.ctx.beginPath();
-            this.ctx.arc(p.x, p.y, p.size * (1 + glow * 0.5), 0, Math.PI * 2);
-            this.ctx.fillStyle = `rgba(0, 206, 209, ${p.opacity * glow})`;
-            this.ctx.shadowBlur = 15 * glow;
-            this.ctx.shadowColor = '#00ced1';
-            this.ctx.fill();
+            const radius = Math.max(0.5, p.size * (1 + glow * 0.4));
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(32, 168, 176, ${p.opacity * glow})`;
+            ctx.shadowBlur = 12 * glow;
+            ctx.shadowColor = '#20a8b0';
+            ctx.fill();
             break;
             
-          case 'bone':
-            this.ctx.translate(p.x, p.y);
-            this.ctx.rotate(p.rotation * Math.PI / 180);
-            this.ctx.fillStyle = `rgba(221, 213, 200, ${p.opacity})`;
-            this.ctx.beginPath();
-            this.ctx.ellipse(0, 0, p.size * 2, p.size, 0, 0, Math.PI * 2);
-            this.ctx.fill();
-            this.ctx.beginPath();
-            this.ctx.arc(-p.size * 2, 0, p.size * 0.7, 0, Math.PI * 2);
-            this.ctx.arc(p.size * 2, 0, p.size * 0.7, 0, Math.PI * 2);
-            this.ctx.fillStyle = `rgba(201, 162, 39, ${p.opacity * 0.7})`;
-            this.ctx.fill();
+          case 'hyena':
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.rotation * Math.PI / 180);
+            ctx.fillStyle = `rgba(200, 160, 48, ${p.opacity * 0.6})`;
+            ctx.beginPath();
+            ctx.ellipse(0, 0, Math.max(0.5, p.size * 1.5), Math.max(0.5, p.size * 0.8), 0, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = `rgba(138, 64, 32, ${p.opacity})`;
+            ctx.beginPath();
+            ctx.arc(-p.size, 0, Math.max(0.5, p.size * 0.4), 0, Math.PI * 2);
+            ctx.arc(p.size, 0, Math.max(0.5, p.size * 0.4), 0, Math.PI * 2);
+            ctx.fill();
             break;
         }
         
-        this.ctx.restore();
+        ctx.restore();
       }
       
       updateParticle(p) {
-        switch(p.type) {
-          case 'feather':
+        const h = this.canvas.height;
+        const w = this.canvas.width;
+        
+        switch(this.type) {
+          case 'raven':
+          case 'hyena':
             p.y += p.speedY;
             p.x += p.speedX;
             p.rotation += p.rotationSpeed;
-            if (p.y > this.canvas.height + 20) {
-              p.y = -20;
-              p.x = Math.random() * this.canvas.width;
+            if (p.y > h + 30) {
+              p.y = -30;
+              p.x = Math.random() * w;
             }
             break;
             
-          case 'chain':
+          case 'elephant':
             p.y += p.speedY;
             p.x += p.speedX;
-            if (p.y > this.canvas.height) p.y = 0;
-            if (p.x < 0) p.x = this.canvas.width;
-            if (p.x > this.canvas.width) p.x = 0;
+            if (p.y > h) p.y = 0;
+            if (p.x < 0) p.x = w;
+            if (p.x > w) p.x = 0;
             break;
             
-          case 'needle':
+          case 'scorpion':
             p.y += p.speedY;
             p.x += p.speedX;
-            if (p.y < -20) {
-              p.y = this.canvas.height + 20;
-              p.x = Math.random() * this.canvas.width;
+            if (p.y < -30) {
+              p.y = h + 30;
+              p.x = Math.random() * w;
             }
             break;
             
-          case 'spiral':
+          case 'serpent':
             p.angle += p.speed;
             break;
             
-          case 'lure':
+          case 'angler':
             p.pulse += p.pulseSpeed;
-            break;
-            
-          case 'bone':
-            p.y += p.speedY;
-            p.x += p.speedX;
-            p.rotation += 0.5;
-            if (p.y > this.canvas.height + 20) {
-              p.y = -20;
-              p.x = Math.random() * this.canvas.width;
-            }
             break;
         }
       }
       
       start() {
+        if (prefersReducedMotion) return;
+        
         this.isActive = true;
         this.particles = [];
-        const count = this.type === 'spiral' ? 5 : 30;
+        
+        const count = this.type === 'serpent' ? 6 : 35;
         for (let i = 0; i < count; i++) {
           const p = this.createParticle();
           if (p) this.particles.push(p);
@@ -1323,24 +2298,39 @@
       }
     }
     
-    // ==================== SCROLL OBSERVERS ====================
+    // ============================================================
+    // SCROLL OBSERVERS
+    // ============================================================
     
     function initScrollObservers() {
+      // Seal cards reveal
       const sealCards = document.querySelectorAll('.seal-card');
-      const sealSections = document.querySelectorAll('.seal-section');
-      
-      // Card reveal observer
       const cardObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('visible');
           }
         });
-      }, { threshold: 0.2, rootMargin: '-50px' });
+      }, { threshold: 0.15, rootMargin: '-30px' });
       
       sealCards.forEach(card => cardObserver.observe(card));
       
-      // Particle system observer
+      // Theme cards reveal
+      const themeCards = document.querySelectorAll('.theme-card');
+      const themeObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.add('visible');
+            }, index * 100);
+          }
+        });
+      }, { threshold: 0.2 });
+      
+      themeCards.forEach(card => themeObserver.observe(card));
+      
+      // Particle systems
+      const sealSections = document.querySelectorAll('.seal-section');
       const particleObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           const seal = entry.target.dataset.seal;
@@ -1364,24 +2354,18 @@
       sealSections.forEach(section => particleObserver.observe(section));
     }
     
-    // ==================== QUOTE TYPEWRITER ====================
+    // ============================================================
+    // QUOTE TYPEWRITER
+    // ============================================================
     
     function initQuotes() {
-      const container = document.getElementById('quoteContainer');
+      if (!quotesContainer) return;
+      
       let currentQuote = 0;
-      let currentChar = 0;
       let isTyping = false;
       
-      function createQuoteElement(text) {
-        const div = document.createElement('div');
-        div.className = 'quote-item';
-        div.innerHTML = `<span class="quote-text"></span><span class="typewriter-cursor"></span>`;
-        return div;
-      }
-      
       function typeQuote(element, text, callback) {
-        const textSpan = element.querySelector('.quote-text');
-        const cursor = element.querySelector('.typewriter-cursor');
+        const textSpan = element.querySelector('.quote-text') || element;
         let index = 0;
         
         element.classList.add('visible');
@@ -1390,12 +2374,13 @@
           if (index < text.length) {
             textSpan.textContent += text[index];
             index++;
-            setTimeout(type, 30 + Math.random() * 30);
+            setTimeout(type, 28 + Math.random() * 25);
           } else {
             setTimeout(() => {
-              cursor.style.display = 'none';
+              const cursor = element.querySelector('.typewriter-cursor');
+              if (cursor) cursor.style.display = 'none';
               if (callback) callback();
-            }, 1500);
+            }, 2000);
           }
         }
         
@@ -1405,68 +2390,52 @@
       function showNextQuote() {
         if (currentQuote >= quotes.length) {
           currentQuote = 0;
-          container.innerHTML = '';
+          quotesContainer.innerHTML = '';
         }
         
-        const quoteElement = createQuoteElement(quotes[currentQuote]);
-        container.appendChild(quoteElement);
+        const quoteElement = document.createElement('div');
+        quoteElement.className = 'quote-item';
+        quoteElement.innerHTML = '<span class="quote-text"></span><span class="typewriter-cursor"></span>';
+        quotesContainer.appendChild(quoteElement);
         
         typeQuote(quoteElement, quotes[currentQuote], () => {
           currentQuote++;
-          setTimeout(showNextQuote, 1000);
+          setTimeout(showNextQuote, 1200);
         });
       }
       
-      // Start quotes when section is visible
-      const quoteSection = document.querySelector('.quote-section');
-      const quoteObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting && !isTyping) {
-            isTyping = true;
-            showNextQuote();
-            quoteObserver.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.3 });
-      
-      quoteObserver.observe(quoteSection);
-    }
-    
-    // ==================== PARALLAX ====================
-    
-    function initParallax() {
-      const parallaxLayers = document.querySelectorAll('[data-parallax]');
-      
-      let ticking = false;
-      
-      window.addEventListener('scroll', () => {
-        if (!ticking) {
-          requestAnimationFrame(() => {
-            const scrollY = window.pageYOffset;
-            
-            parallaxLayers.forEach(layer => {
-              const speed = parseFloat(layer.dataset.parallax) || 0.5;
-              layer.style.transform = `translateY(${scrollY * speed}px)`;
-            });
-            
-            ticking = false;
+      // Start when visible
+      const quoteSection = document.querySelector('.quotes-section');
+      if (quoteSection) {
+        const quoteObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting && !isTyping) {
+              isTyping = true;
+              showNextQuote();
+              quoteObserver.unobserve(entry.target);
+            }
           });
-          ticking = true;
-        }
-      });
+        }, { threshold: 0.25 });
+        
+        quoteObserver.observe(quoteSection);
+      }
     }
     
-    // ==================== MUSIC CONTROL ====================
+    // ============================================================
+    // MUSIC CONTROL
+    // ============================================================
     
     function initMusic() {
-      bgMusic.volume = 0.5;
+      if (!bgMusic || !musicControl) return;
+      
+      bgMusic.volume = 0.45;
       
       function toggleMusic() {
         if (isPlaying) {
           bgMusic.pause();
           musicControl.classList.remove('playing');
         } else {
-          bgMusic.play().catch(e => console.log('Audio play failed:', e));
+          bgMusic.play().catch(e => console.log('Audio playback failed:', e));
           musicControl.classList.add('playing');
         }
         isPlaying = !isPlaying;
@@ -1474,7 +2443,7 @@
       
       musicControl.addEventListener('click', toggleMusic);
       
-      // Enable audio on first interaction
+      // Enable on first interaction
       document.addEventListener('click', function enableAudio() {
         if (!hasInteracted) {
           hasInteracted = true;
@@ -1491,34 +2460,9 @@
       });
     }
     
-    // ==================== HOVER EFFECTS ====================
-    
-    function initHoverEffects() {
-      const sealCards = document.querySelectorAll('.seal-card');
-      
-      sealCards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-          const rect = card.getBoundingClientRect();
-          const x = (e.clientX - rect.left) / rect.width;
-          const y = (e.clientY - rect.top) / rect.height;
-          
-          card.style.background = `
-            radial-gradient(
-              circle at ${x * 100}% ${y * 100}%,
-              rgba(201, 162, 39, 0.08) 0%,
-              transparent 50%
-            ),
-            rgba(15, 13, 11, 0.85)
-          `;
-        });
-        
-        card.addEventListener('mouseleave', () => {
-          card.style.background = 'rgba(15, 13, 11, 0.85)';
-        });
-      });
-    }
-    
-    // ==================== RESIZE HANDLER ====================
+    // ============================================================
+    // RESIZE HANDLER
+    // ============================================================
     
     function handleResize() {
       initRain();
@@ -1530,7 +2474,9 @@
       });
     }
     
-    // ==================== INIT ====================
+    // ============================================================
+    // INITIALIZATION
+    // ============================================================
     
     function init() {
       initRain();
@@ -1538,24 +2484,20 @@
       createLanterns();
       initScrollObservers();
       initQuotes();
-      initParallax();
       initMusic();
-      initHoverEffects();
       
       window.addEventListener('resize', handleResize);
     }
     
-    // Check for reduced motion preference
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    
-    if (!prefersReducedMotion.matches) {
-      document.addEventListener('DOMContentLoaded', init);
-    } else {
+    // Start
+    if (prefersReducedMotion) {
       document.addEventListener('DOMContentLoaded', () => {
-        initMusic();
         initScrollObservers();
         initQuotes();
+        initMusic();
       });
+    } else {
+      document.addEventListener('DOMContentLoaded', init);
     }
   </script>
 </body>
