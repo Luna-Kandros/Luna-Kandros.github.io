@@ -266,6 +266,83 @@ body.playing .chap{display:block;}
 .dgh::after{content:'';flex:1;height:1px;background:rgba(255,0,68,.25);}
 .dgh:first-child{margin-top:0;}
 
+
+/* ═══════════ CODEX ═══════════ */
+.cdxlist{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));}
+.cdxcard{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:7px;
+  text-align:left;padding:20px 18px 18px;background:rgba(20,7,16,.94);
+  border:1px solid rgba(255,0,68,.28);border-left:4px solid var(--red-d);
+  box-shadow:5px 5px 0 rgba(0,0,0,.6);transition:.2s;}
+.cdxcard:hover{border-color:var(--red);border-left-color:var(--red);transform:translate(-3px,-3px);
+  box-shadow:8px 8px 0 rgba(0,0,0,.7),0 0 26px rgba(255,0,68,.24);}
+.cdxcard.css{border-left-color:#4d9be6;}
+.cdxcard.css:hover{border-color:#4d9be6;border-left-color:#4d9be6;box-shadow:8px 8px 0 rgba(0,0,0,.7),0 0 26px rgba(77,155,230,.3);}
+.cdxcard:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;}
+.cdxno{position:absolute;top:12px;right:14px;font-family:var(--px);font-size:20px;
+  color:rgba(255,255,255,.07);}
+.cdxkind{font-family:var(--px);font-size:7px;letter-spacing:.08em;padding:5px 8px;color:#fff;
+  background:var(--red-d);}
+.cdxkind.css{background:#2f6fa8;}
+.cdxcard b{font-family:var(--px);font-size:11px;line-height:1.6;color:#fff;letter-spacing:.03em;}
+.cdxsub{font-size:16px;color:var(--pink-d);letter-spacing:.06em;}
+.cdxgo{margin-top:5px;font-family:var(--px);font-size:7px;color:var(--mute);letter-spacing:.08em;}
+.cdxcard:hover .cdxgo{color:var(--red);}
+.cdxcard.css:hover .cdxgo{color:#7dc0f5;}
+
+/* reader */
+#m-cdx .mb{padding:0;}
+#cdx-t{font-size:10px;}
+.cdxdoc{max-width:74ch;margin:0 auto;padding:24px clamp(14px,2.4vw,30px) 40px;}
+.cdxdoc-h{margin-bottom:22px;padding-bottom:14px;border-bottom:1px solid rgba(255,0,68,.2);}
+.cdxdoc-h p{margin:9px 0 0;font-family:var(--px);font-size:7.5px;color:var(--mute);letter-spacing:.14em;}
+.cb-p{margin:0 0 14px;font-size:18px;line-height:1.55;color:#ffe0ea;}
+.cb-p em{color:var(--red-2);font-style:italic;}
+.cb-p b{color:#fff;}
+.cb-h{margin:28px 0 12px;font-family:var(--px);font-size:9.5px;line-height:1.7;color:var(--red);
+  letter-spacing:.05em;text-shadow:2px 2px 0 var(--red-x);}
+.cb-note{margin:0 0 16px;padding:13px 16px;font-size:17px;line-height:1.5;color:var(--pink-d);
+  background:rgba(255,0,68,.06);border-left:3px solid var(--red);}
+.cb-note b{color:#fff;}
+.cb-ul,.cb-ok,.cb-no{list-style:none;margin:0 0 16px;padding:0;}
+.cb-ul li,.cb-ok li,.cb-no li{position:relative;padding:0 0 9px 25px;font-size:17.5px;line-height:1.5;color:#ffe0ea;}
+.cb-ul li::before{content:'';position:absolute;left:4px;top:9px;width:7px;height:7px;background:var(--red);}
+.cb-ok li::before{content:'\2713';position:absolute;left:0;top:0;color:#5fcf7a;font-size:15px;}
+.cb-no li::before{content:'\2715';position:absolute;left:0;top:0;color:#e05a6b;font-size:15px;}
+.cb-ok li{color:#d8f2dc;}
+.cb-no li{color:#f2d8dc;}
+.cb-ul li i,.cb-ok li i,.cb-no li i{color:var(--mute);font-style:italic;}
+.cb-img{margin:0 0 18px;padding:0;}
+.cb-img img{display:block;width:100%;max-width:340px;margin:0 auto;image-rendering:pixelated;
+  border:2px solid var(--red);box-shadow:0 0 0 3px #0a050c,0 0 26px rgba(255,0,68,.3);}
+.cb-img figcaption{margin-top:10px;text-align:center;font-size:15.5px;color:var(--mute);font-style:italic;}
+.cb-ex{display:grid;gap:10px;grid-template-columns:1fr 1fr;margin:0 0 18px;}
+@media (max-width:700px){.cb-ex{grid-template-columns:1fr;}}
+.cb-ex .ex{padding:12px 13px;border:1px solid;}
+.cb-ex .ex b{display:block;font-family:var(--px);font-size:7px;letter-spacing:.08em;margin-bottom:9px;}
+.cb-ex .good{background:rgba(95,207,122,.06);border-color:rgba(95,207,122,.35);}
+.cb-ex .good b{color:#5fcf7a;}
+.cb-ex .bad{background:rgba(224,90,107,.06);border-color:rgba(224,90,107,.35);}
+.cb-ex .bad b{color:#e05a6b;}
+.cb-ex pre{margin:0;font-family:var(--tm);font-size:16px;line-height:1.45;color:#ffe0ea;
+  white-space:pre-wrap;word-break:break-word;}
+.cb-code{position:relative;margin:0 0 18px;background:#07030c;border:1px solid rgba(77,155,230,.35);
+  box-shadow:inset 0 0 24px rgba(77,155,230,.07);}
+.cb-code pre{margin:0;padding:16px 14px 14px;overflow-x:auto;
+  font-family:var(--tm);font-size:16px;line-height:1.5;color:#bfe3ff;}
+.cb-code code{font-family:inherit;}
+.cb-copy{position:sticky;top:0;float:right;margin:8px 8px 0 0;z-index:2;
+  font-family:var(--px);font-size:7px;letter-spacing:.06em;color:#fff;padding:8px 11px;
+  background:#2f6fa8;border:1px solid #6fb4ea;box-shadow:0 3px 0 #12324d;}
+.cb-copy:hover{background:#4d9be6;}
+.cb-copy:active{transform:translateY(2px);box-shadow:0 1px 0 #12324d;}
+.cb-copy:focus-visible{outline:2px solid var(--cyan);outline-offset:2px;}
+@media (max-width:640px){
+  .cdxlist{grid-template-columns:1fr;}
+  .cdxdoc{padding:18px 12px 30px;}
+  .cb-h{font-size:8.5px;}
+  .cb-p,.cb-ul li,.cb-ok li,.cb-no li{font-size:17px;}
+}
+
 /* ═══════════ CHAPTER (body-level, fixed, never scrolls) ═══════════ */
 .chap{position:fixed;display:none;top:calc(var(--bar) + 16px);left:50%;transform:translateX(-50%);
   z-index:70;text-align:center;pointer-events:none;padding:9px 40px;width:auto;max-width:92vw;
@@ -850,8 +927,9 @@ body.playing .chap{display:block;}
     <nav class="tabs" id="tabs">
       <button class="tab" data-view="home" aria-current="page"><span class="k">01</span><span class="n" data-i18n="nav_home">HOME</span></button>
       <button class="tab" data-view="gallery"><span class="k">02</span><span class="n" data-i18n="nav_gal">GALLERY</span></button>
-      <button class="tab" data-view="pricing"><span class="k">03</span><span class="n" data-i18n="nav_pri">PRICING</span></button>
-      <button class="tab" data-view="contact"><span class="k">04</span><span class="n" data-i18n="nav_con">CONTACT</span></button>
+      <button class="tab" data-view="codex"><span class="k">03</span><span class="n" data-i18n="nav_cod">CODEX</span></button>
+      <button class="tab" data-view="pricing"><span class="k">04</span><span class="n" data-i18n="nav_pri">PRICING</span></button>
+      <button class="tab" data-view="contact"><span class="k">05</span><span class="n" data-i18n="nav_con">CONTACT</span></button>
     </nav>
     <div class="tray">
       <span class="it rd"><span data-i18n="v_read">READ</span> <b id="v-read">0/0</b></span>
@@ -898,7 +976,7 @@ body.playing .chap{display:block;}
     <div class="chip">READ <b id="r-read">0/0</b></div>
     <div class="panel"><div class="ph"><span>&#9000; HOTKEYS</span></div>
       <div class="pb hotk">
-        <div><b>SPACE</b> advance</div><div><b>1-4</b> route</div>
+        <div><b>SPACE</b> advance</div><div><b>1-5</b> route</div>
         <div><b>A</b> auto &middot; <b>L</b> log</div><div><b>C</b> config</div>
         <div><b>ESC</b> close</div>
       </div></div>
@@ -926,6 +1004,13 @@ body.playing .chap{display:block;}
         <div class="hd"><h2 data-i18n="g_h">GALLERY</h2><div class="rl"></div></div>
         <div class="filters" id="filters"></div>
         <div class="gal" id="gal"></div>
+      </div>
+    </section>
+
+    <section class="pane" id="p-codex">
+      <div class="sheet">
+        <div class="hd"><h2 data-i18n="cod_h">CODEX</h2><p data-i18n="cod_s">SNIPPETS &amp; GUIDES</p><div class="rl"></div></div>
+        <div class="cdxlist" id="cdxlist"></div>
       </div>
     </section>
 
@@ -1024,6 +1109,13 @@ body.playing .chap{display:block;}
   <div class="mb"><div class="slots" id="slots"></div></div>
 </div>
 
+<div class="modal" id="m-cdx" role="dialog" aria-modal="true">
+  <div class="mh"><h4 id="cdx-t"></h4>
+    <button class="xb" id="cdx-top" data-i18n="cod_top">TOP</button>
+    <button class="xb" data-x data-i18n="close">CLOSE</button></div>
+  <div class="mb" id="cdx-body"></div>
+</div>
+
 <div class="modal" id="m-tip" role="dialog" aria-modal="true">
   <div class="mh"><h4 data-i18n="tip_head">PAYMENTS &amp; TRANSFERS</h4><button class="xb" data-x data-i18n="close">CLOSE</button></div>
   <div class="mb">
@@ -1085,6 +1177,274 @@ const U={
   yoomoney:'https://yoomoney.ru/fundraise/1JMO3J6DB3G.260816'
 };
 const TAG='thlayli_imp';
+
+/* ══════════════════════════════════════════════════════════════
+   CODEX — snippets & guides.  Injected into index.html by build.
+   Each entry:
+     id, kind: 'css' | 'guide',
+     t: title, sub: subtitle, ic: pixel-ish label,
+     body: array of blocks
+   Block types:
+     ['p', text]                paragraph (may contain <em>/<b>/<a>)
+     ['h', text]                sub-heading
+     ['ul', [items]]            bullet list
+     ['ok', [items]]            checkmark list (good practice)
+     ['no', [items]]            cross list (bad practice)
+     ['code', text]             code box with copy button
+     ['img', src, caption]      picture
+     ['note', text]             highlighted callout
+     ['ex', good, bad]          side-by-side correct / wrong
+   ══════════════════════════════════════════════════════════════ */
+const CODEX = {
+en:[
+{
+ id:'jai-clean', kind:'css',
+ t:'JANITOR AI — INTERFACE CLEANUP',
+ sub:'CSS SNIPPET · STYLUS / PROFILE',
+ body:[
+  ['p','Have you ever been annoyed by certain things on JanitorAI? Same here. I put together a list of custom CSS snippets that hide the irritating visual elements and make the interface much cleaner.'],
+  ['h','What this fix does'],
+  ['ul',[
+   'Hides system announcements and notifications from the developers.',
+   'Removes unnecessary notifications from other users (countdown alerts or comments on your bots).',
+   'Hides the flashing notification badge. Those red numbers will not drive you crazy anymore, but you will have to check for updates manually by clicking the bell icon.',
+   'Hides timed bots (the ones with the countdown icon) from your feed.',
+   'Removes the list of other people\u2019s read chats so they do not clutter your screen.',
+   'Blocks the pop-up window constantly asking you to buy a Janitor+ subscription.'
+  ]],
+  ['note','Bottom line: with these styles your notification list will only show what really matters \u2014 replies, likes and pins on your comments, new followers, and when someone adds your bots to their favorites.'],
+  ['h','Where to paste the code'],
+  ['ul',[
+   '<b>On your profile only:</b> wrap the code in style tags and paste it into your profile description. Note that hiding timed bots only works via global styling with an extension.',
+   '<b>Site-wide (recommended):</b> install the <b>Stylus</b> browser extension, create a new style for janitorai.com, and copy the code below.'
+  ]],
+  ['h','Full code for Stylus'],
+  ['code','@-moz-document domain("janitorai.com") {\n\n  /* 1. Hides system announcements and notifications */\n  [class*="notificationItem_"]:has([class*="announcementSubject_"]),\n  [class*="notificationItem_"]:has([class*="announcementBody_"]),\n  [class*="announcementNotification_"] {display: none !important;}\n\n  /* 2. Hides notifications from other users */\n  [class*="notificationItem_"]:has([class*="highlightUsername_"]) {display: none !important;}\n\n  /* 3. Hides the flashing notification badge */\n  [class*="notificationsBadge_"] {visibility: hidden !important;}\n\n  /* 4. Hides timed bots from the feed */\n  div[role="group"][class*="profile-character-card-wrapper"]:has(img[class*="profile-character-card-avatar-image"][src*="countdown.webp"]) {display: none !important;}\n\n  /* 5. Removes the list of other people\u2019s read chats */\n  [class*="_section_m0d3u_1"] {display: none !important;}\n\n  /* 6. Blocks the Janitor+ subscription pop-up */\n  div[class*="_modalOverlay_1nhc3_3"]:has(div[class*="_body_1pa8q_32"]) {display: none !important;}\n\n}']
+ ]
+},
+{
+ id:'bot-cards', kind:'guide',
+ t:'GUIDE TO WRITING BOT CARDS',
+ sub:'FOR SILLYTAVERN AND ALTERNATIVES',
+ body:[
+  ['img','assets/angrybibi.jpg','Cutting the fat out of a 5k-token card.'],
+  ['p','How to follow the rules of tokenomics and avoid writing so poorly that people have to rewrite your card just to make it playable.'],
+  ['note','<b>Tokenomics</b> is the economy of words and structure for a neural network.'],
+
+  ['h','1. Use short headers'],
+  ['p','Do not waste tokens on long section names. The model perfectly understands concise markup.'],
+  ['ok',['Basic, Appearance, Background.']],
+  ['no',['Personality &amp; Psychological profile, Quirks and habits, Skills and abilities.']],
+  ['p','<b>No names in headers:</b>'],
+  ['ex','Basic\nName: Caesar','About Caesar\nName: Caesar\nCaesar Gender:\nCaesar Age:\nCaesar Appearance:'],
+  ['p','<b>No tautology:</b>'],
+  ['no',['Likes and Dislikes \u2192 Like: Silence / Dislike: Noise']],
+
+  ['h','2. Use a consistent template'],
+  ['p','Keep your general vibes and ideas notes separate. In the card itself always stick to a clear template. A unified structure ensures you do not miss anything, lets you quickly find the necessary information, and makes life easier for everyone: you, the player, and the AI. You can expand sections if necessary, but a consistent structure will help you, as a creator, write high-quality content.'],
+
+  ['h','3. Do not scatter information across sections'],
+  ['p','Information about the character should be mentioned once, in its dedicated section. Unless absolutely necessary, data should not bleed into other points, though it can complement them. Repeating the same idea throughout the card is redundant.'],
+  ['ex','Likes: Silence\nDislikes: Noise\nBackground: Grew up in an orphanage with strict rules where any shouting was punished, so he is afraid of loud noises.','Likes: Silence\nPersonality: Loves silence.\nBackground: Has always loved silence.\nKinks: Gagging his partner (because he loves silence).'],
+
+  ['h','4. Do not put jailbreaks and system instructions in the card'],
+  ['p','Instructions on how to write, what formatting to use, bans on speaking for the user, explanations that the model is a Game Master \u2014 none of this belongs in the character definition. Players use their own jailbreaks, which will conflict with yours. If a bot speaks for the user, your instruction telling it not to will not help those who suffer from this issue, and it will just be wasted tokens for those whose setup already prevents it.'],
+
+  ['h','5. Do not write the starting scene in the character definition'],
+  ['p','Descriptions of the weather, the plot setup, and the character\u2019s thoughts at the start of the chat belong only in the First Message.'],
+  ['p','<b>Why it matters:</b> circumstances in roleplay change. If you hardcode things relevant only to the first scene into the core definition, for example that you are currently standing in the rain, the bot will remember this rain 100 messages later, even if you have already moved indoors. The card becomes unplayable and the bot gets stuck in the starting context. Plus, a single character card can have multiple alternate greetings for different scenarios.'],
+
+  ['h','6. Do not dictate {{user}}\u2019s appearance, actions, thoughts and reactions'],
+  ['p','LLMs rely heavily on few-shot prompting, that is learning from examples. If you write the user\u2019s reaction in the greeting or example messages, there is a high chance the bot will continue writing for the user later, because the model registers it as a behavioral pattern.'],
+  ['p','The {{user}} is the player\u2019s character. If you are sharing your bot publicly, make the user as neutral as possible so other people can have a good experience using their own personas, rather than being hostages to your personal fantasies. Your job is to describe the environment and the bot\u2019s reaction to it. Then the user responds, and only then does the bot react to the player\u2019s actions.'],
+  ['ok',['{{user}} is the mafia boss\u2019s daughter. <i>(role / status)</i>','{{user}} is the forgotten daughter of the mafia boss. <i>(plot hook)</i>']],
+  ['no',['{{user}} is the shy daughter of the mafia boss who wears white sweaters, plays the piano and goes to church on Sundays. She likes to chew pencils and believes in the Flying Spaghetti Monster. <i>(forcing appearance and personality)</i>']],
+
+  ['h','7. The bot already knows it is {{char}}'],
+  ['p','Do not waste context on explanations like: this {{char}} is a football player, he is 20 years old, he plays the role of {{user}}\u2019s boyfriend. For the model the macro is always automatically replaced with the bot\u2019s and user\u2019s names. If you write {{char}} is Caesar, the model sees Caesar is Caesar.'],
+  ['p','You can specify that the bot plays a roster of NPCs, but if it is a single character, jump straight to the definition.'],
+  ['code','Name: Caesar\nAge: 20\nOccupation: Football player.'],
+  ['note','<b>Overview is for humans, Definition is for AI.</b> Use the overview to tell the player who they are dealing with. In the card itself write a clean dataset. The model does not need to read a character review before its actual traits.'],
+
+  ['h','8. The model has read Wikipedia'],
+  ['p','You do not need to explain the meaning of every kink, hobby or common terminology. Modern models know what words mean. They are literally Large Language Models, they know more words than you do.'],
+
+  ['h','9. Write the biography in concise bullet points, not as a novel'],
+  ['p','The model grasps the core essence much better if you outline events as concise facts rather than writing a mini-fanfic right in the card. Write clearly: what happened, how the character reacted, what it led to.'],
+  ['ex','At 20, got into a car crash. Lost his leg. Blames himself for his friend\u2019s death, became withdrawn.','Cold metal crushed his life on that fateful evening when the screech of brakes interrupted his best friend\u2019s laughter, leaving only emptiness in his soul and a phantom pain in his knee...'],
+  ['p','No, this will not make the character dry. What makes a character dry is a lack of personality, not the method of delivering facts.'],
+
+  ['h','10. Ditch epithets and metaphors'],
+  ['p','An epithet is an artistic decoration of a word, like the sorrowful ocean. A metaphor describes one object through the properties of another, like waterfalls of hair.'],
+  ['ex','Eyes: blue.','Eyes: blue like a sorrowful ocean under the heavenly sun, with long eyelashes casting shadows like the wings of swans.'],
+  ['p','All AI models will generate their own endless supply of epithets during the roleplay. You do not need to intentionally hardcode useless prose that only melts the neural network\u2019s brain.'],
+  ['note','This is especially important for those who use AI to generate character cards. Neural networks often output overly flowery prose, and this text absolutely must be cleaned up.'],
+
+  ['h','11. Do not include details that cannot be roleplayed'],
+  ['p','Mentioning things that will never come up in play does not give a character depth. Simply listing 30 things the character likes will not make them interesting if you do not explain why they like those things. AI is already great at filling in the blanks. Unless there is an important hook like <em>he loves scrambled eggs because his sister cooked them for him every morning while he was in school</em>, it is not worth mentioning.'],
+
+  ['h','12. Do not state the obvious'],
+  ['p','The character has two arms, two legs and ten fingers, he taps his foot, drums his fingers on his thigh, and the tip of his reproductive organ miraculously matches his skin color. Some things are obvious by default. There is no point in writing down basic biological standards or mundane details that logically follow from the character\u2019s other traits.'],
+
+  ['h','13. Do not compare the character to others'],
+  ['p','Why is Caesar great? Brutus is no worse than Caesar, no stupider than Caesar. The people love Brutus just as much as Caesar. Wait, whose card is this? The model does not care that Caesar likes salty food unlike Brutus.'],
+  ['p','If you have multiple characters, write their traits in their respective blocks. If a character has been compared to someone their whole life, mention it once in the background section as a plot point, rather than explaining how Caesar differs from Brutus in every single category.'],
+
+  ['h','14. Do not overuse formatting'],
+  ['p','When you wrap every item in the bot\u2019s card in asterisks you create hundreds of tokens of pure garbage. This kind of formatting is only useful for visual aesthetics on the platform where you publish the bot. It does not help the model, but it is sent to the neural network with every single message: it clogs up memory faster, makes the bot stupid, and eats up other people\u2019s context limits and API costs.'],
+  ['ex','Basic\nName: Caesar\nSpecies: Human\nAge: 28','BASIC INFORMATION: [\n\nFull Name: Caesar\n\nSpecies: Human\n\nAge: 28 years old ]'],
+  ['p','The Species field is only needed when the bot\u2019s race is non-human and actually affects the plot.'],
+
+  ['h','15. Do not use bulleted lists unnecessarily'],
+  ['p','For things like likes, dislikes, kinks and other enumerations it is better to write them in a single paragraph separated by commas rather than bloating the list with bullet points. Every bullet point not only visually bloats the definition and makes it harder to read, but also spawns unnecessary tokens.'],
+  ['ex','Likes: silence, cats, coffee, night walks.   (~8 tokens)','Likes:\n\n  silence\n\n  cats\n\n  coffee\n\n  night walks   (~14 tokens)'],
+
+  ['h','16. Do not use numbered headers'],
+  ['p','In a bot card there is no difference to the model between <em>Basic.</em> and <em>1.1. Basic.</em> Numbers just waste tokens. Use concise separators or standard headers.'],
+
+  ['h','17. Do not use non-standard special characters'],
+  ['p','Unless it is part of the required output format, special characters in the card itself are redundant, make reading difficult, and sometimes outright break the model\u2019s tokenizer.'],
+
+  ['h','18. Do not wrap information in pseudo-code tags'],
+  ['code','<char>\n  <likes> silence </likes>\n  <dislikes> noise </dislikes>\n</char>'],
+  ['p','The model receives the character card as a wall of text. Bloating this text with pseudo-code XML or JSON tags will not improve the quality of the roleplay. The model will only stumble trying to read every tag, achieving nothing except devouring tokens.'],
+
+  ['h','19. Keep card bloat in check'],
+  ['p','The larger the definition, the higher the chance the model will start losing details and struggle to stay in character. Either move some information to a lorebook or world info, or cut out everything that does not provide new insights about the character. Try to keep the card around 2k tokens. Bots hold character much better when their brains are not flooded with water.'],
+  ['note','Ask yourself: can I tell the exact same story using fewer tokens? If yes, cut it. If no, the story is poorly adapted for AI.'],
+
+  ['h','20. Do not turn Example Dialogue into a quote book'],
+  ['p','Many creators stuff the card or the example messages field with dozens of quotes in hopes that the bot will become livelier. In reality the model just fixates on them. Even if you write do not use these phrases verbatim, the bot will still copy their exact structure, sentence length and specific words instead of improvising. To set up a speech style, 3 to 5 short highly characteristic dialogues are more than enough. Everything else is just senseless context clutter.'],
+
+  ['note','This is not a guide on how to create a character. It is a guide on how to write a card for one.']
+ ]
+}
+],
+ru:[
+{
+ id:'jai-clean', kind:'css',
+ t:'JANITOR AI \u2014 ЧИСТКА ИНТЕРФЕЙСА',
+ sub:'CSS-СНИППЕТ \u00b7 STYLUS / ПРОФИЛЬ',
+ body:[
+  ['p','Вас когда-нибудь раздражали некоторые вещи на JanitorAI? Меня тоже. Я собрала набор CSS-сниппетов, которые прячут раздражающие элементы интерфейса и делают его заметно чище.'],
+  ['h','Что делает этот фикс'],
+  ['ul',[
+   'Скрывает системные объявления и уведомления от разработчиков.',
+   'Убирает лишние уведомления от других пользователей: таймеры и комментарии к вашим ботам.',
+   'Прячет мигающий бейдж уведомлений. Красные цифры больше не будут сводить с ума, но проверять обновления придётся вручную, кликая по колокольчику.',
+   'Скрывает ботов с таймером (с иконкой обратного отсчёта) из ленты.',
+   'Убирает список чужих прочитанных чатов, чтобы они не захламляли экран.',
+   'Блокирует всплывающее окно, которое постоянно предлагает купить подписку Janitor+.'
+  ]],
+  ['note','Итог: с этими стилями в списке уведомлений останется только важное \u2014 ответы, лайки и закрепы на ваших комментариях, новые подписчики и добавления ваших ботов в избранное.'],
+  ['h','Куда вставлять код'],
+  ['ul',[
+   '<b>Только в свой профиль:</b> оберните код в теги style и вставьте в описание профиля. Учтите, что скрытие ботов с таймером работает только через глобальные стили с расширением.',
+   '<b>На весь сайт (рекомендую):</b> установите расширение <b>Stylus</b>, создайте новый стиль для janitorai.com и скопируйте код ниже.'
+  ]],
+  ['h','Полный код для Stylus'],
+  ['code','@-moz-document domain("janitorai.com") {\n\n  /* 1. Скрывает системные объявления и уведомления */\n  [class*="notificationItem_"]:has([class*="announcementSubject_"]),\n  [class*="notificationItem_"]:has([class*="announcementBody_"]),\n  [class*="announcementNotification_"] {display: none !important;}\n\n  /* 2. Скрывает уведомления от других пользователей */\n  [class*="notificationItem_"]:has([class*="highlightUsername_"]) {display: none !important;}\n\n  /* 3. Скрывает мигающий бейдж уведомлений */\n  [class*="notificationsBadge_"] {visibility: hidden !important;}\n\n  /* 4. Скрывает ботов с таймером из ленты */\n  div[role="group"][class*="profile-character-card-wrapper"]:has(img[class*="profile-character-card-avatar-image"][src*="countdown.webp"]) {display: none !important;}\n\n  /* 5. Убирает список чужих прочитанных чатов */\n  [class*="_section_m0d3u_1"] {display: none !important;}\n\n  /* 6. Блокирует всплывашку про подписку Janitor+ */\n  div[class*="_modalOverlay_1nhc3_3"]:has(div[class*="_body_1pa8q_32"]) {display: none !important;}\n\n}']
+ ]
+},
+{
+ id:'bot-cards', kind:'guide',
+ t:'КАК ПИСАТЬ КАРТОЧКИ БОТОВ',
+ sub:'ДЛЯ SILLYTAVERN И АНАЛОГОВ',
+ body:[
+  ['img','assets/angrybibi.jpg','Вырезаем лишнее из карточки на 5к токенов.'],
+  ['p','Как соблюдать правила токеномики и не писать настолько плохо, чтобы людям приходилось переписывать вашу карточку, лишь бы в неё можно было играть.'],
+  ['note','<b>Токеномика</b> \u2014 это экономия слов и структуры для нейросети.'],
+
+  ['h','1. Используйте короткие заголовки'],
+  ['p','Не тратьте токены на длинные названия секций. Модель прекрасно понимает лаконичную разметку.'],
+  ['ok',['Basic, Appearance, Background.']],
+  ['no',['Personality &amp; Psychological profile, Quirks and habits, Skills and abilities.']],
+  ['p','<b>Никаких имён в заголовках:</b>'],
+  ['ex','Basic\nName: Caesar','About Caesar\nName: Caesar\nCaesar Gender:\nCaesar Age:\nCaesar Appearance:'],
+  ['p','<b>Никакой тавтологии:</b>'],
+  ['no',['Likes and Dislikes \u2192 Like: Silence / Dislike: Noise']],
+
+  ['h','2. Используйте единый шаблон'],
+  ['p','Общие заметки с идеями и вайбами держите отдельно. В самой карточке всегда придерживайтесь чёткого шаблона. Единая структура не даст ничего упустить, позволит быстро найти нужное и облегчит жизнь всем: вам, игроку и нейросети. Секции можно расширять при необходимости, но постоянная структура поможет вам как автору писать качественно.'],
+
+  ['h','3. Не размазывайте информацию по секциям'],
+  ['p','Информация о персонаже должна упоминаться один раз, в своей секции. Без крайней необходимости данные не должны перетекать в другие пункты, хотя могут их дополнять. Повторять одну и ту же мысль по всей карточке избыточно.'],
+  ['ex','Likes: Silence\nDislikes: Noise\nBackground: Вырос в приюте со строгими правилами, где за любой крик наказывали, поэтому боится громких звуков.','Likes: Silence\nPersonality: Любит тишину.\nBackground: Всегда любил тишину.\nKinks: Затыкать партнёру рот (потому что любит тишину).'],
+
+  ['h','4. Не пихайте джейлбрейки и системные инструкции в карточку'],
+  ['p','Указания как писать, какое форматирование использовать, запреты говорить за пользователя, объяснения что модель \u2014 Game Master: всему этому не место в описании персонажа. Игроки используют свои джейлбрейки, которые вступят в конфликт с вашими. Если бот говорит за пользователя, ваша инструкция не поможет тем, кто от этого страдает, а для тех, у кого настройки это уже предотвращают, она станет просто потраченными токенами.'],
+
+  ['h','5. Не описывайте стартовую сцену в определении персонажа'],
+  ['p','Описания погоды, завязка сюжета и мысли персонажа в начале чата \u2014 только в первом сообщении.'],
+  ['p','<b>Почему это важно:</b> обстоятельства в ролевой меняются. Если зашить в основное определение то, что актуально лишь для первой сцены \u2014 например, что вы сейчас стоите под дождём \u2014 бот будет помнить этот дождь через 100 сообщений, даже когда вы давно ушли в помещение. Карточка становится неиграбельной, а бот застревает в стартовом контексте. К тому же у одной карточки может быть несколько альтернативных приветствий под разные сценарии.'],
+
+  ['h','6. Не расписывайте внешность, действия, мысли и реакции {{user}}'],
+  ['p','LLM сильно опираются на few-shot prompting, то есть обучение на примерах. Если вы пишете реакцию пользователя в приветствии или примерах сообщений, велика вероятность, что бот и дальше будет писать за пользователя: модель считывает это как поведенческий шаблон.'],
+  ['p','{{user}} \u2014 это персонаж игрока. Если вы публикуете бота, сделайте пользователя максимально нейтральным, чтобы другие люди могли играть своими персонами, а не были заложниками ваших личных фантазий. Ваша задача \u2014 описать окружение и реакцию бота на него. Дальше отвечает пользователь, и только потом бот реагирует на действия игрока.'],
+  ['ok',['{{user}} \u2014 дочь мафиозного босса. <i>(роль и статус)</i>','{{user}} \u2014 забытая дочь мафиозного босса. <i>(сюжетный крючок)</i>']],
+  ['no',['{{user}} \u2014 застенчивая дочь мафиозного босса, которая носит белые свитеры, играет на пианино и ходит в церковь по воскресеньям. Любит грызть карандаши и верит в Летающего Макаронного Монстра. <i>(навязывание внешности и характера)</i>']],
+
+  ['h','7. Бот и так знает, что он {{char}}'],
+  ['p','Не тратьте контекст на объяснения вроде: этот {{char}} \u2014 футболист, ему 20 лет, он играет роль парня {{user}}. Для модели макрос всегда автоматически заменяется именами бота и пользователя. Если вы пишете {{char}} is Caesar, модель видит Caesar is Caesar.'],
+  ['p','Можно указать, что бот отыгрывает набор NPC, но если это один персонаж \u2014 сразу переходите к определению.'],
+  ['code','Name: Caesar\nAge: 20\nOccupation: Football player.'],
+  ['note','<b>Overview \u2014 для людей, Definition \u2014 для нейросети.</b> В описании на площадке расскажите игроку, с кем он имеет дело. В самой карточке пишите чистый набор данных. Модели не нужно читать обзор персонажа перед его реальными чертами.'],
+
+  ['h','8. Модель читала Википедию'],
+  ['p','Не нужно объяснять значение каждого кинка, хобби или общеизвестного термина. Современные модели знают, что означают слова. Это буквально большие языковые модели, они знают слов больше, чем вы.'],
+
+  ['h','9. Пишите биографию тезисами, а не романом'],
+  ['p','Модель гораздо лучше улавливает суть, если изложить события сжатыми фактами, а не писать мини-фанфик прямо в карточке. Пишите ясно: что случилось, как персонаж отреагировал, к чему это привело.'],
+  ['ex','В 20 попал в аварию. Потерял ногу. Винит себя в смерти друга, замкнулся.','Холодный металл раздавил его жизнь в тот роковой вечер, когда визг тормозов оборвал смех лучшего друга, оставив лишь пустоту в душе и фантомную боль в колене...'],
+  ['p','Нет, персонаж от этого не станет сухим. Сухим его делает отсутствие характера, а не способ подачи фактов.'],
+
+  ['h','10. Откажитесь от эпитетов и метафор'],
+  ['p','Эпитет \u2014 художественное украшение слова: печальный океан. Метафора описывает один объект через свойства другого: водопады волос.'],
+  ['ex','Eyes: blue.','Eyes: голубые как печальный океан под небесным солнцем, с длинными ресницами, отбрасывающими тени, будто крылья лебедей.'],
+  ['p','Любая модель во время ролевой сгенерирует свой бесконечный запас эпитетов. Не нужно намеренно зашивать бесполезную прозу, которая только плавит нейросети мозг.'],
+  ['note','Особенно важно для тех, кто генерирует карточки через ИИ. Нейросети часто выдают чрезмерно цветистый текст, и его обязательно нужно вычищать.'],
+
+  ['h','11. Не включайте детали, которые нельзя отыграть'],
+  ['p','Упоминание того, что никогда не всплывёт в игре, не добавляет персонажу глубины. Простое перечисление 30 вещей, которые персонаж любит, не сделает его интересным, если не объяснить почему. ИИ и так отлично заполняет пробелы. Так что если нет важного крючка вроде <em>он любит яичницу, потому что сестра готовила её каждое утро, пока он учился в школе</em>, упоминать не стоит.'],
+
+  ['h','12. Не пишите очевидное'],
+  ['p','У персонажа две руки, две ноги и десять пальцев, он постукивает ногой, барабанит пальцами по бедру, а кончик его репродуктивного органа чудесным образом совпадает по цвету с кожей. Некоторые вещи очевидны по умолчанию. Нет смысла прописывать базовые биологические стандарты или бытовые детали, логически вытекающие из других черт.'],
+
+  ['h','13. Не сравнивайте персонажа с другими'],
+  ['p','Чем хорош Цезарь? Брут не хуже Цезаря, не глупее Цезаря. Народ любит Брута не меньше Цезаря. Стоп, а чья это карточка? Модели всё равно, что Цезарь любит солёное в отличие от Брута.'],
+  ['p','Если персонажей несколько, пишите их черты в соответствующих блоках. Если персонажа всю жизнь с кем-то сравнивали, упомяните это один раз в биографии как сюжетный факт, а не объясняйте, чем Цезарь отличается от Брута в каждой категории.'],
+
+  ['h','14. Не злоупотребляйте форматированием'],
+  ['p','Когда вы оборачиваете каждый пункт карточки в звёздочки, вы создаёте сотни токенов чистого мусора. Такое форматирование полезно только для визуальной эстетики на площадке, где вы публикуете бота. Модели оно не помогает, но отправляется нейросети с каждым сообщением: быстрее забивает память, отупляет бота и съедает чужие лимиты контекста и деньги на API.'],
+  ['ex','Basic\nName: Caesar\nSpecies: Human\nAge: 28','BASIC INFORMATION: [\n\nFull Name: Caesar\n\nSpecies: Human\n\nAge: 28 years old ]'],
+  ['p','Поле Species нужно только когда раса бота нечеловеческая и реально влияет на сюжет.'],
+
+  ['h','15. Не используйте маркированные списки без нужды'],
+  ['p','Для likes, dislikes, кинков и прочих перечислений лучше писать одним абзацем через запятую, а не раздувать список буллетами. Каждый буллет не только визуально утяжеляет определение и мешает читать, но и плодит лишние токены.'],
+  ['ex','Likes: тишина, кошки, кофе, ночные прогулки.   (~8 токенов)','Likes:\n\n  тишина\n\n  кошки\n\n  кофе\n\n  ночные прогулки   (~14 токенов)'],
+
+  ['h','16. Не нумеруйте заголовки'],
+  ['p','В карточке бота для модели нет разницы между <em>Basic.</em> и <em>1.1. Basic.</em> Цифры просто тратят токены. Используйте лаконичные разделители или обычные заголовки.'],
+
+  ['h','17. Не используйте нестандартные спецсимволы'],
+  ['p','Если это не часть требуемого формата вывода, спецсимволы в самой карточке избыточны, затрудняют чтение, а иногда прямо ломают токенизатор модели.'],
+
+  ['h','18. Не заворачивайте информацию в псевдокод'],
+  ['code','<char>\n  <likes> silence </likes>\n  <dislikes> noise </dislikes>\n</char>'],
+  ['p','Модель получает карточку персонажа как сплошную стену текста. Раздувание этого текста псевдокодом XML или JSON не улучшит качество ролевой. Модель будет только спотыкаться, пытаясь прочитать каждый тег, и не добьётся ничего, кроме пожирания токенов.'],
+
+  ['h','19. Следите за раздутостью карточки'],
+  ['p','Чем больше определение, тем выше шанс, что модель начнёт терять детали и с трудом удерживать характер. Либо перенесите часть информации в лорбук, либо вырежьте всё, что не даёт нового понимания персонажа. Старайтесь держать карточку в районе 2к токенов. Боты держат характер намного лучше, когда их мозги не залиты водой.'],
+  ['note','Спросите себя: могу ли я рассказать ту же историю меньшим числом токенов? Если да \u2014 режьте. Если нет \u2014 история плохо адаптирована под ИИ.'],
+
+  ['h','20. Не превращайте Example Dialogue в цитатник'],
+  ['p','Многие авторы забивают карточку или поле примеров десятками цитат в надежде, что бот станет живее. На деле модель просто зацикливается на них. Даже если вы напишете не использовать эти фразы дословно, бот всё равно скопирует их структуру, длину предложений и конкретные слова вместо импровизации. Для настройки речи достаточно 3\u20135 коротких характерных диалогов. Всё остальное \u2014 бессмысленный мусор в контексте.'],
+
+  ['note','Это не руководство о том, как создать персонажа. Это руководство о том, как написать для него карточку.']
+ ]
+}
+]};
+
 /* номер кошелька ЮMoney */
 const YOO_WALLET='4100119601298460';
 
@@ -1092,7 +1452,10 @@ const T={
 en:{
  t_start:'ENTER',t_start_s:'chapter one',t_cont:'CONTINUE',t_cont_s:'last save',
  t_gal:'GALLERY',t_gal_s:'my works',t_com:'COMMISSIONS',t_com_s:'order',
- nav_home:'HOME',nav_gal:'GALLERY',nav_pri:'PRICING',nav_con:'CONTACT',
+ nav_home:'HOME',nav_gal:'GALLERY',nav_cod:'CODEX',nav_pri:'PRICING',nav_con:'CONTACT',
+ cod_h:'CODEX',cod_s:'SNIPPETS &amp; GUIDES',cod_open:'READ',cod_copy:'COPY CODE',
+ cod_copied:'CODE COPIED',cod_top:'TOP',cod_good:'CORRECT',cod_bad:'REDUNDANT',
+ cod_kind_css:'CSS SNIPPET',cod_kind_guide:'GUIDE',
  v_read:'READ',skip:'SKIP',next:'NEXT',more:'CONTINUE',
  g_h:'GALLERY',g_s:'MY WORKS',p_h:'COMMISSIONS',p_s:'PROFILE CSS DESIGN',p_flow:'HOW IT WORKS',
  c_h:'CONTACT',c_s:'OPENS IN A NEW TAB',c_tag:'DISCORD',c_copy:'COPY',
@@ -1131,9 +1494,10 @@ en:{
  toast_auto_on:'AUTO ON',toast_auto_off:'AUTO OFF',toast_wiped:'ERASED',toast_cleared:'CLEARED',
  toast_nosave:'NO SAVE FOUND',toast_open:'OPENING',toast_filter:'FILTER',
  boot:['booting lovely_hell.exe','loading sprite data','entity detected in frame 07','welcome, visitor'],
- zones:{home:'THE BASEMENT',gallery:'THE ARCHIVE',pricing:'CONTRACT DESK',contact:'FRONT DOOR'},
+ zones:{home:'THE BASEMENT',gallery:'THE ARCHIVE',codex:'THE LIBRARY',pricing:'CONTRACT DESK',contact:'FRONT DOOR'},
  chapters:{home:['CHAPTER I','"The One Who Wanders In"'],gallery:['CHAPTER II','"Rooms I Have Decorated"'],
-           pricing:['CHAPTER III','"Terms of the Arrangement"'],contact:['CHAPTER IV','"Knock Three Times"']},
+           codex:['CHAPTER III','"Notes From the Workshop"'],
+           pricing:['CHAPTER IV','"Terms of the Arrangement"'],contact:['CHAPTER V','"Knock Three Times"']},
  idle:[
   ["Welcome to Lovely Hell. Mind the wiring, some of it is decorative, most of it is load-bearing.",
    "I am <em>Delvari</em>. I dress up profile pages so none of us has to suffer the default design.",
@@ -1150,6 +1514,7 @@ en:{
   ["You have been quiet for a while.","That is fine. I am patient. I have had practice."]],
  route:{home:["Back in the basement. The light is better here, relatively speaking."],
         gallery:["Things I have laid my hands on. Open any of them.","Use the filters, each work is tagged with its package."],
+        codex:["My notes. Snippets that fix things, and a guide nobody asked for.","Take the code. It is free. Unlike my time."],
         pricing:["Three levels of surrender. Read them slowly.",
                  "<em>Base</em> obeys you. <em>Medium</em> advises you. <em>Luxury</em> replaces you."],
         contact:["You can find me elsewhere and get in touch.","Although everything that matters I have put on this site."]},
@@ -1220,7 +1585,10 @@ en:{
 ru:{
  t_start:'ВОЙТИ',t_start_s:'глава первая',t_cont:'ПРОДОЛЖИТЬ',t_cont_s:'сохранение',
  t_gal:'ГАЛЕРЕЯ',t_gal_s:'мои работы',t_com:'ЗАКАЗАТЬ',t_com_s:'дизайн',
- nav_home:'ГЛАВНАЯ',nav_gal:'ГАЛЕРЕЯ',nav_pri:'ЦЕНЫ',nav_con:'КОНТАКТЫ',
+ nav_home:'ГЛАВНАЯ',nav_gal:'ГАЛЕРЕЯ',nav_cod:'КОДЕКС',nav_pri:'ЦЕНЫ',nav_con:'КОНТАКТЫ',
+ cod_h:'КОДЕКС',cod_s:'СНИППЕТЫ И РУКОВОДСТВА',cod_open:'ЧИТАТЬ',cod_copy:'КОПИРОВАТЬ КОД',
+ cod_copied:'КОД СКОПИРОВАН',cod_top:'ВВЕРХ',cod_good:'ПРАВИЛЬНО',cod_bad:'ИЗБЫТОЧНО',
+ cod_kind_css:'CSS-СНИППЕТ',cod_kind_guide:'РУКОВОДСТВО',
  v_read:'ЧТЕНО',skip:'ПРОПУСК',next:'ДАЛЬШЕ',more:'ДАЛЕЕ',
  g_h:'ГАЛЕРЕЯ',g_s:'МОИ РАБОТЫ',p_h:'ЗАКАЗАТЬ',p_s:'ОФОРМЛЕНИЕ ПРОФИЛЯ',p_flow:'КАК ЭТО РАБОТАЕТ',
  c_h:'КОНТАКТЫ',c_s:'ОТКРОЕТСЯ В НОВОЙ ВКЛАДКЕ',c_tag:'DISCORD',c_copy:'КОПИЯ',
@@ -1259,9 +1627,10 @@ ru:{
  toast_auto_on:'АВТО ВКЛ',toast_auto_off:'АВТО ВЫКЛ',toast_wiped:'СТЁРТО',toast_cleared:'ОЧИЩЕНО',
  toast_nosave:'СОХРАНЕНИЙ НЕТ',toast_open:'ОТКРЫВАЮ',toast_filter:'ФИЛЬТР',
  boot:['запуск lovely_hell.exe','загрузка спрайта','сущность в кадре 07','добро пожаловать, гость'],
- zones:{home:'ПОДВАЛ',gallery:'АРХИВ',pricing:'СТОЛ СДЕЛОК',contact:'ПАРАДНАЯ'},
+ zones:{home:'ПОДВАЛ',gallery:'АРХИВ',codex:'БИБЛИОТЕКА',pricing:'СТОЛ СДЕЛОК',contact:'ПАРАДНАЯ'},
  chapters:{home:['ГЛАВА I','«Та, кто забрёл внутрь»'],gallery:['ГЛАВА II','«Комнаты, которые я обставила»'],
-           pricing:['ГЛАВА III','«Условия сделки»'],contact:['ГЛАВА IV','«Постучи трижды»']},
+           codex:['ГЛАВА III','«Заметки из мастерской»'],
+           pricing:['ГЛАВА IV','«Условия сделки»'],contact:['ГЛАВА V','«Постучи трижды»']},
  idle:[
   ["Добро пожаловать в Lovely Hell. Осторожнее с проводкой, часть её декоративная, большая часть несущая.",
    "Я <em>Delvari</em>. Оформляю страницы профилей, чтобы мы не страдали от дефолтного дизайна.",
@@ -1277,6 +1646,7 @@ ru:{
   ["Вы давно молчите.","Ничего. Я терпеливая, у меня была практика."]],
  route:{home:["Снова в подвале. Здесь светлее, относительно."],
         gallery:["Вещи, к которым я приложила свою руку. Откройте любую.","Пользуйтесь фильтрами, у каждой работы своя метка пакета."],
+        codex:["Мои заметки. Сниппеты, которые чинят, и руководство, которое никто не просил.","Забирайте код. Он бесплатный. В отличие от моего времени."],
         pricing:["Три степени доверия. Читайте медленно.",
                  "<em>База</em> слушается вас. <em>Медиум</em> советует. <em>Люкс</em> заменяет."],
         contact:["Можете найти меня в других местах и связаться со мной.","Хотя всё самое важное я вынесла на этот сайт."]},
@@ -1422,6 +1792,64 @@ function hud(){
   save();
 }
 const affect=n=>{S.aff=Math.max(0,Math.min(100,S.aff+n));hud();};
+
+/* ══════ CODEX ══════ */
+function esc2(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+function codexBlock(b){
+  const k=b[0];
+  if(k==='p')    return '<p class="cb-p">'+b[1]+'</p>';
+  if(k==='h')    return '<h5 class="cb-h">'+b[1]+'</h5>';
+  if(k==='note') return '<div class="cb-note">'+b[1]+'</div>';
+  if(k==='ul')   return '<ul class="cb-ul">'+b[1].map(x=>'<li>'+x+'</li>').join('')+'</ul>';
+  if(k==='ok')   return '<ul class="cb-ok">'+b[1].map(x=>'<li>'+x+'</li>').join('')+'</ul>';
+  if(k==='no')   return '<ul class="cb-no">'+b[1].map(x=>'<li>'+x+'</li>').join('')+'</ul>';
+  if(k==='img')  return '<figure class="cb-img"><img src="'+b[1]+'" alt="" loading="lazy">'+
+                        (b[2]?'<figcaption>'+b[2]+'</figcaption>':'')+'</figure>';
+  if(k==='ex')   return '<div class="cb-ex">'+
+      '<div class="ex good"><b>\u2713 '+L.cod_good+'</b><pre>'+esc2(b[1])+'</pre></div>'+
+      '<div class="ex bad"><b>\u2715 '+L.cod_bad+'</b><pre>'+esc2(b[2])+'</pre></div></div>';
+  if(k==='code') return '<div class="cb-code"><button class="cb-copy" type="button">'+L.cod_copy+
+      '</button><pre><code>'+esc2(b[1])+'</code></pre></div>';
+  return '';
+}
+
+function openCodex(id){
+  const list=CODEX[S.cfg.lang]||CODEX.en;
+  const a=list.find(x=>x.id===id); if(!a)return;
+  $('#cdx-t').textContent=a.t;
+  const body=$('#cdx-body');
+  body.innerHTML='<article class="cdxdoc"><div class="cdxdoc-h"><span class="cdxkind '+a.kind+'">'+
+    (a.kind==='css'?L.cod_kind_css:L.cod_kind_guide)+'</span><p>'+a.sub+'</p></div>'+
+    a.body.map(codexBlock).join('')+'</article>';
+  body.scrollTop=0;
+  body.querySelectorAll('.cb-copy').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const code=btn.parentElement.querySelector('code').textContent;
+      copy(code,L.cod_copied);
+      btn.textContent=L.cod_copied;
+      setTimeout(()=>btn.textContent=L.cod_copy,1600);
+    });
+  });
+  $('#m-cdx').classList.add('open');
+  affect(3); slog('[SYS] codex: '+a.id);
+}
+$('#cdx-top').addEventListener('click',()=>{$('#cdx-body').scrollTo({top:0,behavior:'smooth'});});
+
+function buildCodex(){
+  const list=CODEX[S.cfg.lang]||CODEX.en, w=$('#cdxlist');
+  if(!w)return; w.innerHTML='';
+  list.forEach((a,i)=>{
+    const n=a.body.filter(b=>b[0]==='h').length;
+    const c=mk('button','cdxcard '+a.kind);c.type='button';
+    c.innerHTML='<span class="cdxno">'+String(i+1).padStart(2,'0')+'</span>'+
+      '<span class="cdxkind '+a.kind+'">'+(a.kind==='css'?L.cod_kind_css:L.cod_kind_guide)+'</span>'+
+      '<b>'+a.t+'</b><span class="cdxsub">'+a.sub+'</span>'+
+      '<span class="cdxgo">&#9658; '+L.cod_open+(n?' \u00b7 '+n+'\u00a0\u00a7':'')+'</span>';
+    c.addEventListener('click',()=>openCodex(a.id));
+    w.appendChild(c);
+  });
+}
 
 /* ══════ YOOMONEY CUSTOM FORM ══════ */
 const YOO_PRESETS=[100,300,500,1000];
@@ -1586,6 +2014,7 @@ function build(){
     '<div class="fct"><b>'+f[0]+'</b><span>'+(i===2?'<i class="dot"></i>':'')+f[1]+'</span></div>').join('');
   $('#tiplink').href=U.boosty;$('#tipdm').href=U.discord;
   buildYoo();
+  buildCodex();
   $('#slot-h').textContent=slotMode==='save'?L.save_h:L.load_h;
   chapter();hud();
 }
@@ -1594,7 +2023,7 @@ function applyFilter(){
 }
 
 /* ══════ ROUTER ══════ */
-const V=['home','gallery','pricing','contact'];
+const V=['home','gallery','codex','pricing','contact'];
 function chapter(){const c=L.chapters[S.view];$('#ch-n').textContent=c[0];$('#ch-t').textContent=c[1];}
 function go(v,quiet){
   if(!V.includes(v))v='home';
@@ -1604,6 +2033,7 @@ function go(v,quiet){
   $('#dwrap').classList.toggle('slim',v!=='home');
   $('#sysinfo').style.display=v==='home'?'block':'none';
   const BGS={home:'assets/skulls.jpg',gallery:'assets/bg-gallery.jpg',
+             codex:'assets/bg-codex.jpg',
              pricing:'assets/bg-pricing.jpg',contact:'assets/bg-contact.jpg'};
   $('#f-bg').style.backgroundImage="url('"+BGS[v]+"')";
   $('#f-bg').style.filter=v==='home'?'none':'brightness(.72)';
@@ -1767,8 +2197,8 @@ function slots(){
   }
 }
 
-function copy(t){
-  const ok=()=>{toast(L.toast_copy);affect(3);};
+function copy(t,msg){
+  const ok=()=>{toast(msg||L.toast_copy);affect(3);};
   if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(ok).catch(fb);else fb();
   function fb(){const a=mk('textarea');a.value=t;a.style.cssText='position:fixed;opacity:0';
     document.body.appendChild(a);a.select();
@@ -1789,7 +2219,7 @@ document.addEventListener('keydown',e=>{
   if(!ready){if(e.key==='Enter'||e.key===' '){e.preventDefault();enter('home');}return;}
   if(/INPUT|TEXTAREA/.test(e.target.tagName))return;
   if(e.key===' '){e.preventDefault();nx();return;}
-  if(e.key>='1'&&e.key<='4'){go(V[+e.key-1]);return;}
+  if(e.key>='1'&&e.key<='5'){go(V[+e.key-1]);return;}
   const k=e.key.toLowerCase();
   if(k==='a')CMD.auto();else if(k==='l')CMD.log();else if(k==='c')CMD.config();
 });
@@ -1828,5 +2258,5 @@ $('#tmenu').addEventListener('click',e=>{
 
 })();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2c173dadaef48d0',t:'MTc4Njg5MzkzNQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2c195f4997f48d0',t:'MTc4Njg5NTMzMg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
