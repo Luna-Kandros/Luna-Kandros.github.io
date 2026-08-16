@@ -144,7 +144,6 @@ body.playing .chap{display:block;}
   text-shadow:2px 2px 0 var(--red-dd);}
 .tabs{display:flex;flex:1 1 auto;min-width:0;overflow-x:auto;scrollbar-width:none;}
 .tabs::-webkit-scrollbar{display:none;}
-.tabs::-webkit-scrollbar{display:none;}
 .tab{position:relative;flex:0 0 auto;padding:0 clamp(9px,1.5vw,20px);
   display:flex;align-items:center;gap:7px;white-space:nowrap;}
 .tab .k{font-size:14px;color:var(--red-dd);flex:0 0 auto;}
@@ -854,14 +853,26 @@ body.playing .chap{display:block;}
 @media (max-width:640px){
   body{font-size:18px;}
   :root{--g:9px;--bar:40px;--box:auto;--nt:26px;}
-  /* tabs must always fit: tray is dropped, love % lives in SYS instead */
-  .tray{display:none;}
-  .logo{padding:0 9px;border-right-color:rgba(255,0,68,.3);}
+  /* two-row bar: controls on top, full-width nav underneath */
+  :root{--bar:78px;}
+  .top{flex-wrap:wrap;height:auto;align-items:center;}
+  .railbtn{height:40px;width:38px;}
+  .logo{height:40px;padding:0 9px;border-right-color:rgba(255,0,68,.3);}
   .logo b{font-size:7px;}
-  .tabs{flex:1 1 auto;justify-content:space-between;}
-  .tab{flex:1 1 0;justify-content:center;padding:0 4px;min-width:0;}
+  .tray{order:3;height:40px;margin-left:auto;padding:0 9px;gap:9px;
+    border-left:1px solid rgba(255,0,68,.22);}
+  .tray .it.rd{display:none;}
+  .tray .it.ck{display:flex;}
+  .tray .it{font-size:14px;}
+  .lovebar i{width:4px;height:11px;}
+  .lovepct{font-size:6.5px;margin-left:3px;}
+  .tabs{order:5;flex:1 0 100%;width:100%;height:36px;
+    justify-content:space-between;overflow:visible;
+    border-top:1px solid rgba(255,0,68,.22);}
+  .tab{flex:1 1 0;justify-content:center;padding:0 2px;min-width:0;}
   .tab .k{display:none;}
-  .tab .n{font-size:8px;letter-spacing:.02em;}
+  .tab .n{font-size:7.5px;letter-spacing:.01em;}
+  .tab::after{bottom:0;}
 
   .chap{padding:6px 12px 7px;}
   .chap .n{font-size:7px;letter-spacing:2px;margin-bottom:3px;}
@@ -929,6 +940,9 @@ body.playing .chap{display:block;}
   .t-btn .cur{left:10px;font-size:14px;}
 }
 @media (max-width:400px){
+  .tab .n{font-size:6.5px;}
+  .logo b{display:none;}
+  .logo{padding:0 7px;}
   .chap .t{font-size:13.5px;}
   .ch{font-size:15px;padding:9px 10px;}
   .choices{height:158px;max-height:158px;}
@@ -2416,5 +2430,5 @@ $('#tmenu').addEventListener('click',e=>{
 
 })();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2c313407ca0f111',t:'MTc4NjkxMDk1MA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2c32a531f7a82be',t:'MTc4NjkxMTg5NQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
