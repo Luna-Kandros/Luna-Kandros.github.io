@@ -139,13 +139,13 @@ body.playing .chap{display:block;}
 .logo .h{color:var(--red);font-size:18px;animation:beat 1.2s steps(2) infinite;}
 .logo b{font-family:var(--px);font-size:10px;color:#fff;letter-spacing:.08em;white-space:nowrap;
   text-shadow:2px 2px 0 var(--red-dd);}
-.tabs{display:flex;flex:1 1 auto;min-width:0;overflow:hidden;}
+.tabs{display:flex;flex:1 1 auto;min-width:0;overflow-x:auto;scrollbar-width:none;}
 .tabs::-webkit-scrollbar{display:none;}
-.tab{position:relative;flex:1 1 0;min-width:0;padding:0 clamp(6px,1.4vw,20px);
-  display:flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{position:relative;flex:0 0 auto;padding:0 clamp(9px,1.5vw,20px);
+  display:flex;align-items:center;gap:7px;white-space:nowrap;}
 .tab .k{font-size:14px;color:var(--red-dd);flex:0 0 auto;}
-.tab .n{font-family:var(--px);font-size:clamp(6.5px,.95vw,9px);color:var(--pink-d);
-  letter-spacing:.03em;overflow:hidden;text-overflow:ellipsis;}
+.tab .n{font-family:var(--px);font-size:clamp(7px,1vw,9px);color:var(--pink-d);letter-spacing:.03em;}
 .tab::after{content:'';position:absolute;left:50%;right:50%;bottom:0;height:3px;background:var(--red);
   box-shadow:0 0 12px var(--red);transition:left .25s,right .25s;}
 .tab:hover{background:rgba(255,0,68,.1);}
@@ -388,11 +388,11 @@ body.playing .chap{display:block;}
 }
 
 /* ═══════════ CHAPTER (body-level, fixed, never scrolls) ═══════════ */
-.chap{flex:0 0 auto;display:none;text-align:center;pointer-events:none;
-  padding:9px 20px 10px;z-index:55;
-  background:linear-gradient(90deg,transparent,rgba(0,0,0,.62) 16%,rgba(0,0,0,.62) 84%,transparent);
-  border-bottom:1px solid rgba(255,0,68,.14);}
-.chap .n{display:block;font-family:var(--px);font-size:10px;color:#ff6b8a;letter-spacing:3px;
+.chap{flex:0 0 auto;display:none;pointer-events:none;padding:10px 12px 11px;z-index:55;text-align:center;}
+.chap > span{display:block;}
+.chap .in{display:inline-block;padding:8px 34px 9px;
+  background:linear-gradient(90deg,transparent,rgba(0,0,0,.74) 14%,rgba(0,0,0,.74) 86%,transparent);}
+.chap .n{display:block;font-family:var(--px);font-size:9px;color:#ff6b8a;letter-spacing:3px;
   text-shadow:0 0 10px #ff0044,2px 2px 0 #000;margin-bottom:5px;}
 .chap .t{font-family:var(--tm);font-size:22px;color:#ffccd9;font-style:italic;letter-spacing:1px;
   text-shadow:0 0 15px rgba(255,0,68,.6);}
@@ -677,7 +677,7 @@ body.playing .chap{display:block;}
 /* ═══════════ MODALS ═══════════ */
 .modal{position:fixed;inset:0;z-index:300;display:none;padding:clamp(12px,2.3vw,30px);
   background:rgba(6,2,9,.94);}
-.modal.open{display:flex;flex-direction:column;animation:pin .22s steps(3) both;}
+.modal.open{display:flex;flex-direction:column;min-height:0;animation:pin .22s steps(3) both;}
 .mh{flex:0 0 auto;display:flex;align-items:center;gap:11px;padding-bottom:13px;}
 .mh h4{margin:0;flex:1;font-family:var(--px);font-size:11px;color:#fff;letter-spacing:.06em;
   text-shadow:2px 2px 0 var(--red-dd);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
@@ -688,16 +688,18 @@ body.playing .chap{display:block;}
 .xb:focus-visible{outline:2px solid var(--cyan);outline-offset:2px;}
 .mb{flex:1 1 auto;min-height:0;overflow-y:auto;padding:20px;background:rgba(18,6,14,.94);
   border:1px solid rgba(255,0,68,.3);box-shadow:0 0 0 3px #0a050c;}
-.lbs{flex:1 1 auto;min-height:0;display:flex;align-items:center;gap:11px;}
+.lbs{flex:1 1 auto;min-height:0;display:flex;align-items:stretch;gap:11px;}
 .arw{flex:0 0 auto;font-family:var(--px);font-size:10px;color:#fff;
   padding:clamp(16px,4vh,36px) clamp(10px,1.2vw,15px);
   background:var(--red-d);border:1px solid var(--red);}
 .arw:hover:not(:disabled){background:var(--red);}
 .arw:disabled{opacity:.2;cursor:not-allowed;}
 .arw:focus-visible{outline:2px solid var(--cyan);outline-offset:2px;}
-.lbf{position:relative;flex:1 1 auto;min-width:0;height:100%;display:grid;place-items:center;
-  overflow:hidden;padding:8px;background:#08040c;border:1px solid rgba(255,0,68,.25);}
-#lbimg{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;image-rendering:auto;}
+.lbf{position:relative;flex:1 1 auto;min-width:0;min-height:0;display:flex;
+  align-items:center;justify-content:center;overflow:hidden;padding:10px;
+  background:#08040c;border:1px solid rgba(255,0,68,.25);}
+#lbimg{display:block;max-width:100%;max-height:100%;width:auto;height:auto;
+  object-fit:contain;image-rendering:auto;}
 #lbimg.sw{animation:pin .2s steps(3) both;}
 .lbb{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:9px;padding-top:12px;}
 #lbnum{font-family:var(--px);font-size:10px;color:#fff;}
@@ -983,6 +985,11 @@ body.playing .chap{display:block;}
       <button class="tab" data-view="contact"><span class="k">05</span><span class="n" data-i18n="nav_con">CONTACT</span></button>
     </nav>
 
+    <div class="tray">
+      <span class="it rd"><span data-i18n="v_read">READ</span> <b id="v-read">0/0</b></span>
+      <span class="it"><span class="lovebar" id="v-love"></span></span>
+      <span class="it ck"><b id="v-clock">--:--</b></span>
+    </div>
     <button class="railbtn" id="rb-r" aria-label="Quick menu">
       <svg viewBox="0 0 16 16" aria-hidden="true"><g fill="currentColor" shape-rendering="crispEdges">
       <path d="M2 3h12v2H2zM2 7h12v2H2zM2 11h12v2H2z"/>
@@ -1022,7 +1029,6 @@ body.playing .chap{display:block;}
     <div class="chip">LINES <b id="r-lines">0</b></div>
     <div class="chip">READ <b id="r-read">0/0</b></div>
     <div class="chip">LOVE <b id="r-love2">20%</b></div>
-    <div class="chip">TIME <b id="v-clock">--:--</b></div>
     <div class="panel"><div class="ph"><span>&#9000; HOTKEYS</span></div>
       <div class="pb hotk">
         <div><b>SPACE</b> advance</div><div><b>1-5</b> route</div>
@@ -1033,7 +1039,7 @@ body.playing .chap{display:block;}
 
   <div id="scrim"></div>
 
-  <div class="chap" id="chap"><span class="n" id="ch-n">CHAPTER I</span><span class="t" id="ch-t">&mdash;</span></div>
+  <div class="chap" id="chap"><span class="in"><span class="n" id="ch-n">CHAPTER I</span><span class="t" id="ch-t">&mdash;</span></span></div>
 
   <div class="stage">
 
@@ -1660,7 +1666,7 @@ en:{
    'A zombie apocalypse, hidden cameras watching your loved ones, maps tracking infection zones, and a bunker accessible only by ID card. A place where you have to keep a field journal just to maintain your grip on reality and track what is left of the world. Another Lady of Spades who knows exactly what she wants.','\u2623'],
   ['CUPID','commission for @Heatri','base',
    'Soft pinks, paper hearts and love letters. A gentle corner for someone who wanted warmth instead of teeth.','\uD83C\uDFF9'],
-  ['MY DIARY','commission for @lililuv_','med',
+  ['MY DIARY','commission for @lililuv_','lux',
    'A dreamy website, secret diaries where you write about your crushes, a hidden corner for a true dreamer.','\uD83C\uDF80'],
   ['NECTAR LOUNGE','commission for @HoneydEw','med',
    'Smooth jazz, rugged men: come and savor the sweetest, most intoxicating nectar from Honeydew.','\uD83C\uDF6F'],
@@ -1802,7 +1808,7 @@ ru:{
    'Зомби-апокалипсис, скрытые камеры, следящие за близкими, карты с зонами заражения и бункер, куда пускают только по пропуску. Место, где приходится вести полевой журнал, чтобы удержать связь с реальностью и отследить, что осталось от мира. Ещё одна пиковая дама, которая точно знает, чего хочет.','\u2623'],
   ['CUPID','заказ для @Heatri','base',
    'Мягкие розовые тона, бумажные сердца и любовные письма. Нежный уголок для той, кому хотелось тепла, а не зубов.','\uD83C\uDFF9'],
-  ['MY DIARY','заказ для @lililuv_','med',
+  ['MY DIARY','заказ для @lililuv_','lux',
    'Мечтательный сайт, тайные дневники, где пишут о своих влюблённостях, укромный уголок для настоящего мечтателя.','\uD83C\uDF80'],
   ['NECTAR LOUNGE','заказ для @HoneydEw','med',
    'Мягкий джаз, брутальные мужчины: приходите отведать самый сладкий и пьянящий нектар от Honeydew.','\uD83C\uDF6F'],
@@ -1854,7 +1860,7 @@ clk();setInterval(clk,20000);
 const IMGS=[
   ['assets/works/merc-01.jpg'],
   ['assets/works/jorryn-01.jpg','assets/works/jorryn-02.jpg'],
-  ['assets/works/wewwa-02.jpg','assets/works/wewwa-01.jpg','assets/works/wewwa-04.jpg','assets/works/wewwa-03.jpg'],
+  ['assets/works/wewwa-01.jpg','assets/works/wewwa-02.jpg','assets/works/wewwa-04.jpg','assets/works/wewwa-03.jpg'],
   ['assets/works/kuspus-08.jpg','assets/works/kuspus-03.jpg','assets/works/kuspus-04.jpg','assets/works/kuspus-07.jpg','assets/works/kuspus-02.jpg','assets/works/kuspus-01.jpg','assets/works/kuspus-05.jpg'],
   ['assets/works/heatri-01.jpg','assets/works/heatri-02.jpg'],
   ['assets/works/lilu-02.jpg','assets/works/lilu-01.jpg','assets/works/lilu-03.jpg'],
@@ -1881,24 +1887,23 @@ const COL={base:'#2c6390',med:'#b3002f',lux:'#6b3fb8',etc:'#4a7a4f'};
 
 function hud(){
   const pct=Math.max(0,Math.min(100,S.aff));
-  $('#v-read').textContent=S.read.length+'/'+L.lines.length;
   const seg=10,fl=Math.round(pct/100*seg);
   const meter=Array.from({length:seg},(_,i)=>'<i class="'+(i<fl?'on':'')+'"></i>').join('')
     +'<span class="lovepct">'+pct+'%</span>';
-  $('#v-love').innerHTML=meter;
-  const lm=$('#v-love-m'); if(lm) lm.innerHTML=meter;
-  $('#sy-aff').style.width=pct+'%';
-  $('#sy-lore').style.width=Math.round(S.read.length/L.lines.length*100)+'%';
-  $('#sy-zone').textContent=L.zones[S.view];
-  const rr=$('#r-read');
-  if(rr){
-    const l2=$('#r-love2'); if(l2) l2.textContent=pct+'%';
-    rr.textContent=S.read.length+'/'+L.lines.length;
-    $('#r-lines').textContent=S.said;
-    $('#r-mode').textContent=autoOn?'AUTO':'MANUAL';
-  }
+  const set=(id,fn)=>{const el=$('#'+id); if(el) fn(el);};
+  set('v-love',   el=>el.innerHTML=meter);
+  set('v-love-m', el=>el.innerHTML=meter);
+  set('v-read',   el=>el.textContent=S.read.length+'/'+L.lines.length);
+  set('sy-aff',   el=>el.style.width=pct+'%');
+  set('sy-lore',  el=>el.style.width=Math.round(S.read.length/L.lines.length*100)+'%');
+  set('sy-zone',  el=>el.textContent=L.zones[S.view]);
+  set('r-read',   el=>el.textContent=S.read.length+'/'+L.lines.length);
+  set('r-love2',  el=>el.textContent=pct+'%');
+  set('r-lines',  el=>el.textContent=S.said);
+  set('r-mode',   el=>el.textContent=autoOn?'AUTO':'MANUAL');
   save();
 }
+
 const affect=n=>{S.aff=Math.max(0,Math.min(100,S.aff+n));hud();};
 
 /* ══════ CODEX ══════ */
@@ -2394,5 +2399,5 @@ $('#tmenu').addEventListener('click',e=>{
 
 })();
 </script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2c2ee3abf4fdbb0',t:'MTc4NjkwOTQzNA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
