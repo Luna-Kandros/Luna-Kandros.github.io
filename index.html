@@ -604,6 +604,8 @@ body.playing .chap{display:block;}
 .vault summary::before{content:'>';font-size:16px;}
 .vault[open] summary::before{content:'v';}
 .vault summary:hover{color:var(--red);background:rgba(255,0,68,.07);}
+.vault.knock{animation:vknock .17s steps(2) both;}
+@keyframes vknock{0%{transform:none}35%{transform:translate(2px,-2px)}70%{transform:translate(-2px,1px)}100%{transform:none}}
 .room{position:relative;height:150px;overflow:hidden;background:#000;border-top:1px dashed rgba(255,0,68,.25);}
 .room .bulb{position:absolute;top:0;left:50%;width:3px;height:30px;background:#282828;}
 .room .bulb::after{content:'';position:absolute;bottom:0;left:-9px;width:21px;height:11px;background:var(--red);
@@ -826,6 +828,73 @@ body.playing .chap{display:block;}
   border:1px solid var(--red);box-shadow:0 0 24px rgba(255,0,68,.5),4px 4px 0 rgba(0,0,0,.7);
   letter-spacing:.06em;opacity:0;transform:translateY(10px);}
 #toast.show{opacity:1;transform:none;}
+
+/* ═══════════ EASTER EGG: SHIKI ═══════════ */
+.catbox{position:absolute;z-index:26;right:clamp(12px,3vw,42px);bottom:clamp(64px,11vh,120px);
+  width:min(196px,34vw);background:rgba(10,3,13,.97);border:1px solid var(--red-d);
+  box-shadow:0 0 26px rgba(255,0,68,.28),5px 5px 0 rgba(0,0,0,.6);
+  animation:catin .34s steps(4) both;}
+.catbox.out{animation:catout .3s steps(4) both;}
+@keyframes catin{from{opacity:0;transform:translateY(14px) scale(.94)}to{opacity:1;transform:none}}
+@keyframes catout{from{opacity:1;transform:none}to{opacity:0;transform:translateY(10px) scale(.96)}}
+.cat-tb{display:flex;align-items:center;gap:6px;padding:6px 6px 6px 10px;
+  background:linear-gradient(180deg,rgba(255,0,68,.24),rgba(255,0,68,.09));
+  border-bottom:1px solid rgba(255,0,68,.28);}
+.cat-tb span{flex:1;font-family:var(--px);font-size:6.5px;color:var(--pink-d);letter-spacing:.08em;}
+.cat-x{flex:0 0 auto;width:19px;height:19px;line-height:1;font-size:15px;color:#fff;
+  background:var(--red-d);border:1px solid var(--red);cursor:pointer;}
+.cat-x:hover{background:var(--red);}
+.cat-x:focus-visible{outline:2px solid var(--cyan);outline-offset:2px;}
+.cat-pic{position:relative;overflow:hidden;background:#080309;}
+.cat-pic img{display:block;width:100%;height:auto;}
+.cat-pic::after{content:'';position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(180deg,rgba(0,0,0,.22) 0 1px,transparent 1px 3px);}
+.cat-cap{padding:8px 10px 10px;font-family:var(--tm);font-size:15px;line-height:1.34;
+  color:var(--pink-d);}
+.catbox.purr .cat-cap{color:var(--lime);}
+
+/* ═══════════ EASTER EGG: SCREAMER ═══════════ */
+.scr{position:fixed;inset:0;z-index:900;background:#000;}
+.scr.dark{animation:scrdark .1s steps(1) both;}
+@keyframes scrdark{from{opacity:0}to{opacity:1}}
+.scr-img{position:absolute;inset:0;background:url('assets/art-02.jpg') center/cover no-repeat;
+  opacity:0;}
+.scr.hit .scr-img{animation:scrhit .62s steps(3) both;}
+@keyframes scrhit{
+  0%{opacity:0;transform:scale(1.3)}
+  12%{opacity:1;transform:scale(1.06) translate(-6px,4px);filter:contrast(1.7) saturate(1.5)}
+  30%{opacity:1;transform:scale(1.15) translate(7px,-5px);filter:contrast(1.2) hue-rotate(-14deg)}
+  52%{opacity:1;transform:scale(1.02) translate(-4px,2px);filter:contrast(2) saturate(.6)}
+  74%{opacity:1;transform:scale(1.1)}
+  100%{opacity:0;transform:scale(1.02)}}
+.scr-bars{position:absolute;inset:0;opacity:0;pointer-events:none;
+  background:repeating-linear-gradient(180deg,rgba(255,255,255,.16) 0 2px,transparent 2px 5px);}
+.scr.hit .scr-bars{animation:scrbars .62s steps(2) both;}
+@keyframes scrbars{0%{opacity:0}10%{opacity:.9}100%{opacity:0}}
+
+.ach{position:fixed;right:18px;bottom:18px;z-index:910;display:flex;align-items:center;gap:12px;
+  width:min(330px,84vw);padding:12px 14px;background:rgba(10,14,18,.98);
+  border:1px solid #2b3a46;border-left:3px solid var(--lime);
+  box-shadow:0 0 26px rgba(0,0,0,.7);animation:achin .3s ease-out both;}
+.ach.out{animation:achout .34s ease-in both;}
+@keyframes achin{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes achout{from{opacity:1;transform:none}to{opacity:0;transform:translateY(20px)}}
+.ach-ic{flex:0 0 auto;display:grid;place-items:center;width:42px;height:42px;font-size:22px;
+  color:var(--lime);background:#0c1218;border:1px solid #2b3a46;}
+.ach-tx{min-width:0;display:flex;flex-direction:column;gap:3px;}
+.ach-tx b{font-family:var(--px);font-size:7px;color:#9fb4c4;letter-spacing:.07em;}
+.ach-tx span{font-family:var(--tm);font-size:16px;color:#fff;line-height:1.25;}
+
+@media (prefers-reduced-motion:reduce){
+  .scr.hit .scr-img{animation-duration:.42s;}
+  .scr.hit .scr-bars{animation:none;opacity:0;}
+  .catbox,.catbox.out,.ach,.ach.out{animation-duration:.01s;}
+}
+@media (max-width:640px){
+  .catbox{right:10px;bottom:auto;top:calc(var(--bar) + 10px);width:132px;}
+  .cat-cap{font-size:13.5px;padding:7px 8px 8px;}
+  .ach{right:10px;left:10px;width:auto;bottom:12px;}
+}
 
 /* ════════════════════════════════════════════════════════════
    RESPONSIVE
@@ -1092,6 +1161,13 @@ body.playing .chap{display:block;}
     <section class="pane on" id="p-home">
       <div class="stagefloor"><img class="sprite" id="sprite" src="assets/sprite.png" alt="Delvari" draggable="false" /></div>
       <div class="choices" id="choices"></div>
+      <!-- easter egg: Shiki -->
+      <div class="catbox" id="catbox" hidden>
+        <div class="cat-tb"><span>SHIKI.EXE</span>
+          <button class="cat-x" id="cat-x" type="button" aria-label="close">&#215;</button></div>
+        <div class="cat-pic"><img src="assets/shiki.jpg" alt="Shiki" draggable="false" /></div>
+        <div class="cat-cap" id="cat-cap"></div>
+      </div>
     </section>
 
     <section class="pane" id="p-gallery">
@@ -1253,6 +1329,13 @@ body.playing .chap{display:block;}
   </div>
 </div>
 
+
+<!-- ═══ EASTER EGG: SCREAMER ═══ -->
+<div class="scr" id="scr" hidden><div class="scr-img"></div><div class="scr-bars"></div></div>
+<div class="ach" id="ach" hidden>
+  <div class="ach-ic">&#9760;</div>
+  <div class="ach-tx"><b id="ach-h"></b><span id="ach-t"></span></div>
+</div>
 
 <div id="toast" role="status" aria-live="polite"></div>
 
@@ -1588,6 +1671,14 @@ en:{
  g_h:'GALLERY',g_s:'MY WORKS',p_h:'COMMISSIONS',p_s:'PROFILE CSS DESIGN',p_flow:'HOW IT WORKS',
  c_h:'CONTACT',c_s:'OPENS IN A NEW TAB',c_tag:'DISCORD',c_copy:'COPY',
  c_secret:'RESTRICTED AREA',c_secret_p:"You shouldn't be here.",
+ cat_cap:'He walked across the keyboard. Twice.',
+ cat_rude:'Hey! How rude! That is my sweet little death demon, you cannot bully the kitty!',
+ cat_purr:'...he purred and left on his own. Lucky you.',
+ cat_toast:'SHIKI.EXE has joined',
+ knock_1:'Something answered from the other side.',
+ knock_2:'Once more. It is closer now.',
+ ach_h:'ACHIEVEMENT UNLOCKED',
+ ach_t:'Knock Three Times \u2014 you were told not to.',
  close:'CLOSE',clear:'CLEAR',log_h:'BACKLOG',cfg_h:'CONFIG',save_h:'SAVE',load_h:'LOAD',
  cfg_lang:'LANGUAGE',cfg_lang_s:'Interface and all texts.',
  cfg_auto:'AUTO DELAY',cfg_auto_s:'Pause before the next line.',
@@ -1600,7 +1691,7 @@ en:{
  cc_t:'CHARACTER FILE',
  cc:[['NAME','Aria'],['AGE','20+'],['GENDER','F'],['LANGUAGES','ru / eng'],['AVATAR','Bibi from "I Love Amy"']],
  cc_like:'LIKES',
- cc_likes:'Cats, horror games, otome games, non-human',
+ cc_likes:'My cat Shiki, horror games, otome games, non-human',
  cc_dis:'DISLIKES',
  cc_dis1:'Badly written bot cards (bloated to 5k tokens, or',
  cc_dis_link:'read more',
@@ -1736,6 +1827,14 @@ ru:{
  g_h:'ГАЛЕРЕЯ',g_s:'МОИ РАБОТЫ',p_h:'ЗАКАЗАТЬ',p_s:'ОФОРМЛЕНИЕ ПРОФИЛЯ',p_flow:'КАК ЭТО РАБОТАЕТ',
  c_h:'КОНТАКТЫ',c_s:'ОТКРОЕТСЯ В НОВОЙ ВКЛАДКЕ',c_tag:'DISCORD',c_copy:'КОПИЯ',
  c_secret:'ЗАКРЫТАЯ ЗОНА',c_secret_p:'Тебе не стоило сюда заходить.',
+ cat_cap:'Он прошёлся по клавиатуре. Дважды.',
+ cat_rude:'Эй! Как грубо! Это мой милый демон смерти, ты не можешь обижать котика!',
+ cat_purr:'...он мурлыкнул и ушёл сам. Твоё счастье.',
+ cat_toast:'SHIKI.EXE подключился',
+ knock_1:'С той стороны что-то ответило.',
+ knock_2:'Ещё раз. Теперь ближе.',
+ ach_h:'ДОСТИЖЕНИЕ ПОЛУЧЕНО',
+ ach_t:'Постучи трижды \u2014 тебя же просили не надо.',
  close:'ЗАКРЫТЬ',clear:'ОЧИСТИТЬ',log_h:'ИСТОРИЯ',cfg_h:'НАСТРОЙКИ',save_h:'СОХРАНЕНИЕ',load_h:'ЗАГРУЗКА',
  cfg_lang:'ЯЗЫК',cfg_lang_s:'Интерфейс и все тексты.',
  cfg_auto:'ЗАДЕРЖКА АВТО',cfg_auto_s:'Пауза перед следующей репликой.',
@@ -1748,7 +1847,7 @@ ru:{
  cc_t:'КАРТОЧКА ПЕРСОНАЖА',
  cc:[['ИМЯ','Ария'],['ВОЗРАСТ','20+'],['ПОЛ','Ж'],['ЯЗЫКИ','ru / eng'],['АВАТАР','Биби из «Я люблю Эми»']],
  cc_like:'ЛЮБИТ',
- cc_likes:'Кошки, хоррор игры, отоме игры, non-human',
+ cc_likes:'Мой кот Шики, хоррор игры, отоме игры, non-human',
  cc_dis:'НЕ ЛЮБИТ',
  cc_dis1:'Карточки ботов, написанные неправильно (раздутые на 5к токенов или',
  cc_dis_link:'читать далее',
@@ -2115,8 +2214,10 @@ function build(){
     b.addEventListener('click',()=>{
       $$('.ch').forEach(c=>c.classList.remove('on'));
       b.classList.add('on','read');
-      if(!S.read.includes(i)){S.read.push(i);affect(l.v);}else affect(1);
+      const fresh=!S.read.includes(i);
+      if(fresh){S.read.push(i);affect(l.v);}else affect(1);
       say(l.a);
+      if(fresh&&S.read.length>=L.lines.length)setTimeout(shiki,1400);
     });
     cl.appendChild(b);
   });
@@ -2408,6 +2509,110 @@ $('#cptag').addEventListener('click',()=>copy(TAG));
 $('.vault').addEventListener('toggle',function(){if(this.open){affect(4);
   say(S.cfg.lang==='ru'?['Вы открыли.','Я же повесила табличку.']:['You opened it.','I did label the door.']);}});
 
+/* ══════ EASTER EGG 1: KNOCK THREE TIMES ══════ */
+/* Chapter CONTACT is "Knock Three Times" — so you knock on the restricted door. */
+let knocks=0,knockT=null,screamed=false,screamBusy=false,achT=null;
+function tone(f,dur,type,vol,slideTo){
+  try{
+    actx=actx||new(window.AudioContext||window.webkitAudioContext)();
+    if(actx.state==='suspended')actx.resume();
+    const t0=actx.currentTime,o=actx.createOscillator(),g=actx.createGain();
+    o.type=type||'sine';o.frequency.setValueAtTime(f,t0);
+    if(slideTo)o.frequency.exponentialRampToValueAtTime(slideTo,t0+dur);
+    g.gain.setValueAtTime(0.0001,t0);
+    g.gain.exponentialRampToValueAtTime(vol||.14,t0+.02);
+    g.gain.exponentialRampToValueAtTime(0.0001,t0+dur);
+    o.connect(g);g.connect(actx.destination);o.start(t0);o.stop(t0+dur+.05);
+  }catch(e){}
+}
+function noise(dur,vol){
+  try{
+    actx=actx||new(window.AudioContext||window.webkitAudioContext)();
+    if(actx.state==='suspended')actx.resume();
+    const n=Math.floor(actx.sampleRate*dur),b=actx.createBuffer(1,n,actx.sampleRate),d=b.getChannelData(0);
+    for(let i=0;i<n;i++)d[i]=(Math.random()*2-1)*(1-i/n);
+    const src=actx.createBufferSource(),g=actx.createGain();
+    src.buffer=b;g.gain.value=vol||.11;
+    src.connect(g);g.connect(actx.destination);src.start();
+  }catch(e){}
+}
+const knockSfx=()=>{tone(88,.16,'sine',.2,54);noise(.09,.05);};
+
+function achievement(){
+  const a=$('#ach');
+  $('#ach-h').textContent=L.ach_h;$('#ach-t').textContent=L.ach_t;
+  a.hidden=false;a.classList.remove('out');
+  tone(660,.12,'triangle',.09);setTimeout(()=>tone(990,.22,'triangle',.09),130);
+  clearTimeout(achT);
+  achT=setTimeout(()=>{
+    a.classList.add('out');
+    achT=setTimeout(()=>{a.hidden=true;a.classList.remove('out');},340);
+  },5200);
+}
+function screamer(){
+  if(screamed||screamBusy)return;
+  screamBusy=true;
+  const scr=$('#scr');
+  scr.hidden=false;scr.classList.add('dark');
+  slog('[!!] SIGNAL LOST','bad');
+  tone(140,1.5,'sawtooth',.05,38);            /* dread build-up */
+  setTimeout(()=>{                             /* the hit */
+    tone(1180,.5,'square',.15,120);noise(.55,.18);
+    scr.classList.add('hit');
+  },1500);
+  setTimeout(()=>{                             /* gone for good this session */
+    scr.classList.remove('hit','dark');scr.hidden=true;
+    screamed=true;screamBusy=false;
+    achievement();
+  },2280);
+}
+$('.vault').addEventListener('click',function(e){
+  /* the door stays open once opened: knocking must not fold it shut */
+  const sm=e.target.closest('summary');
+  if(sm&&this.open)e.preventDefault();
+  this.classList.remove('knock');void this.offsetWidth;this.classList.add('knock');
+  if(screamed||screamBusy)return;
+  knocks++;
+  knockSfx();
+  clearTimeout(knockT);
+  knockT=setTimeout(()=>{knocks=0;},4000);     /* knocks have to be consecutive */
+  if(knocks===1){slog('[???] knock ... 1');toast(L.knock_1);}
+  else if(knocks===2){slog('[???] knock ... 2');toast(L.knock_2);}
+  else{knocks=0;clearTimeout(knockT);screamer();}
+});
+
+/* ══════ EASTER EGG 2: SHIKI ══════ */
+let catShown=false,catT=null;
+function catOut(){
+  const c=$('#catbox');
+  clearTimeout(catT);
+  c.classList.add('out');
+  catT=setTimeout(()=>{c.hidden=true;c.classList.remove('out','purr');},320);
+}
+function shiki(){
+  if(catShown||S.view!=='home')return;
+  catShown=true;
+  const c=$('#catbox');
+  $('#cat-cap').textContent=L.cat_cap;
+  c.classList.remove('out','purr');c.hidden=false;
+  toast(L.cat_toast);slog('[SYS] shiki.exe attached');
+  affect(6);tone(520,.1,'triangle',.06);
+  clearTimeout(catT);
+  catT=setTimeout(()=>{                        /* left alone: purrs, leaves by himself */
+    const b=$('#catbox');if(b.hidden)return;
+    b.classList.add('purr');
+    $('#cat-cap').textContent=L.cat_purr;
+    tone(240,.5,'sine',.05,180);
+    catT=setTimeout(catOut,2800);
+  },14000);
+}
+$('#cat-x').addEventListener('click',()=>{
+  say([L.cat_rude]);
+  tone(300,.18,'square',.08,220);
+  catOut();
+});
+
+
 /* ══════ KEYBOARD ══════ */
 document.addEventListener('keydown',e=>{
   const open=$$('.modal.open').length>0;
@@ -2457,5 +2662,5 @@ $('#tmenu').addEventListener('click',e=>{
 
 })();
 </script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2c3af662a41e84e',t:'MTc4NjkxNzM0Ng=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
