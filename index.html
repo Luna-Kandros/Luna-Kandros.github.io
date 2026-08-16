@@ -139,12 +139,13 @@ body.playing .chap{display:block;}
 .logo .h{color:var(--red);font-size:18px;animation:beat 1.2s steps(2) infinite;}
 .logo b{font-family:var(--px);font-size:10px;color:#fff;letter-spacing:.08em;white-space:nowrap;
   text-shadow:2px 2px 0 var(--red-dd);}
-.tabs{display:flex;flex:1 1 auto;min-width:0;overflow-x:auto;scrollbar-width:none;}
+.tabs{display:flex;flex:1 1 auto;min-width:0;overflow:hidden;}
 .tabs::-webkit-scrollbar{display:none;}
-.tab{position:relative;flex:0 1 auto;padding:0 clamp(12px,2.1vw,24px);display:flex;align-items:center;gap:8px;
-  white-space:nowrap;}
-.tab .k{font-size:15px;color:var(--red-dd);}
-.tab .n{font-family:var(--px);font-size:9px;color:var(--pink-d);letter-spacing:.05em;}
+.tab{position:relative;flex:1 1 0;min-width:0;padding:0 clamp(6px,1.4vw,20px);
+  display:flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;}
+.tab .k{font-size:14px;color:var(--red-dd);flex:0 0 auto;}
+.tab .n{font-family:var(--px);font-size:clamp(6.5px,.95vw,9px);color:var(--pink-d);
+  letter-spacing:.03em;overflow:hidden;text-overflow:ellipsis;}
 .tab::after{content:'';position:absolute;left:50%;right:50%;bottom:0;height:3px;background:var(--red);
   box-shadow:0 0 12px var(--red);transition:left .25s,right .25s;}
 .tab:hover{background:rgba(255,0,68,.1);}
@@ -387,9 +388,10 @@ body.playing .chap{display:block;}
 }
 
 /* ═══════════ CHAPTER (body-level, fixed, never scrolls) ═══════════ */
-.chap{position:fixed;display:none;top:calc(var(--bar) + 16px);left:50%;transform:translateX(-50%);
-  z-index:70;text-align:center;pointer-events:none;padding:9px 40px;width:auto;max-width:92vw;
-  background:linear-gradient(90deg,transparent,rgba(0,0,0,.72) 18%,rgba(0,0,0,.72) 82%,transparent);}
+.chap{flex:0 0 auto;display:none;text-align:center;pointer-events:none;
+  padding:9px 20px 10px;z-index:55;
+  background:linear-gradient(90deg,transparent,rgba(0,0,0,.62) 16%,rgba(0,0,0,.62) 84%,transparent);
+  border-bottom:1px solid rgba(255,0,68,.14);}
 .chap .n{display:block;font-family:var(--px);font-size:10px;color:#ff6b8a;letter-spacing:3px;
   text-shadow:0 0 10px #ff0044,2px 2px 0 #000;margin-bottom:5px;}
 .chap .t{font-family:var(--tm);font-size:22px;color:#ffccd9;font-style:italic;letter-spacing:1px;
@@ -397,7 +399,7 @@ body.playing .chap{display:block;}
 
 /* ═══════════ STAGE ═══════════ */
 .stage{flex:1 1 auto;min-height:0;position:relative;overflow:visible;z-index:1;}
-.sysinfo{position:absolute;top:22px;left:22px;z-index:24;pointer-events:none;}
+.sysinfo{position:absolute;top:16px;left:22px;z-index:24;pointer-events:none;}
 .sysrow{display:flex;align-items:center;gap:9px;margin-bottom:9px;padding-left:9px;
   border-left:2px solid rgba(255,0,68,.55);}
 .sysrow .k{font-family:var(--px);font-size:8px;color:var(--red);letter-spacing:.08em;}
@@ -414,7 +416,7 @@ body.playing .chap{display:block;}
 @keyframes pin{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
 
 /* sprite: hard-centered by flex, feet tucked under the box */
-.stagefloor{position:absolute;left:0;right:0;bottom:-70px;top:128px;z-index:6;
+.stagefloor{position:absolute;left:0;right:0;bottom:-70px;top:96px;z-index:6;
   display:flex;align-items:flex-end;justify-content:center;pointer-events:none;}
 .sprite{display:block;height:100%;width:auto;max-width:30%;
   object-fit:contain;object-position:bottom center;
@@ -446,7 +448,7 @@ body.playing .chap{display:block;}
 
 /* content sheets */
 .sheet{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;scrollbar-gutter:stable;
-  padding:74px clamp(14px,2.6vw,32px) 26px;}
+  padding:24px clamp(14px,2.6vw,32px) 26px;}
 .hd{text-align:center;margin-bottom:20px;}
 .hd h2{margin:0;font-family:var(--px);font-size:clamp(14px,2.5vw,21px);color:#fff;letter-spacing:.06em;
   text-shadow:3px 3px 0 var(--red-dd),0 0 22px rgba(255,0,68,.45);}
@@ -468,14 +470,13 @@ body.playing .chap{display:block;}
 .card{position:relative;text-align:left;padding:0;overflow:hidden;background:rgba(18,6,14,.94);
   border:1px solid rgba(255,0,68,.3);box-shadow:5px 5px 0 rgba(0,0,0,.6);}
 .card.hide{display:none;}
-.card .ph{position:relative;aspect-ratio:16/10;overflow:hidden;background:#08040c;}
-.card .ph img{width:100%;height:100%;object-fit:cover;object-position:top center;image-rendering:auto;
-  filter:saturate(.82) brightness(.8);transition:filter .3s,transform .4s;}
-.card .ph::after{content:'';position:absolute;inset:0;
-  background:linear-gradient(180deg,transparent 55%,rgba(13,7,16,.95));}
+.card .ph{position:relative;aspect-ratio:16/10;overflow:hidden;background:#0a0510;
+  display:grid;place-items:center;}
+.card .ph img{width:100%;height:100%;object-fit:contain;image-rendering:auto;
+  filter:saturate(.9) brightness(.92);transition:filter .3s,transform .4s;}
 .card:hover{border-color:var(--red);transform:translate(-3px,-3px);
   box-shadow:8px 8px 0 rgba(0,0,0,.7),0 0 26px rgba(255,0,68,.3);}
-.card:hover .ph img{filter:saturate(1.05) brightness(1);transform:scale(1.05);}
+.card:hover .ph img{filter:saturate(1.05) brightness(1.05);transform:scale(1.03);}
 .card:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;}
 .card .tg{position:absolute;top:9px;left:9px;z-index:2;}
 .pill{display:inline-block;font-family:var(--px);font-size:7px;padding:5px 7px;letter-spacing:.06em;
@@ -490,14 +491,14 @@ body.playing .chap{display:block;}
 .card .mt b{display:block;font-family:var(--px);font-size:9px;color:#fff;letter-spacing:.03em;
   line-height:1.55;margin-bottom:7px;}
 .card .mt b .emb{font-style:normal;font-size:12px;}
-.lbpost{display:inline-block;font-family:var(--px);font-size:8px;letter-spacing:.08em;color:#fff;
-  padding:10px 16px;background:#4b338f;border:1px solid #a98cff;box-shadow:0 3px 0 #241a52;}
-.lbpost:hover{background:#6244bd;}
-.lbpost:active{transform:translateY(2px);box-shadow:0 1px 0 #241a52;}
-.lbpost:focus-visible{outline:2px solid var(--cyan);outline-offset:2px;}
+
 .card .mt span{font-size:16px;color:var(--red-2);letter-spacing:.1em;}
-.card .go{display:block;margin-top:10px;font-family:var(--px);font-size:7px;color:var(--mute);letter-spacing:.08em;}
-.card:hover .go{color:var(--red);}
+.card.soon{opacity:.75;cursor:default;}
+.card.soon:hover{transform:none;border-color:rgba(255,0,68,.3);box-shadow:5px 5px 0 rgba(0,0,0,.6);}
+.card.soon .ph{background:repeating-linear-gradient(45deg,#130b1c 0 10px,#0d0714 10px 20px);}
+.soonic{font-size:44px;opacity:.45;filter:grayscale(.5);}
+.soonbadge{position:absolute;top:9px;right:9px;z-index:2;font-family:var(--px);font-size:7px;
+  letter-spacing:.1em;color:#0a050c;background:var(--amber);padding:5px 8px;}
 
 /* ═══════════ PRICING ═══════════ */
 .note{padding:16px 18px;margin-bottom:22px;font-size:19px;line-height:1.45;color:var(--pink-d);
@@ -694,9 +695,9 @@ body.playing .chap{display:block;}
 .arw:hover:not(:disabled){background:var(--red);}
 .arw:disabled{opacity:.2;cursor:not-allowed;}
 .arw:focus-visible{outline:2px solid var(--cyan);outline-offset:2px;}
-.lbf{position:relative;flex:1 1 auto;min-width:0;height:100%;display:grid;place-items:center;overflow:hidden;
-  background:#08040c;border:1px solid rgba(255,0,68,.25);}
-#lbimg{max-width:100%;max-height:100%;object-fit:contain;image-rendering:auto;}
+.lbf{position:relative;flex:1 1 auto;min-width:0;height:100%;display:grid;place-items:center;
+  overflow:hidden;padding:8px;background:#08040c;border:1px solid rgba(255,0,68,.25);}
+#lbimg{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;image-rendering:auto;}
 #lbimg.sw{animation:pin .2s steps(3) both;}
 .lbb{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:9px;padding-top:12px;}
 #lbnum{font-family:var(--px);font-size:10px;color:#fff;}
@@ -826,14 +827,15 @@ body.playing .chap{display:block;}
   .tray{gap:9px;padding:0 10px;}
   .lovebar i{width:5px;height:12px;}
 }
+@media (max-width:900px){.tab .k{display:none;}}
 @media (max-width:820px){
   :root{--av:104px;--box:112px;}
-  .sysinfo{top:14px;left:14px;}
+  .sysinfo{top:10px;left:14px;}
   .sysrow{margin-bottom:6px;}
   .sysrow .v{font-size:15px;}
   .sysrow .hb{width:60px;}
-  .chap{top:calc(var(--bar) + 8px);padding:7px 22px;}
-  .stagefloor{top:132px;bottom:-60px;}
+  .chap{padding:7px 16px 8px;}
+  .stagefloor{top:104px;bottom:-60px;}
   .sprite{max-width:46%;}
   .choices{left:12px;width:min(290px,38vw);}
   .ch{font-size:17px;padding:11px 12px;}
@@ -852,7 +854,7 @@ body.playing .chap{display:block;}
   .tab .k{display:none;}
   .tab .n{font-size:8px;letter-spacing:.02em;}
 
-  .chap{top:calc(var(--bar) + 6px);padding:6px 16px;max-width:94vw;}
+  .chap{padding:6px 12px 7px;}
   .chap .n{font-size:7px;letter-spacing:2px;margin-bottom:3px;}
   .chap .t{font-size:15px;}
 
@@ -870,7 +872,7 @@ body.playing .chap{display:block;}
   /* sprite owns the whole stage, anchored bottom, cropped sideways */
   .stage{overflow:hidden;}
   .sprite{filter:drop-shadow(0 0 20px rgba(255,0,68,.45));}
-  .stagefloor{top:96px;bottom:0;z-index:6;overflow:visible;}
+  .stagefloor{top:88px;bottom:0;z-index:6;overflow:visible;}
   .sprite{height:auto;width:auto;min-height:70%;max-height:100%;max-width:none;
     opacity:1;transform:translateY(0);}
   @keyframes breathe{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
@@ -887,7 +889,7 @@ body.playing .chap{display:block;}
     box-shadow:2px 2px 0 rgba(0,0,0,.6);}
   .ch:hover,.ch.on{transform:none;}
 
-  .sheet{padding:64px 12px 20px;}
+  .sheet{padding:18px 12px 20px;}
   .hd h2{font-size:13px;}
   .hd p{font-size:16px;}
 
@@ -980,11 +982,7 @@ body.playing .chap{display:block;}
       <button class="tab" data-view="pricing"><span class="k">04</span><span class="n" data-i18n="nav_pri">PRICING</span></button>
       <button class="tab" data-view="contact"><span class="k">05</span><span class="n" data-i18n="nav_con">CONTACT</span></button>
     </nav>
-    <div class="tray">
-      <span class="it rd"><span data-i18n="v_read">READ</span> <b id="v-read">0/0</b></span>
-      <span class="it"><span class="lovebar" id="v-love"></span></span>
-      <span class="it ck"><b id="v-clock">--:--</b></span>
-    </div>
+
     <button class="railbtn" id="rb-r" aria-label="Quick menu">
       <svg viewBox="0 0 16 16" aria-hidden="true"><g fill="currentColor" shape-rendering="crispEdges">
       <path d="M2 3h12v2H2zM2 7h12v2H2zM2 11h12v2H2z"/>
@@ -1023,6 +1021,8 @@ body.playing .chap{display:block;}
     <div class="chip">MODE <b id="r-mode">MANUAL</b></div>
     <div class="chip">LINES <b id="r-lines">0</b></div>
     <div class="chip">READ <b id="r-read">0/0</b></div>
+    <div class="chip">LOVE <b id="r-love2">20%</b></div>
+    <div class="chip">TIME <b id="v-clock">--:--</b></div>
     <div class="panel"><div class="ph"><span>&#9000; HOTKEYS</span></div>
       <div class="pb hotk">
         <div><b>SPACE</b> advance</div><div><b>1-5</b> route</div>
@@ -1032,6 +1032,8 @@ body.playing .chap{display:block;}
   </aside>
 
   <div id="scrim"></div>
+
+  <div class="chap" id="chap"><span class="n" id="ch-n">CHAPTER I</span><span class="t" id="ch-t">&mdash;</span></div>
 
   <div class="stage">
 
@@ -1127,7 +1129,7 @@ body.playing .chap{display:block;}
     <div class="lbf"><img id="lbimg" alt="" /></div>
     <button class="arw" id="lbn">&#9658;</button>
   </div>
-  <div class="lbb"><div id="lbnum"></div><div id="lbcap"></div><a class="lbpost" id="lbpost" target="_blank" rel="noopener noreferrer"></a><div id="lbth"></div></div>
+  <div class="lbb"><div id="lbnum"></div><div id="lbcap"></div><div id="lbth"></div></div>
 </div>
 
 <div class="modal" id="m-log" role="dialog" aria-modal="true">
@@ -1207,7 +1209,6 @@ body.playing .chap{display:block;}
   </div>
 </div>
 
-<div class="chap" id="chap"><span class="n" id="ch-n">CHAPTER I</span><span class="t" id="ch-t">&mdash;</span></div>
 
 <div id="toast" role="status" aria-live="polite"></div>
 
@@ -1536,7 +1537,7 @@ en:{
  t_start:'ENTER',t_start_s:'chapter one',t_cont:'CONTINUE',t_cont_s:'last save',
  t_gal:'GALLERY',t_gal_s:'my works',t_com:'COMMISSIONS',t_com_s:'order',
  nav_home:'HOME',nav_gal:'GALLERY',nav_cod:'CODEX',nav_pri:'PRICING',nav_con:'CONTACT',
- cod_h:'CODEX',g_post:'READ ON BOOSTY \u2197',cod_open:'READ',cod_copy:'COPY CODE',
+ cod_h:'CODEX',g_soon:'SOON',cod_open:'READ',cod_copy:'COPY CODE',
  cod_copied:'CODE COPIED',cod_top:'TOP',cod_good:'CORRECT',cod_bad:'REDUNDANT',
  cod_kind_css:'CSS SNIPPET',cod_kind_guide:'GUIDE',cod_toc:'CONTENTS',
  v_read:'READ',skip:'SKIP',next:'NEXT',more:'CONTINUE',
@@ -1649,6 +1650,10 @@ en:{
        ['STEP III','Payment up front. Then I disappear into the code.'],
        ['STEP IV','You get the stylesheet, a short guide, and your revisions.']],
  works:[
+  ['GREEN FOREST','commission for @MercurialC','base',
+   'The very first project. A mossy fairy-tale grove where every character is a whimling waiting to hatch. Soft greens, lullkins and a keeper who shapes the woods by her own whims.','\uD83C\uDF3F'],
+  ['GOLDEN GREEK','commission for @Jorryn','med',
+   'Marble, candlelight and gilded frames. A sacred archive of muses where every card is a relic and the whole page reads like a chapel ledger.','\uD83C\uDFDB'],
   ['ARCHIVE','commission for @Wewwa','lux',
    'Russkaya toska, prefab apartment blocks, neon lights... and that very same video rental place. You watch a tape from there, and later it feels like a dream, or like you made it up, because no one else remembers it existed. But it left a mark on your subconscious. Thank you, my dear, for being a trailblazer and trusting me to turn your profile into something special.','\uD83D\uDCFC'],
   ['BUNKER 707','commission for @KusPus','lux',
@@ -1658,7 +1663,9 @@ en:{
   ['MY DIARY','commission for @lililuv_','med',
    'A dreamy website, secret diaries where you write about your crushes, a hidden corner for a true dreamer.','\uD83C\uDF80'],
   ['NECTAR LOUNGE','commission for @HoneydEw','med',
-   'Smooth jazz, rugged men: come and savor the sweetest, most intoxicating nectar from Honeydew.','\uD83C\uDF6F']
+   'Smooth jazz, rugged men: come and savor the sweetest, most intoxicating nectar from Honeydew.','\uD83C\uDF6F'],
+  ['BLUE CTHULHU','in progress','lux',
+   'Still under construction. Something deep, cold and blue is being assembled here.','\uD83D\uDC19']
  ],
  pkg:{base:'BASE',med:'MEDIUM',lux:'LUXURY',etc:'ELEMENTS'},
  doorgroups:[
@@ -1673,7 +1680,7 @@ ru:{
  t_start:'ВОЙТИ',t_start_s:'глава первая',t_cont:'ПРОДОЛЖИТЬ',t_cont_s:'сохранение',
  t_gal:'ГАЛЕРЕЯ',t_gal_s:'мои работы',t_com:'ЗАКАЗАТЬ',t_com_s:'дизайн',
  nav_home:'ГЛАВНАЯ',nav_gal:'ГАЛЕРЕЯ',nav_cod:'КОДЕКС',nav_pri:'ЦЕНЫ',nav_con:'КОНТАКТЫ',
- cod_h:'КОДЕКС',g_post:'ЧИТАТЬ НА BOOSTY \u2197',cod_open:'ЧИТАТЬ',cod_copy:'КОПИРОВАТЬ КОД',
+ cod_h:'КОДЕКС',g_soon:'СКОРО',cod_open:'ЧИТАТЬ',cod_copy:'КОПИРОВАТЬ КОД',
  cod_copied:'КОД СКОПИРОВАН',cod_top:'ВВЕРХ',cod_good:'ПРАВИЛЬНО',cod_bad:'ИЗБЫТОЧНО',
  cod_kind_css:'CSS-СНИППЕТ',cod_kind_guide:'РУКОВОДСТВО',cod_toc:'СОДЕРЖАНИЕ',
  v_read:'ЧТЕНО',skip:'ПРОПУСК',next:'ДАЛЬШЕ',more:'ДАЛЕЕ',
@@ -1785,6 +1792,10 @@ ru:{
        ['ШАГ III','Предоплата. Дальше я исчезаю в коде.'],
        ['ШАГ IV','Вы получаете файл стилей, инструкцию и правки.']],
  works:[
+  ['ЗЕЛЁНЫЙ ЛЕС','заказ для @MercurialC','base',
+   'Самый первый проект. Замшелая сказочная роща, где каждый персонаж — вимлинг, ждущий, когда вылупится. Мягкая зелень, луллкины и хранительница, которая лепит лес по собственной прихоти.','\uD83C\uDF3F'],
+  ['ЗОЛОТОЙ ГРЕК','заказ для @Jorryn','med',
+   'Мрамор, свечи и золочёные рамы. Священный архив муз, где каждая карточка — реликвия, а вся страница читается как храмовая опись.','\uD83C\uDFDB'],
   ['ARCHIVE','заказ для @Wewwa','lux',
    'Русская тоска, панельки, неон... и тот самый видеопрокат. Смотришь оттуда кассету, а потом кажется, будто это был сон или ты его выдумал, потому что больше никто не помнит, что он существовал. Но след в подсознании он оставил. Спасибо, дорогая, что стала первопроходцем и доверила мне превратить свой профиль во что-то особенное.','\uD83D\uDCFC'],
   ['BUNKER 707','заказ для @KusPus','lux',
@@ -1794,7 +1805,9 @@ ru:{
   ['MY DIARY','заказ для @lililuv_','med',
    'Мечтательный сайт, тайные дневники, где пишут о своих влюблённостях, укромный уголок для настоящего мечтателя.','\uD83C\uDF80'],
   ['NECTAR LOUNGE','заказ для @HoneydEw','med',
-   'Мягкий джаз, брутальные мужчины: приходите отведать самый сладкий и пьянящий нектар от Honeydew.','\uD83C\uDF6F']
+   'Мягкий джаз, брутальные мужчины: приходите отведать самый сладкий и пьянящий нектар от Honeydew.','\uD83C\uDF6F'],
+  ['ГОЛУБОЙ КТУЛХУ','в работе','lux',
+   'Пока в разработке. Здесь собирается нечто глубокое, холодное и синее.','\uD83D\uDC19']
  ],
  pkg:{base:'БАЗА',med:'МЕДИУМ',lux:'ЛЮКС',etc:'ЭЛЕМЕНТЫ'},
  doorgroups:[
@@ -1839,18 +1852,14 @@ function clk(){const d=new Date();
 clk();setInterval(clk,20000);
 
 const IMGS=[
+  ['assets/works/merc-01.jpg'],
+  ['assets/works/jorryn-01.jpg','assets/works/jorryn-02.jpg'],
   ['assets/works/wewwa-02.jpg','assets/works/wewwa-01.jpg','assets/works/wewwa-04.jpg','assets/works/wewwa-03.jpg'],
-  ['assets/works/kuspus-05.jpg','assets/works/kuspus-08.jpg','assets/works/kuspus-03.jpg','assets/works/kuspus-04.jpg','assets/works/kuspus-09.jpg','assets/works/kuspus-07.jpg','assets/works/kuspus-06.jpg','assets/works/kuspus-02.jpg','assets/works/kuspus-01.jpg'],
+  ['assets/works/kuspus-08.jpg','assets/works/kuspus-03.jpg','assets/works/kuspus-04.jpg','assets/works/kuspus-07.jpg','assets/works/kuspus-02.jpg','assets/works/kuspus-01.jpg','assets/works/kuspus-05.jpg'],
   ['assets/works/heatri-01.jpg','assets/works/heatri-02.jpg'],
   ['assets/works/lilu-02.jpg','assets/works/lilu-01.jpg','assets/works/lilu-03.jpg'],
-  ['assets/works/honey-01.jpg','assets/works/honey-03.jpg','assets/works/honey-02.jpg']
-];
-const WORK_URL=[
- 'https://boosty.to/delvari/posts/149030d2-1488-4647-86e4-05c7726cbdae',
- 'https://boosty.to/delvari/posts/e01d1bd8-6673-4935-9bef-663d2a21180e',
- '',
- 'https://boosty.to/delvari/posts/230bbfbc-4767-4fe6-9783-e933c0d6c3eb',
- 'https://boosty.to/delvari/posts/4740940c-964c-46f2-8d4d-18e670b99b09'
+  ['assets/works/honey-01.jpg','assets/works/honey-02.jpg'],
+  []
 ];
 const DURL=[U.discord,U.janitor,U.saucepan,U.tetratto,U.boosty];
 const DSVG=[
@@ -1883,6 +1892,7 @@ function hud(){
   $('#sy-zone').textContent=L.zones[S.view];
   const rr=$('#r-read');
   if(rr){
+    const l2=$('#r-love2'); if(l2) l2.textContent=pct+'%';
     rr.textContent=S.read.length+'/'+L.lines.length;
     $('#r-lines').textContent=S.said;
     $('#r-mode').textContent=autoOn?'AUTO':'MANUAL';
@@ -2074,13 +2084,16 @@ function build(){
   const g=$('#gal');g.innerHTML='';
   L.works.forEach((w,i)=>{
     const im=IMGS[i];
-    const c=mk('button','card');c.type='button';c.dataset.pkg=w[2];c.setAttribute('aria-label',w[0]);
+    const soon=!im.length;
+    const c=mk('button','card'+(soon?' soon':''));c.type='button';c.dataset.pkg=w[2];
+    c.setAttribute('aria-label',w[0]);
+    if(soon)c.setAttribute('aria-disabled','true');
     c.innerHTML='<div class="ph"><span class="tg"><span class="pill '+w[2]+'">'+L.pkg[w[2]]+'</span></span>'+
       (im.length>1?'<span class="cnt">'+im.length+'</span>':'')+
-      '<img src="'+im[0]+'" alt="'+w[0]+'" loading="lazy"></div>'+
-      '<div class="mt"><b>'+(w[4]?'<i class="emb">'+w[4]+'</i> ':'')+w[0]+'</b><span>'+w[1]+'</span>'+
-      '<span class="go">&#9658; '+(S.cfg.lang==='ru'?'ОТКРЫТЬ':'OPEN')+'</span></div>';
-    c.addEventListener('click',()=>openLb(i));
+      (soon?'<span class="soonbadge">'+L.g_soon+'</span><span class="soonic">'+(w[4]||'')+'</span>'
+           :'<img src="'+im[0]+'" alt="'+w[0]+'" loading="lazy">')+'</div>'+
+      '<div class="mt"><b>'+(w[4]?'<i class="emb">'+w[4]+'</i> ':'')+w[0]+'</b><span>'+w[1]+'</span></div>';
+    if(!soon)c.addEventListener('click',()=>openLb(i));
     g.appendChild(c);
   });
   applyFilter();
@@ -2222,9 +2235,6 @@ function openLb(k){
   const w=L.works[k];cur={i:0,imgs:IMGS[k]};back=document.activeElement;
   lbt.textContent=(w[4]?w[4]+' ':'')+w[0]+'  \u00b7  '+w[1];
   lbcap.textContent=w[3];
-  const lp=$('#lbpost'), url=WORK_URL[k];
-  if(url){lp.href=url;lp.textContent=L.g_post;lp.style.display='inline-block';}
-  else lp.style.display='none';
   lbth.innerHTML='';
   cur.imgs.forEach((s,n)=>{const t=mk('button','th','<img src="'+s+'" alt="">');t.type='button';
     t.setAttribute('aria-label',String(n+1));t.addEventListener('click',()=>sl(n));lbth.appendChild(t);});
@@ -2384,5 +2394,5 @@ $('#tmenu').addEventListener('click',e=>{
 
 })();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2c2a273fcdc8a18',t:'MTc4NjkwNjMzMA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
