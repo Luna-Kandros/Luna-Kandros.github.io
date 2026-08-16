@@ -226,6 +226,37 @@ body.playing .chap{display:block;}
 #scrim.on{display:block;}
 @media (max-width:640px){.rail{width:min(84vw,250px);}}
 
+
+/* ── character file card ── */
+.ccard .pb{padding:10px;}
+.ccpic{width:82px;height:82px;margin:0 auto 10px;overflow:hidden;background:#08040c;
+  border:2px solid var(--red);box-shadow:0 0 0 3px #0a050c,0 0 18px rgba(255,0,68,.4);}
+.ccpic img{width:100%;height:100%;object-fit:cover;image-rendering:auto;}
+.ccrows{margin-bottom:10px;}
+.ccrow{display:flex;align-items:baseline;gap:7px;padding:4px 0;
+  border-bottom:1px dotted rgba(255,0,68,.18);}
+.ccrow span{font-family:var(--px);font-size:6.5px;color:var(--red);letter-spacing:.06em;flex:0 0 auto;}
+.ccrow b{font-weight:400;font-size:15px;color:var(--pink);margin-left:auto;text-align:right;line-height:1.25;}
+.ccsec{margin-top:10px;padding:8px 9px;border-left:3px solid var(--red-d);background:rgba(255,0,68,.05);}
+.ccsec.like{border-left-color:#ff5c8a;}
+.ccsec.hate{border-left-color:var(--lav);background:rgba(157,107,255,.06);}
+.ccsec b{display:block;font-family:var(--px);font-size:7px;letter-spacing:.1em;margin-bottom:6px;color:var(--red);}
+.ccsec.like b::before{content:'\2665 ';}
+.ccsec.hate b{color:var(--lav);}
+.ccsec.hate b::before{content:'\2716 ';}
+.ccsec p{margin:0 0 5px;font-size:14.5px;line-height:1.4;color:var(--pink-d);}
+.ccsec a{color:var(--red-2);text-decoration:underline;text-underline-offset:2px;}
+.ccsec a:hover{color:#fff;}
+.ccsec .lock{color:#5b4468;letter-spacing:.08em;
+  text-shadow:0 0 7px rgba(157,107,255,.5);filter:blur(.4px);}
+.ccsec .dots{color:#4a3550;letter-spacing:.3em;margin:0;line-height:1;filter:blur(.5px);}
+
+/* ── contact: grouped doors ── */
+.dgh{font-family:var(--px);font-size:7.5px;color:var(--red);letter-spacing:.16em;
+  margin:18px 0 9px;display:flex;align-items:center;gap:10px;}
+.dgh::after{content:'';flex:1;height:1px;background:rgba(255,0,68,.25);}
+.dgh:first-child{margin-top:0;}
+
 /* ═══════════ CHAPTER (body-level, fixed, never scrolls) ═══════════ */
 .chap{position:fixed;display:none;top:calc(var(--bar) + 16px);left:50%;transform:translateX(-50%);
   z-index:70;text-align:center;pointer-events:none;padding:9px 40px;width:auto;max-width:92vw;
@@ -571,22 +602,32 @@ body.playing .chap{display:block;}
 .slot.nil .m{color:var(--mute);}
 
 /* donate modal */
-.tiplead{margin:0 auto 20px;font-size:19px;line-height:1.45;color:var(--pink-d);text-align:center;max-width:60ch;}
-.tipgrid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));align-items:stretch;}
-.tcard{display:flex;flex-direction:column;padding:20px;position:relative;
+#m-tip{align-items:center;justify-content:center;}
+#m-tip .mh{width:min(760px,100%);margin:0 auto;}
+#m-tip .mb{flex:0 0 auto;width:min(760px,100%);margin:0 auto;max-height:78vh;
+  box-shadow:0 0 0 3px #0a050c,0 0 40px rgba(255,0,68,.28),8px 8px 0 rgba(0,0,0,.7);}
+#m-tip .mb::before,#m-tip .mb::after{content:'';position:absolute;width:16px;height:16px;
+  border:2px solid var(--red);pointer-events:none;}
+#m-tip .mb::before{top:6px;left:6px;border-right:none;border-bottom:none;}
+#m-tip .mb::after{bottom:6px;right:6px;border-left:none;border-top:none;}
+#m-tip .mb{position:relative;}
+.tiplead{margin:0 auto 18px;font-size:19px;line-height:1.45;color:var(--pink-d);text-align:center;max-width:52ch;}
+.tipgrid{display:grid;gap:14px;grid-template-columns:1fr 1fr;align-items:stretch;}
+@media (max-width:620px){.tipgrid{grid-template-columns:1fr;}}
+.tcard{display:flex;flex-direction:column;padding:16px;position:relative;
   background:linear-gradient(180deg,rgba(38,8,24,.92),rgba(14,4,12,.96));
   border:1px solid rgba(255,0,68,.3);box-shadow:5px 5px 0 rgba(0,0,0,.55);}
 .tcard.local{border-color:rgba(126,231,135,.35);}
 .tcard-h{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:13px;}
 .tico{font-size:20px;line-height:1;}
 .tcard-h b{font-family:var(--px);font-size:11px;color:#fff;letter-spacing:.05em;}
-.tcard p{margin:0 0 16px;font-size:18px;line-height:1.44;color:var(--pink-d);flex:1;}
-.tfee{margin-bottom:16px;padding:9px 12px;font-family:var(--px);font-size:8px;letter-spacing:.08em;
+.tcard p{margin:0 0 14px;font-size:16.5px;line-height:1.4;color:var(--pink-d);flex:1;}
+.tfee{margin-bottom:13px;padding:8px 10px;font-family:var(--px);font-size:8px;letter-spacing:.08em;
   color:var(--amber);text-align:center;background:rgba(255,182,72,.08);
   border:1px dashed rgba(255,182,72,.4);}
 .tfee.ok{color:var(--lime);background:rgba(126,231,135,.07);border-color:rgba(126,231,135,.4);}
-.tbtn{display:block;text-align:center;font-family:var(--px);font-size:9px;letter-spacing:.06em;color:#fff;
-  padding:14px;background:var(--red-d);border:1px solid var(--red);box-shadow:0 4px 0 var(--red-x);}
+.tbtn{display:block;text-align:center;font-family:var(--px);font-size:8.5px;letter-spacing:.06em;color:#fff;
+  padding:12px;background:var(--red-d);border:1px solid var(--red);box-shadow:0 4px 0 var(--red-x);}
 .tbtn:hover{background:var(--red);transform:translateY(-2px);box-shadow:0 6px 0 var(--red-x);}
 .tbtn:active{transform:translateY(2px);box-shadow:0 2px 0 var(--red-x);}
 .tbtn.alt{background:#1d5a2a;border-color:var(--lime);box-shadow:0 4px 0 #0b2a13;}
@@ -656,7 +697,8 @@ body.playing .chap{display:block;}
 
   /* sprite owns the whole stage, anchored bottom, cropped sideways */
   .stage{overflow:hidden;}
-  .stagefloor{top:96px;bottom:0;z-index:6;overflow:hidden;}
+  .sprite{filter:drop-shadow(0 0 20px rgba(255,0,68,.45));}
+  .stagefloor{top:96px;bottom:0;z-index:6;overflow:visible;}
   .sprite{height:auto;width:auto;min-height:70%;max-height:100%;max-width:none;
     opacity:1;transform:translateY(0);}
   @keyframes breathe{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
@@ -769,17 +811,19 @@ body.playing .chap{display:block;}
   </header>
 
   <aside class="rail rail-l" id="rail-l">
-    <div class="panel"><div class="ph"><span>&#128064; VISITOR</span></div>
+    <div class="panel ccard">
+      <div class="ph"><span id="cc-t">CHARACTER FILE</span></div>
       <div class="pb">
-        <div class="srow"><span class="lab">LVL</span><span class="val" id="r-lvl">01</span></div>
-        <div class="srow"><span class="lab">LOVE</span><span class="gauge"><i id="r-love" style="width:20%"></i></span></div>
-        <div class="srow"><span class="lab">LORE</span><span class="gauge sp"><i id="r-lore" style="width:0%"></i></span></div>
-        <div class="srow"><span class="lab">READ</span><span class="val" id="r-read">0/0</span></div>
-      </div></div>
-    <div class="panel"><div class="ph"><span>&#128205; CURRENT ZONE</span></div>
-      <div class="pb"><div class="srow"><span class="val" id="r-zone" style="margin:0">&mdash;</span></div>
-        <div class="srow"><span class="lab" style="min-width:0">SINCE</span><span class="val">JUL 20, 2024</span></div>
-      </div></div>
+        <div class="ccpic"><img src="assets/avatar.jpg" alt="" /></div>
+        <div class="ccrows" id="cc-rows"></div>
+        <div class="ccsec like"><b id="cc-like">LIKES</b><p id="cc-likes"></p></div>
+        <div class="ccsec hate"><b id="cc-dis">DISLIKES</b>
+          <p id="cc-dis1"></p>
+          <p class="lock" id="cc-dis2">[REDACTED]</p>
+          <p class="dots">.</p><p class="dots">.</p><p class="dots">.</p>
+        </div>
+      </div>
+    </div>
     <div class="panel"><div class="ph"><span>&#9636; SYSTEM LOG</span></div>
       <div class="pb"><div class="slog" id="r-log"></div></div></div>
   </aside>
@@ -797,6 +841,7 @@ body.playing .chap{display:block;}
       </div></div></div>
     <div class="chip">MODE <b id="r-mode">MANUAL</b></div>
     <div class="chip">LINES <b id="r-lines">0</b></div>
+    <div class="chip">READ <b id="r-read">0/0</b></div>
     <div class="panel"><div class="ph"><span>&#9000; HOTKEYS</span></div>
       <div class="pb hotk">
         <div><b>SPACE</b> advance</div><div><b>1-4</b> route</div>
@@ -844,7 +889,7 @@ body.playing .chap{display:block;}
       <div class="sheet"><div class="wrap">
         <div class="hd"><h2 data-i18n="c_h">CONTACT</h2><p data-i18n="c_s">OPENS IN A NEW TAB</p><div class="rl"></div></div>
         <div class="pfp"><img src="assets/avatar.jpg" alt="Delvari" /></div>
-        <div class="doors" id="doors"></div>
+        <div id="doors"></div>
         <div class="tagrow"><span class="k" data-i18n="c_tag">DISCORD</span>
           <span class="v">thlayli_imp</span>
           <button class="cpb" id="cptag" data-i18n="c_copy">COPY</button></div>
@@ -960,7 +1005,9 @@ const U={
   janitor :'https://janitorai.com/profiles/14b8ad42-4181-42de-a22a-eaf838be941d_profile-of-delvari',
   saucepan:'https://saucepan.ai/u/lunatrix',
   tetratto:'https://tetratto.com/@delvari',
-  boosty  :'https://boosty.to/delvari'
+  boosty  :'https://boosty.to/delvari',
+  steam   :'https://steamcommunity.com/id/thlayli_imp',
+  teletype:'https://teletype.in/@delvari/eCr9VR4qxqj'
 };
 const TAG='thlayli_imp';
 
@@ -981,9 +1028,18 @@ en:{
  cfg_wipe:'RESET PROGRESS',cfg_wipe_s:'Clears saves and read lines.',
  short:'SHORT',medium:'MED',long:'LONG',on:'ON',off:'OFF',erase:'ERASE',
  empty_log:'NOTHING SAID YET',slot_empty:'EMPTY',slot_write:'click to save',slot_none:'nothing here',
- lines_w:'lines',all:'ALL',
- tip_h:'SUPPORT THE DESIGNER',tip_b:'SEND A TIP',
- tip_p:'Not payment for work, a gift, if something here made your day stranger. Always optional.',
+ lines_w:'lines',all:'ALL',cur:'USD',
+ cc_t:'CHARACTER FILE',
+ cc:[['NAME','Aria'],['AGE','20+'],['GENDER','F'],['AVATAR','Bibi from "I Love Amy"'],['LANGUAGES','ru / eng']],
+ cc_like:'LIKES',
+ cc_likes:'Cats, horror games, otome games, non-human',
+ cc_dis:'DISLIKES',
+ cc_dis1:'Badly written bot cards (bloated to 5k tokens, or',
+ cc_dis_link:'read more',
+ cc_dis2:'[REDACTED]',
+
+ tip_h:'PAYMENTS &amp; TRANSFERS',tip_b:'\u2661 TIP ME \u2661',
+ tip_p:'Want to pay for a service or send a tip?',
  tip_head:'PAYMENTS &amp; TRANSFERS',
  tip_lead:'Choose your preferred payment method below.',
  tip_w1:'BOOSTY',tip_fee:'+11% FEE',
@@ -1001,48 +1057,47 @@ en:{
            pricing:['CHAPTER III','"Terms of the Arrangement"'],contact:['CHAPTER IV','"Knock Three Times"']},
  idle:[
   ["Welcome to Lovely Hell. Mind the wiring, some of it is decorative, most of it is load-bearing.",
-   "I am <em>Delvari</em>. I build profile pages that feel like places instead of documents.",
+   "I am <em>Delvari</em>. I dress up profile pages so none of us has to suffer the default design.",
    "Pick a line on the left. Or wander into another chapter. I will still be here."],
-  ["There are currently 66 people in my basement.","Do not worry. Most of them chose to stay."],
+  ["New people turn up in my basement from time to time.","I cannot blame them. It is quite cosy down there."],
   ["The flicker is intentional. Everything here is intentional.","Even the parts that look like mistakes."],
-  ["I keep the good work in the second chapter. The prices are in the third."],
+  ["The gallery of my work is in the second chapter. The price list is in the third."],
   ["My hands are cold. That is a hardware issue, not a mood."],
-  ["Someone rearranged the furniture last night. I live alone."],
-  ["If you hear the fire alarm, ignore it. It goes off when I am concentrating."],
-  ["I could tell you what happened to the previous designer.","But then you would want a discount."],
+  ["You know, I genuinely enjoy designing things. Default layouts make me miserable."],
+  ["I understand why some platforms ban scripts in their CSS designs. But banning var?"],
+  ["Of the 2570 cards in my personal collection, 50 are tagged Dead Dove.",
+   "Fine, those 50 are tagged heavy DD. The rest are DD by default."],
   ["The cursor blinks even when nobody is typing. I find that comforting."],
   ["You have been quiet for a while.","That is fine. I am patient. I have had practice."]],
  route:{home:["Back in the basement. The light is better here, relatively speaking."],
-        gallery:["Seven rooms I have furnished. Open one.","Use the filters, each work is tagged with its package."],
+        gallery:["Things I have laid my hands on. Open any of them.","Use the filters, each work is tagged with its package."],
         pricing:["Three levels of surrender. Read them slowly.",
                  "<em>Base</em> obeys you. <em>Medium</em> advises you. <em>Luxury</em> replaces you."],
-        contact:["Four doors, one tag, and a room you should not open.","All of them work."]},
+        contact:["You can find me elsewhere and get in touch.","Although everything that matters I have put on this site."]},
  lines:[
   {q:'"Who are you?"',v:8,a:["Delvari. Reader, horror enthusiast, Black Flag collector.",
-    "You may have seen me screaming in someone's comment section. That was probably me.",
-    "Here I mostly build things out of <em>CSS</em> and bad intentions."]},
-  {q:'"Do you do CSS stuff?"',v:10,a:["That is the entire business, yes.",
-    "Everything you are looking at, this box, the hearts, the flicker, is CSS and a little scripting.",
+    "You may have seen me screaming in someone\'s comment section, hah.",
+    "Here I mostly build things out of <em>CSS</em> and pure spite."]},
+  {q:'"Do you do CSS?"',v:10,a:["That is the entire business, yes.",
+    "Everything you are looking at, this frame, the hearts, the flicker, is CSS and a little scripting.",
     "Open the fourth chapter and pick a door."]},
-  {q:'"What exactly do I get?"',v:8,a:["A finished stylesheet, ready to paste, customised for your page.",
-    "Layout, atmosphere, hover states, mobile behaviour. Furnished, not decorated.",
+  {q:'"What exactly do I get?"',v:8,a:["A finished stylesheet, ready to paste, tailored to your page and your taste.",
+    "Layout, atmosphere, hover states, mobile behaviour. Whatever we can get away with.",
     "Plus support when the platform inevitably breaks something."]},
   {q:'"How do I order?"',v:12,a:["Open the third chapter and decide how much control you want to keep.",
     "Then message me on Discord with the package name. That is the whole ritual."]},
   {q:'"What do you need from me?"',v:6,a:["For <em>Base</em>, a clear brief and your images. I implement it precisely.",
     "For <em>Medium</em>, a mood, a colour, a feeling. I design around it.",
     "For <em>Luxury</em>, permission. Nothing else."]},
-  {q:'"How long does it take?"',v:5,a:["Two to seven days, depending on the package and how strange the idea is.",
+  {q:'"How long does it take?"',v:5,a:["Three to seven days, sometimes a month. It depends on the queue, how busy I am, the package, and how strange the idea is.",
     "Strange ideas take longer. Strange ideas are also worth it."]},
   {q:'"What if the platform updates?"',v:7,a:["Then something breaks. It always eventually does.",
     "Every package includes support for exactly that. Message me and I will patch it."]},
   {q:'"Any limits?"',v:4,a:[
     "Only two kinds, and neither is about taste.",
-    "<em>Platform policy</em> — your design has to comply with the rules of the site you are ordering it for.",
-    "<em>Technical</em> — some platforms strip scripts or block certain properties, so we work within what their CSS allows.",
-    "Beyond that, bring me anything. I have a very high tolerance for the unusual."]},
-  {q:'"Why Lovely Hell?"',v:9,a:["Because pretty things should have teeth.",
-    "And because a basement is only frightening until you decorate it."]},
+    "<em>Platform policy</em> \u2014 your design has to comply with the rules of the site you are ordering it for.",
+    "<em>Technical</em> \u2014 some platforms strip scripts or block certain properties, so we work within what their CSS allows.",
+    "Beyond that, bring me anything. I love making interesting things."]},
   {q:'"...Are you real?"',v:14,a:["That is a rude question to ask a character on her own page.",
     "<em>Ask again after you commission something.</em>"]}],
  note:'I build custom <b>CSS profile designs</b>, the kind of page people stop scrolling for. Pick how much creative control you want to hand over. Every package ships as a ready-to-paste stylesheet with support if an update breaks something.',
@@ -1062,7 +1117,7 @@ en:{
    f:[['Everything in Medium',1],['Non-standard graphic and structural elements',0],
       ['Bespoke interface components, no hard limits',0],['Priority support, front of the queue',0],
       ['Revisions with every detail agreed',0]]}],
- flow:[['STEP I','Pick a package and message me on Discord with its name.'],
+ flow:[['STEP I','Pick a package and message me on Discord with its name and your idea.'],
        ['STEP II','We agree on the brief, the mood and the deadline.'],
        ['STEP III','Payment up front. Then I disappear into the code.'],
        ['STEP IV','You get the stylesheet, a short guide, and your revisions.']],
@@ -1075,9 +1130,11 @@ en:{
   ['LAST TRANSMISSION','FOUND FOOTAGE','med','Signal fading over a red sky. Timestamp still running.'],
   ['SWEET DECAY','SLOW BURN','etc','Two chairs, one candle, and a conversation that never quite ends.']],
  pkg:{base:'BASE',med:'MEDIUM',lux:'LUXURY',etc:'ELEMENTS'},
- doors:[['DISCORD','discord.com/users/949743961650659408'],['JANITOR AI','my character catalogue'],
-        ['SAUCEPAN AI','saucepan.ai/u/lunatrix'],['TETRATTO','tetratto.com/@delvari'],
-        ['BOOSTY','boosty.to/delvari']],
+ doorgroups:[
+   ['DIRECT CONTACT',[['DISCORD','write to me directly'],['TETRATTO','ask me anonymously']]],
+   ['MY PROFILES',[['JANITOR AI','see my profile design'],['SAUCEPAN AI','see my profile design']]],
+   ['ELSEWHERE',[['STEAM','steamcommunity.com/id/thlayli_imp'],['BOOSTY','support my work']]]
+ ],
  facts:[['RESPONSE','Usually under 12 hours'],['BEST CHANNEL','Discord DM'],['QUEUE','Open, slots available']],
  order:'ORDER'
 },
@@ -1097,9 +1154,18 @@ ru:{
  cfg_wipe:'СБРОС ПРОГРЕССА',cfg_wipe_s:'Удаляет сохранения и прочитанное.',
  short:'КОРОТК',medium:'СРЕДН',long:'ДЛИНН',on:'ВКЛ',off:'ВЫКЛ',erase:'СТЕРЕТЬ',
  empty_log:'ПОКА ПУСТО',slot_empty:'ПУСТО',slot_write:'нажмите, чтобы записать',slot_none:'нечего грузить',
- lines_w:'реплик',all:'ВСЕ',
- tip_h:'ПОДДЕРЖАТЬ ДИЗАЙНЕРА',tip_b:'ЗАДОНАТИТЬ',
- tip_p:'Это не оплата работы, а подарок, если что-то здесь сделало ваш день чуть страннее. Всегда по желанию.',
+ lines_w:'реплик',all:'ВСЕ',cur:'РУБ',
+ cc_t:'КАРТОЧКА ПЕРСОНАЖА',
+ cc:[['ИМЯ','Ария'],['ВОЗРАСТ','20+'],['ПОЛ','Ж'],['АВАТАР','Биби из «Я люблю Эми»'],['ЯЗЫКИ','ru / eng']],
+ cc_like:'ЛЮБИТ',
+ cc_likes:'Кошки, хоррор игры, отоме игры, non-human',
+ cc_dis:'НЕ ЛЮБИТ',
+ cc_dis1:'Карточки ботов, написанные неправильно (раздутые на 5к токенов или',
+ cc_dis_link:'читать далее',
+ cc_dis2:'[ЗАБЛОКИРОВАНО]',
+
+ tip_h:'ПЛАТЕЖИ И ПЕРЕВОДЫ',tip_b:'\u2661 ЗАДОНАТИТЬ \u2661',
+ tip_p:'Хотите оплатить услугу или задонатить?',
  tip_head:'ПЛАТЕЖИ И ПЕРЕВОДЫ',
  tip_lead:'Выберите удобный способ оплаты.',
  tip_w1:'BOOSTY',tip_fee:'+11% КОМИССИЯ',
@@ -1117,38 +1183,38 @@ ru:{
            pricing:['ГЛАВА III','«Условия сделки»'],contact:['ГЛАВА IV','«Постучи трижды»']},
  idle:[
   ["Добро пожаловать в Lovely Hell. Осторожнее с проводкой, часть её декоративная, большая часть несущая.",
-   "Я <em>Delvari</em>. Делаю страницы профилей, которые ощущаются как места, а не как документы.",
+   "Я <em>Delvari</em>. Оформляю страницы профилей, чтобы мы не страдали от дефолтного дизайна.",
    "Выберите реплику слева. Или загляните в другую главу. Я никуда не денусь."],
-  ["Сейчас в моём подвале 66 человек.","Не волнуйтесь, они остались добровольно."],
+  ["В моем подвале иногда появляются новые люди.","Я не могу их винить, там довольно уютно."],
   ["Мерцание это задумка. Здесь всё задумано.","Даже то, что выглядит как ошибка."],
-  ["Лучшие работы во второй главе. Цены в третьей."],
+  ["Галерея с моими работами во второй главе. Прайс-лист в третьей."],
   ["У меня холодные руки. Это аппаратная проблема, а не настроение."],
-  ["Ночью кто-то переставил мебель. Я живу одна."],
-  ["Если услышите пожарную сигнализацию, не обращайте внимания. Она срабатывает, когда я сосредоточена."],
-  ["Могу рассказать, что случилось с предыдущим дизайнером.","Но тогда вы захотите скидку."],
+  ["Ты знаешь, мне действительно нравится дизайнить вещи. Дефолтность вгоняет меня в тоску."],
+  ["Я понимаю почему некоторые платформы запрещают использовать скрипты в своих CSS-дизайнах, но запрещать использовать var?"],
+  ["В моей личной коллекции из 2570 карточек, 50 из них помечены как Dead Dove.","Ладно они помечены как тяжелый ДД. Остальные ДД по умолчанию."],
   ["Курсор мигает, даже когда никто не печатает. Меня это успокаивает."],
   ["Вы давно молчите.","Ничего. Я терпеливая, у меня была практика."]],
  route:{home:["Снова в подвале. Здесь светлее, относительно."],
-        gallery:["Семь комнат, которые я обставила. Откройте любую.","Пользуйтесь фильтрами, у каждой работы своя метка пакета."],
+        gallery:["Вещи, к которым я приложила свою руку. Откройте любую.","Пользуйтесь фильтрами, у каждой работы своя метка пакета."],
         pricing:["Три степени доверия. Читайте медленно.",
                  "<em>База</em> слушается вас. <em>Медиум</em> советует. <em>Люкс</em> заменяет."],
-        contact:["Четыре двери, один тег и комната, которую открывать не стоит.","Всё рабочее."]},
+        contact:["Можете найти меня в других местах и связаться со мной.","Хотя всё самое важное я вынесла на этот сайт."]},
  lines:[
   {q:'«Кто ты такая?»',v:8,a:["Delvari. Читатель, любитель хоррора, коллекционер Black Flag.",
-    "Возможно, вы видели, как я ору в чьих-то комментариях. Это была я.",
-    "Здесь я в основном строю вещи из <em>CSS</em> и дурных намерений."]},
+    "Возможно, вы видели, как я ору в чьих-то комментариях, хах.",
+    "Здесь я в основном строю вещи из <em>CSS</em> и чистой злобы."]},
   {q:'«Ты делаешь CSS?»',v:10,a:["Это и есть весь бизнес, да.",
     "Всё, на что вы смотрите, эта рамка, сердечки, мерцание, это CSS и немного скриптов.",
     "Откройте четвёртую главу и выберите дверь."]},
-  {q:'«Что именно я получу?»',v:8,a:["Готовый файл стилей, который просто вставляется, настроенный под вашу страницу.",
-    "Композиция, атмосфера, ховеры, поведение на телефоне. Обставлено, а не украшено.",
+  {q:'«Что именно я получу?»',v:8,a:["Готовый файл стилей, который просто вставляется, настроенный под вашу страницу и ваши вкусы.",
+    "Композиция, атмосфера, ховеры, поведение на телефоне. Что угодно что мы можем себе позволить.",
     "Плюс поддержка, когда платформа в очередной раз что-нибудь сломает."]},
   {q:'«Как сделать заказ?»',v:12,a:["Откройте третью главу и решите, сколько контроля хотите оставить себе.",
     "Потом напишите мне в Discord с названием пакета. Весь ритуал."]},
   {q:'«Что нужно от меня?»',v:6,a:["Для <em>Базы</em>, чёткое ТЗ и ваши изображения. Реализую в точности.",
     "Для <em>Медиума</em>, настроение, цвет, ощущение. Спроектирую вокруг этого.",
     "Для <em>Люкса</em>, разрешение. Больше ничего."]},
-  {q:'«Сколько это занимает?»',v:5,a:["От двух до семи дней, зависит от пакета и от того, насколько странная идея.",
+  {q:'«Сколько это занимает?»',v:5,a:["От трех до семи дней, а иногда месяц, зависит от очереди, моей занятости, пакета и от того, насколько странная идея.",
     "Странные идеи дольше. Странные идеи того стоят."]},
   {q:'«А если платформа обновится?»',v:7,a:["Тогда что-нибудь сломается. Рано или поздно всегда ломается.",
     "В каждый пакет входит поддержка именно на этот случай. Напишите, починю."]},
@@ -1156,29 +1222,27 @@ ru:{
     "Всего два вида, и оба не про вкус.",
     "<em>Политика платформы</em> — дизайн должен соответствовать правилам сайта, для которого вы его заказываете.",
     "<em>Технические</em> — где-то вырезают скрипты, где-то блокируют часть свойств, работаем в рамках того, что позволяет их CSS.",
-    "В остальном несите что угодно. У меня очень высокая терпимость к необычному."]},
-  {q:'«Почему Lovely Hell?»',v:9,a:["Потому что у красивых вещей должны быть зубы.",
-    "И потому что подвал страшен ровно до того, как его обставишь."]},
+    "В остальном несите что угодно. Я обожаю делать интересные штуки."]},
   {q:'«...Ты настоящая?»',v:14,a:["Грубоватый вопрос для персонажа на её собственной странице.",
     "<em>Спросите ещё раз после заказа.</em>"]}],
  note:'Я делаю <b>кастомное CSS-оформление профилей</b>, такие страницы, на которых перестают скроллить. Выберите, сколько творческой свободы готовы отдать. Каждый пакет это готовый файл стилей плюс поддержка, если обновление что-то сломает.',
  tiers:[
-  {ic:'&#128367;',n:'БАЗА',p:'$16+',pick:0,flag:'',mot:'«Сделаю, как вы хотите»',
+  {ic:'&#128367;',n:'БАЗА',p:'1800\u20BD+',pick:0,flag:'',mot:'«Сделаю, как вы хотите»',
    sum:'Вы предоставляете чёткое ТЗ и изображения. Я технически реализую.',
    f:[['Файл с готовым CSS',0],['Кастомизация базовых элементов',0],
       ['Интеграция ваших изображений и стилей',0],['Адекватное поведение на мобильных',0],
       ['Базовая поддержка после обновлений',0]]},
-  {ic:'&#129656;',n:'МЕДИУМ',p:'$38+',pick:0,flag:'',mot:'«Придумаю за вас и сделаю»',
+  {ic:'&#129656;',n:'МЕДИУМ',p:'3500\u20BD+',pick:0,flag:'',mot:'«Придумаю за вас и сделаю»',
    sum:'Вы описываете общую идею или желаемую атмосферу. Я предлагаю и реализую своё решение.',
    f:[['Всё из пакета «База»',1],['Разработка дизайн-концепта',0],
       ['Подобранная палитра, шрифты, сетка',0],['Анимированные акценты и ховеры',0],
       ['Два круга правок',0]]},
-  {ic:'&#128081;',n:'ЛЮКС',p:'$54+',pick:1,flag:'ВЫБИРАЮТ ЧАЩЕ',mot:'«Полное погружение»',
+  {ic:'&#128081;',n:'ЛЮКС',p:'5000\u20BD+',pick:1,flag:'ВЫБИРАЮТ ЧАЩЕ',mot:'«Полное погружение»',
    sum:'Вы предоставляете полную творческую свободу и доверяете экспертизе.',
    f:[['Всё из пакета «Медиум»',1],['Нестандартные графические и структурные элементы',0],
       ['Всё, что позволяет CSS, без жёстких ограничений',0],['Приоритетная поддержка вне очереди',0],
       ['Правки с согласованием каждой детали',0]]}],
- flow:[['ШАГ I','Выберите пакет и напишите мне в Discord его название.'],
+ flow:[['ШАГ I','Выберите пакет и напишите мне в Discord его название и вашу идею.'],
        ['ШАГ II','Согласуем задачу, настроение и срок.'],
        ['ШАГ III','Предоплата. Дальше я исчезаю в коде.'],
        ['ШАГ IV','Вы получаете файл стилей, инструкцию и правки.']],
@@ -1191,9 +1255,11 @@ ru:{
   ['ПОСЛЕДНЯЯ ПЕРЕДАЧА','НАЙДЕННАЯ ПЛЁНКА','med','Сигнал гаснет под красным небом. Таймкод всё ещё идёт.'],
   ['СЛАДКИЙ РАСПАД','МЕДЛЕННОЕ ГОРЕНИЕ','etc','Два кресла, одна свеча и разговор, который никак не кончится.']],
  pkg:{base:'БАЗА',med:'МЕДИУМ',lux:'ЛЮКС',etc:'ЭЛЕМЕНТЫ'},
- doors:[['DISCORD','discord.com/users/949743961650659408'],['JANITOR AI','мой каталог персонажей'],
-        ['SAUCEPAN AI','saucepan.ai/u/lunatrix'],['TETRATTO','tetratto.com/@delvari'],
-        ['BOOSTY','boosty.to/delvari']],
+ doorgroups:[
+   ['ПРЯМАЯ СВЯЗЬ',[['DISCORD','написать мне напрямую'],['TETRATTO','спросить анонимно']]],
+   ['МОИ ПРОФИЛИ',[['JANITOR AI','посмотреть дизайн профиля'],['SAUCEPAN AI','посмотреть дизайн профиля']]],
+   ['ДРУГОЕ',[['STEAM','steamcommunity.com/id/thlayli_imp'],['BOOSTY','поддержать мою работу']]]
+ ],
  facts:[['ОТВЕТ','Обычно меньше 12 часов'],['ЛУЧШИЙ КАНАЛ','Личка в Discord'],['ОЧЕРЕДЬ','Открыта, места есть']],
  order:'ЗАКАЗАТЬ'
 }};
@@ -1244,6 +1310,14 @@ const DSVG=[
  '<path d="M12 2a5 5 0 0 0-5 5v1H4a1 1 0 0 0-1 1v3a9 9 0 0 0 8 8.9V22h2v-1.1A9 9 0 0 0 21 12V9a1 1 0 0 0-1-1h-3V7a5 5 0 0 0-5-5zm0 2a3 3 0 0 1 3 3v1H9V7a3 3 0 0 1 3-3zM5 10h14v2a7 7 0 0 1-14 0v-2z"/>',
  '<path d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm12.5 0L21 21h-11l5.5-8z"/>',
  '<path d="M12 2 6 13h4l-2 9 8-12h-4.5L15 2z"/>'];
+const DKEY={
+ 'DISCORD':{u:'discord',svg:DSVG[0]},
+ 'JANITOR AI':{u:'janitor',svg:DSVG[1]},
+ 'SAUCEPAN AI':{u:'saucepan',svg:DSVG[2]},
+ 'TETRATTO':{u:'tetratto',svg:DSVG[3]},
+ 'BOOSTY':{u:'boosty',svg:DSVG[4]},
+ 'STEAM':{u:'steam',svg:'<path d="M12 2a10 10 0 0 0-9.9 8.8l5.3 2.2a2.8 2.8 0 0 1 1.6-.5h.2l2.4-3.4v-.1a3.8 3.8 0 1 1 3.8 3.8h-.1l-3.4 2.4v.2a2.8 2.8 0 0 1-5.6.2l-3.8-1.6A10 10 0 1 0 12 2zM7.6 17.9a2.2 2.2 0 0 0 2.9-1.2 2.2 2.2 0 0 0-1.2-2.9l-1.3-.5a2.6 2.6 0 0 1 1.9 4.8zm7.8-5.4a2.5 2.5 0 1 0 0-5.1 2.5 2.5 0 0 0 0 5.1zm0-.6a1.9 1.9 0 1 1 0-3.8 1.9 1.9 0 0 1 0 3.8z"/>'}
+};
 const PKGS=['base','med','lux','etc'];
 const COL={base:'#2c6390',med:'#b3002f',lux:'#6b3fb8',etc:'#4a7a4f'};
 
@@ -1258,13 +1332,9 @@ function hud(){
   $('#sy-aff').style.width=pct+'%';
   $('#sy-lore').style.width=Math.round(S.read.length/L.lines.length*100)+'%';
   $('#sy-zone').textContent=L.zones[S.view];
-  const rl=$('#r-love');
-  if(rl){
-    rl.style.width=pct+'%';
-    $('#r-lore').style.width=Math.round(S.read.length/L.lines.length*100)+'%';
-    $('#r-read').textContent=S.read.length+'/'+L.lines.length;
-    $('#r-lvl').textContent=String(1+Math.floor(S.read.length/2)).padStart(2,'0');
-    $('#r-zone').textContent=L.zones[S.view];
+  const rr=$('#r-read');
+  if(rr){
+    rr.textContent=S.read.length+'/'+L.lines.length;
     $('#r-lines').textContent=S.said;
     $('#r-mode').textContent=autoOn?'AUTO':'MANUAL';
   }
@@ -1354,7 +1424,7 @@ function build(){
     d.innerHTML=(t.flag?'<div class="flag">'+t.flag+'</div>':'')+
       '<div class="tname"><span class="ic">'+t.ic+'</span><h3>'+t.n+'</h3></div>'+
       '<p class="mot">'+t.mot+'</p>'+
-      '<div class="amt">'+t.p+' <small>USD</small></div><div class="dv"></div>'+
+      '<div class="amt">'+t.p+' <small>'+L.cur+'</small></div><div class="dv"></div>'+
       '<div class="sum">'+t.sum+'</div>'+
       '<ul>'+t.f.map(f=>'<li class="'+(f[1]?'inh':'')+'">'+f[0]+'</li>').join('')+'</ul>'+
       '<a class="buy" href="'+U.discord+'" target="_blank" rel="noopener noreferrer">'+L.order+' '+t.n+'</a>';
@@ -1368,13 +1438,29 @@ function build(){
   });
   $('#steps').innerHTML=L.flow.map(s=>'<div class="stp"><b>'+s[0]+'</b><span>'+s[1]+'</span></div>').join('');
 
+  /* character file */
+  $('#cc-t').textContent=L.cc_t;
+  $('#cc-rows').innerHTML=L.cc.map(r=>'<div class="ccrow"><span>'+r[0]+'</span><b>'+r[1]+'</b></div>').join('');
+  $('#cc-like').textContent=L.cc_like;
+  $('#cc-likes').textContent=L.cc_likes;
+  $('#cc-dis').textContent=L.cc_dis;
+  $('#cc-dis1').innerHTML=L.cc_dis1+' <a href="'+U.teletype+'" target="_blank" rel="noopener noreferrer">&lt;'+L.cc_dis_link+'&gt;</a>)';
+  $('#cc-dis2').textContent=L.cc_dis2;
+
+  /* grouped doors */
   const dz=$('#doors');dz.innerHTML='';
-  L.doors.forEach((d,i)=>{
-    const a=mk('a','door');a.href=DURL[i];a.target='_blank';a.rel='noopener noreferrer';
-    a.innerHTML='<span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true">'+DSVG[i]+'</svg></span>'+
-      '<span class="tx"><b>'+d[0]+'</b><span>'+d[1]+'</span></span><span class="ar">&#8599;</span>';
-    a.addEventListener('click',()=>{toast(L.toast_open+' '+d[0]);affect(2);});
-    dz.appendChild(a);
+  L.doorgroups.forEach(g=>{
+    const h=mk('div','dgh',g[0]);dz.appendChild(h);
+    const row=mk('div','doors');
+    g[1].forEach(d=>{
+      const k=DKEY[d[0]];
+      const a=mk('a','door');a.href=U[k.u];a.target='_blank';a.rel='noopener noreferrer';
+      a.innerHTML='<span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true">'+k.svg+'</svg></span>'+
+        '<span class="tx"><b>'+d[0]+'</b><span>'+d[1]+'</span></span><span class="ar">&#8599;</span>';
+      a.addEventListener('click',()=>{toast(L.toast_open+' '+d[0]);affect(2);});
+      row.appendChild(a);
+    });
+    dz.appendChild(row);
   });
   $('#facts').innerHTML=L.facts.map((f,i)=>
     '<div class="fct"><b>'+f[0]+'</b><span>'+(i===2?'<i class="dot"></i>':'')+f[1]+'</span></div>').join('');
@@ -1396,7 +1482,10 @@ function go(v,quiet){
   $$('.tab').forEach(t=>{t.dataset.view===v?t.setAttribute('aria-current','page'):t.removeAttribute('aria-current');});
   $('#dwrap').classList.toggle('slim',v!=='home');
   $('#sysinfo').style.display=v==='home'?'block':'none';
-  $('#f-bg').style.filter=v==='home'?'none':'brightness(.4) saturate(.5)';
+  const BGS={home:'assets/skulls.jpg',gallery:'assets/bg-gallery.jpg',
+             pricing:'assets/bg-pricing.jpg',contact:'assets/bg-contact.jpg'};
+  $('#f-bg').style.backgroundImage="url('"+BGS[v]+"')";
+  $('#f-bg').style.filter=v==='home'?'none':'brightness(.72)';
   $$('.sheet').forEach(s=>s.scrollTop=0);
   if(location.hash.slice(1)!==v)history.replaceState(null,'','#'+v);
   chapter();hud();closeRails();slog('[SYS] zone: '+L.zones[v]);
@@ -1618,5 +1707,5 @@ $('#tmenu').addEventListener('click',e=>{
 
 })();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2c016d85cf49dc1',t:'MTc4Njg3OTY0MA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2c093ce589af116',t:'MTc4Njg4NDc1OA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
