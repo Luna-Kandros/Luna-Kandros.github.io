@@ -496,7 +496,9 @@ body.playing .chap{display:block;}
 .card.soon{opacity:.75;cursor:default;}
 .card.soon:hover{transform:none;border-color:rgba(255,0,68,.3);box-shadow:5px 5px 0 rgba(0,0,0,.6);}
 .card.soon .ph{background:repeating-linear-gradient(45deg,#130b1c 0 10px,#0d0714 10px 20px);}
-.soonic{font-size:44px;opacity:.45;filter:grayscale(.5);}
+.soonic{font-size:44px;opacity:.72;
+  filter:sepia(1) saturate(3) hue-rotate(180deg) brightness(1.05);}
+.card.soon .mt b .emb{filter:sepia(1) saturate(3) hue-rotate(180deg) brightness(1.05);}
 .soonbadge{position:absolute;top:9px;right:9px;z-index:2;font-family:var(--px);font-size:7px;
   letter-spacing:.1em;color:#0a050c;background:var(--amber);padding:5px 8px;}
 
@@ -1632,6 +1634,11 @@ en:{
     "<em>Platform policy</em> \u2014 your design has to comply with the rules of the site you are ordering it for.",
     "<em>Technical</em> \u2014 some platforms strip scripts or block certain properties, so we work within what their CSS allows.",
     "Beyond that, bring me anything. I love making interesting things."]},
+  {q:'"Why that name?"',v:9,a:[
+    "<em>Del</em> means heart. <em>Var</em> is a suffix for owning or carrying something.",
+    "So Delvari is roughly the one who holds a heart. Why do you think this whole profile is covered in them?",
+    "Honestly, it was the name of an OC of mine a very long time ago. I do not use it as my handle anywhere else.",
+    "But I had already made several designs under it before the platform added name changing, so... it stayed."]},
   {q:'"...Are you real?"',v:14,a:["That is a rude question to ask a character on her own page.",
     "<em>Ask again after you commission something.</em>"]}],
  note:'I build custom <b>CSS profile designs</b>, the kind of page people stop scrolling for. Pick how much creative control you want to hand over. Every package ships as a ready-to-paste stylesheet with support if an update breaks something.',
@@ -1671,7 +1678,7 @@ en:{
   ['NECTAR LOUNGE','commission for @HoneydEw','med',
    'Smooth jazz, rugged men: come and savor the sweetest, most intoxicating nectar from Honeydew.','\uD83C\uDF6F'],
   ['BLUE CTHULHU','in progress','lux',
-   'Still under construction. Something deep, cold and blue is being assembled here.','\uD83D\uDC19']
+   'Still under construction. Something deep, cold and blue is being assembled here.','\uD83C\uDF38']
  ],
  pkg:{base:'BASE',med:'MEDIUM',lux:'LUXURY',etc:'ELEMENTS'},
  doorgroups:[
@@ -1774,6 +1781,11 @@ ru:{
     "<em>Политика платформы</em> — дизайн должен соответствовать правилам сайта, для которого вы его заказываете.",
     "<em>Технические</em> — где-то вырезают скрипты, где-то блокируют часть свойств, работаем в рамках того, что позволяет их CSS.",
     "В остальном несите что угодно. Я обожаю делать интересные штуки."]},
+  {q:'«Почему такое имя?»',v:9,a:[
+    "<em>Del</em> — «сердце». <em>Var</em> — суффикс, означающий владение чем-то или несение чего-то.",
+    "То есть Делвари — «владеющая сердцем». Как думаете, почему у меня весь профиль в тематике сердечек?",
+    "На самом деле так когда-то звали мою OC, очень давно. Я не использую это как никнейм в соцсетях.",
+    "Но я успела сделать несколько дизайнов именно под этим именем, прежде чем на платформе добавили смену имени, так что... так оно и осталось."]},
   {q:'«...Ты настоящая?»',v:14,a:["Грубоватый вопрос для персонажа на её собственной странице.",
     "<em>Спросите ещё раз после заказа.</em>"]}],
  note:'Я делаю <b>кастомное CSS-оформление профилей</b>, такие страницы, на которых перестают скроллить. Выберите, сколько творческой свободы готовы отдать. Каждый пакет это готовый файл стилей плюс поддержка, если обновление что-то сломает.',
@@ -1813,7 +1825,7 @@ ru:{
   ['NECTAR LOUNGE','заказ для @HoneydEw','med',
    'Мягкий джаз, брутальные мужчины: приходите отведать самый сладкий и пьянящий нектар от Honeydew.','\uD83C\uDF6F'],
   ['ГОЛУБОЙ КТУЛХУ','в работе','lux',
-   'Пока в разработке. Здесь собирается нечто глубокое, холодное и синее.','\uD83D\uDC19']
+   'Пока в разработке. Здесь собирается нечто глубокое, холодное и синее.','\uD83C\uDF38']
  ],
  pkg:{base:'БАЗА',med:'МЕДИУМ',lux:'ЛЮКС',etc:'ЭЛЕМЕНТЫ'},
  doorgroups:[
@@ -2399,5 +2411,5 @@ $('#tmenu').addEventListener('click',e=>{
 
 })();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2c2ee3abf4fdbb0',t:'MTc4NjkwOTQzNA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2c30af74db9ec33',t:'MTc4NjkxMDYxMQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
