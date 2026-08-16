@@ -39,9 +39,10 @@
   --av:132px;        /* avatar width  = box height, so both are square-flush */
   --box:132px;       /* dialogue box height */
   --nt:31px;         /* name tab height */
+  --tools:40px;      /* tool row height + margin */
 }
 *,*::before,*::after{box-sizing:border-box;}
-html,body{height:100%;margin:0;}
+html,body{height:100%;margin:0;overflow-x:hidden;max-width:100%;}
 body{
   background:var(--ink);color:var(--pink);
   font-family:var(--tm);font-size:20px;
@@ -115,8 +116,7 @@ body.nofx #f-grain,body.nofx #f-scan,body.nofx #f-star{display:none;}
   border-left-color:var(--red);transform:translateX(6px);box-shadow:-3px 0 16px rgba(255,0,68,.4);}
 .t-btn:hover .lbl,.t-btn:focus-visible .lbl{color:#fff;}
 .t-btn:hover .cur,.t-btn:focus-visible .cur{opacity:1;}
-.t-boot{margin-top:16px;padding:9px 11px;font-size:16px;color:var(--lime);text-align:left;
-  min-height:36px;background:rgba(0,0,0,.5);border-left:2px solid var(--lime);}
+
 .t-lang{position:absolute;top:14px;right:14px;z-index:3;display:flex;}
 .t-lang button{padding:6px 12px;font-family:var(--px);font-size:8px;color:var(--mute);
   border:1px solid var(--red-dd);}
@@ -168,7 +168,7 @@ body.nofx #f-grain,body.nofx #f-scan,body.nofx #f-star{display:none;}
 @media (max-width:620px){.tray .it.ck{display:none;}}
 
 /* ═══════════ STAGE ═══════════ */
-.stage{flex:1 1 auto;min-height:0;position:relative;overflow:hidden;}
+.stage{flex:1 1 auto;min-height:0;position:relative;overflow:visible;}
 
 /* chapter — FIXED, never scrolls, soft gradient band */
 .chap{position:fixed;top:calc(var(--bar) + 16px);left:50%;transform:translateX(-50%);
@@ -193,16 +193,19 @@ body.nofx #f-grain,body.nofx #f-scan,body.nofx #f-star{display:none;}
 @media (max-width:900px){.sysinfo{display:none;}}
 
 .pane{position:absolute;inset:0;opacity:0;visibility:hidden;pointer-events:none;}
+#p-home{overflow:visible;}
 .pane.on{opacity:1;visibility:visible;pointer-events:auto;animation:pin .28s steps(3) both;}
 @keyframes pin{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
 
 /* ── HOME: sprite centered; top gap under the chapter band; feet go behind the box ── */
-.sprite{position:absolute;left:50%;bottom:0;translate:-50% 0;
-  top:auto;height:calc(100% - 104px);width:auto;max-width:34%;
-  object-fit:contain;object-position:bottom center;z-index:6;
+.stagefloor{position:absolute;left:0;right:0;bottom:0;top:104px;z-index:6;
+  display:flex;align-items:flex-end;justify-content:center;pointer-events:none;}
+.sprite{display:block;height:100%;width:auto;max-width:34%;
+  object-fit:contain;object-position:bottom center;
+  transform:translateY(56px);
   filter:drop-shadow(0 0 26px rgba(255,0,68,.5)) drop-shadow(0 0 70px rgba(255,0,68,.22));
   animation:breathe 4s steps(4) infinite;}
-@keyframes breathe{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,-6px)}}
+@keyframes breathe{0%,100%{transform:translateY(56px)}50%{transform:translateY(50px)}}
 .sprite.talk{filter:drop-shadow(0 0 40px rgba(255,0,68,.85)) drop-shadow(0 0 90px rgba(255,0,68,.3));}
 
 /* choices — left, simple bars with red left edge (as in reference) */
@@ -399,8 +402,7 @@ body.nofx #f-grain,body.nofx #f-scan,body.nofx #f-star{display:none;}
   padding:0 0 var(--g);}
 
 /* heart strip — full viewport width, centered on the box, behind it */
-#garland{position:absolute;left:50%;transform:translateX(-50%);width:100vw;height:26px;
-  top:calc(var(--nt) + var(--box)/2 - 13px);z-index:1;pointer-events:none;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='34' height='22' viewBox='0 0 17 11'><g shape-rendering='crispEdges'><rect x='1' y='0' width='4' height='1' fill='%23520014'/><rect x='7' y='0' width='4' height='1' fill='%23520014'/><rect x='0' y='1' width='1' height='4' fill='%23520014'/><rect x='5' y='1' width='2' height='1' fill='%23520014'/><rect x='11' y='1' width='1' height='4' fill='%23520014'/><rect x='1' y='5' width='1' height='1' fill='%23520014'/><rect x='10' y='5' width='1' height='1' fill='%23520014'/><rect x='2' y='6' width='1' height='1' fill='%23520014'/><rect x='9' y='6' width='1' height='1' fill='%23520014'/><rect x='3' y='7' width='1' height='1' fill='%23520014'/><rect x='8' y='7' width='1' height='1' fill='%23520014'/><rect x='4' y='8' width='1' height='1' fill='%23520014'/><rect x='7' y='8' width='1' height='1' fill='%23520014'/><rect x='5' y='9' width='2' height='1' fill='%23520014'/><rect x='1' y='1' width='4' height='1' fill='%23ff0044'/><rect x='7' y='1' width='4' height='1' fill='%23ff0044'/><rect x='1' y='2' width='10' height='3' fill='%23ff0044'/><rect x='2' y='5' width='8' height='1' fill='%23ff0044'/><rect x='3' y='6' width='6' height='1' fill='%23ff0044'/><rect x='4' y='7' width='4' height='1' fill='%23ff0044'/><rect x='5' y='8' width='2' height='1' fill='%23ff0044'/><rect x='2' y='2' width='2' height='1' fill='%23ff7ba0'/><rect x='2' y='3' width='1' height='1' fill='%23ff7ba0'/></g></svg>") repeat-x left center;background-size:auto 100%;filter:drop-shadow(0 2px 0 rgba(0,0,0,.9)) drop-shadow(0 0 12px rgba(255,0,68,.65));}
+#garland{position:fixed;left:0;right:0;width:100%;height:26px;z-index:14;pointer-events:none;bottom:calc(var(--g) + var(--tools) + var(--box)/2 - 13px);background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='34' height='22' viewBox='0 0 17 11'><g shape-rendering='crispEdges'><rect x='1' y='0' width='4' height='1' fill='%23520014'/><rect x='7' y='0' width='4' height='1' fill='%23520014'/><rect x='0' y='1' width='1' height='4' fill='%23520014'/><rect x='5' y='1' width='2' height='1' fill='%23520014'/><rect x='11' y='1' width='1' height='4' fill='%23520014'/><rect x='1' y='5' width='1' height='1' fill='%23520014'/><rect x='10' y='5' width='1' height='1' fill='%23520014'/><rect x='2' y='6' width='1' height='1' fill='%23520014'/><rect x='9' y='6' width='1' height='1' fill='%23520014'/><rect x='3' y='7' width='1' height='1' fill='%23520014'/><rect x='8' y='7' width='1' height='1' fill='%23520014'/><rect x='4' y='8' width='1' height='1' fill='%23520014'/><rect x='7' y='8' width='1' height='1' fill='%23520014'/><rect x='5' y='9' width='2' height='1' fill='%23520014'/><rect x='1' y='1' width='4' height='1' fill='%23ff0044'/><rect x='7' y='1' width='4' height='1' fill='%23ff0044'/><rect x='1' y='2' width='10' height='3' fill='%23ff0044'/><rect x='2' y='5' width='8' height='1' fill='%23ff0044'/><rect x='3' y='6' width='6' height='1' fill='%23ff0044'/><rect x='4' y='7' width='4' height='1' fill='%23ff0044'/><rect x='5' y='8' width='2' height='1' fill='%23ff0044'/><rect x='2' y='2' width='2' height='1' fill='%23ff7ba0'/><rect x='2' y='3' width='1' height='1' fill='%23ff7ba0'/></g></svg>") repeat-x left center;background-size:auto 100%;filter:drop-shadow(0 2px 0 rgba(0,0,0,.9)) drop-shadow(0 0 12px rgba(255,0,68,.65));}
 
 /* name tab — flush on the box top edge, above the avatar's right side */
 .nametab{position:relative;z-index:6;display:inline-block;
@@ -529,17 +531,33 @@ body.nofx #f-grain,body.nofx #f-scan,body.nofx #f-star{display:none;}
 .slot .m em{display:block;font-style:normal;font-size:15px;color:var(--mute);margin-top:6px;}
 .slot.nil .m{color:var(--mute);}
 
-.ways{display:flex;flex-direction:column;gap:12px;}
-.way{padding:17px;background:rgba(255,0,68,.04);border:1px solid rgba(255,0,68,.22);}
-.way.best{border-color:var(--lime);}
-.way .t{display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin-bottom:11px;}
-.way .t b{font-family:var(--px);font-size:10px;color:#fff;letter-spacing:.05em;}
-.badge{font-family:var(--px);font-size:7px;padding:5px 8px;letter-spacing:.06em;color:#0a050c;background:var(--lime);}
-.badge.warn{background:var(--amber);}
-.way p{margin:0 0 13px;font-size:18px;line-height:1.42;color:var(--pink-d);}
-.way ol{margin:0 0 14px;padding-left:22px;font-size:17px;line-height:1.5;color:var(--mute);}
-.warnb{padding:13px 15px;font-size:17px;line-height:1.4;color:var(--amber);
-  background:rgba(255,182,72,.07);border-left:3px solid var(--amber);}
+.tiplead{margin:0 0 20px;font-size:19px;line-height:1.45;color:var(--pink-d);text-align:center;
+  max-width:60ch;margin-left:auto;margin-right:auto;}
+.tipgrid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));align-items:stretch;}
+.tcard{display:flex;flex-direction:column;padding:20px;position:relative;
+  background:linear-gradient(180deg,rgba(38,8,24,.92),rgba(14,4,12,.96));
+  border:1px solid rgba(255,0,68,.3);box-shadow:5px 5px 0 rgba(0,0,0,.55);}
+.tcard.local{border-color:rgba(126,231,135,.35);}
+.tcard-h{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:13px;}
+.tico{font-size:20px;line-height:1;}
+.tcard-h b{font-family:var(--px);font-size:11px;color:#fff;letter-spacing:.05em;}
+.tbadge{margin-left:auto;font-family:var(--px);font-size:7px;padding:5px 8px;letter-spacing:.06em;
+  color:#12000a;background:var(--amber);}
+.tbadge.ok{background:var(--lime);}
+.tcard p{margin:0 0 16px;font-size:18px;line-height:1.44;color:var(--pink-d);flex:1;}
+.tfee{margin-bottom:16px;padding:9px 12px;font-family:var(--px);font-size:8px;letter-spacing:.08em;
+  color:var(--amber);text-align:center;background:rgba(255,182,72,.08);
+  border:1px dashed rgba(255,182,72,.4);}
+.tfee.ok{color:var(--lime);background:rgba(126,231,135,.07);border-color:rgba(126,231,135,.4);}
+.tbtn{display:block;text-align:center;font-family:var(--px);font-size:9px;letter-spacing:.06em;color:#fff;
+  padding:14px;background:var(--red-d);border:1px solid var(--red);box-shadow:0 4px 0 var(--red-x);}
+.tbtn:hover{background:var(--red);transform:translateY(-2px);box-shadow:0 6px 0 var(--red-x);}
+.tbtn:active{transform:translateY(2px);box-shadow:0 2px 0 var(--red-x);}
+.tbtn.alt{background:#1d5a2a;border-color:var(--lime);box-shadow:0 4px 0 #0b2a13;}
+.tbtn.alt:hover{background:#2c7d3c;box-shadow:0 6px 0 #0b2a13;}
+.tbtn:focus-visible{outline:2px solid var(--cyan);outline-offset:2px;}
+.tipnote{margin:20px auto 0;max-width:64ch;text-align:center;font-size:17px;line-height:1.45;
+  color:var(--mute);font-style:italic;}
 
 #toast{position:fixed;left:50%;bottom:22px;translate:-50% 0;z-index:500;pointer-events:none;
   font-family:var(--px);font-size:8px;color:#fff;padding:13px 20px;background:rgba(10,2,8,.97);
@@ -548,10 +566,11 @@ body.nofx #f-grain,body.nofx #f-scan,body.nofx #f-star{display:none;}
 #toast.show{opacity:1;transform:none;}
 
 /* ═══════════ RESPONSIVE ═══════════ */
-@media (max-width:1100px){.sprite{max-width:42%;}}
+@media (max-width:1100px){.sprite{max-width:40%;}}
 @media (max-width:820px){
   :root{--av:104px;--box:104px;}
-  .sprite{max-width:56%;height:calc(100% - 118px);opacity:.5;}
+  .stagefloor{top:118px;}
+  .sprite{max-width:54%;opacity:.5;}
   .nametab{margin-left:calc(var(--av) + 14px);}
 }
 @media (max-width:600px){
@@ -596,7 +615,6 @@ body.nofx #f-grain,body.nofx #f-scan,body.nofx #f-star{display:none;}
       <button class="t-btn" data-go="gallery"><span class="cur">&#9658;</span><span class="lbl" data-i18n="t_gal">GALLERY</span><span class="sub" data-i18n="t_gal_s">my works</span></button>
       <button class="t-btn" data-go="pricing"><span class="cur">&#9658;</span><span class="lbl" data-i18n="t_com">COMMISSIONS</span><span class="sub" data-i18n="t_com_s">order</span></button>
     </div>
-    <div class="t-boot" id="tboot"></div>
   </div>
 </div>
 
@@ -629,7 +647,7 @@ body.nofx #f-grain,body.nofx #f-scan,body.nofx #f-star{display:none;}
     </div>
 
     <section class="pane on" id="p-home">
-      <img class="sprite" id="sprite" src="assets/sprite.png" alt="Delvari" />
+      <div class="stagefloor"><img class="sprite" id="sprite" src="assets/sprite.png" alt="Delvari" /></div>
       <div class="choices" id="choices"></div>
     </section>
 
@@ -643,7 +661,7 @@ body.nofx #f-grain,body.nofx #f-scan,body.nofx #f-star{display:none;}
 
     <section class="pane" id="p-pricing">
       <div class="sheet">
-        <div class="hd"><h2 data-i18n="p_h">COMMISSIONS</h2><p data-i18n="p_s">PROFILE CSS DESIGN</p><div class="rl"></div></div>
+        <div class="hd"><h2 data-i18n="p_h">COMMISSIONS</h2><div class="rl"></div></div>
         <p class="note" id="p-note"></p>
         <div class="tiers" id="tiers"></div>
         <div class="subh"><b data-i18n="p_flow">HOW IT WORKS</b><i></i></div>
@@ -674,10 +692,11 @@ body.nofx #f-grain,body.nofx #f-scan,body.nofx #f-star{display:none;}
     </section>
   </div>
 
-  <!-- ═══ DIALOGUE — reference layout ═══ -->
+  <div id="garland"></div>
+
+  <!-- ═══ DIALOGUE ═══ -->
   <div class="dwrap" id="dwrap">
-    <div id="garland"></div>
-    <div class="nametab"><span>@delvari</span></div>
+    <div class="nametab"><span>Delvari</span></div>
     <div class="drow">
       <div class="avatar"><img src="assets/avatar.jpg" alt="" /></div>
       <div class="dbox" id="dbox" role="button" tabindex="0">
@@ -739,20 +758,32 @@ body.nofx #f-grain,body.nofx #f-scan,body.nofx #f-star{display:none;}
 
 <div class="modal" id="m-tip" role="dialog" aria-modal="true">
   <div class="mh"><h4 data-i18n="tip_h">SUPPORT THE DESIGNER</h4><button class="xb" data-x data-i18n="close">CLOSE</button></div>
-  <div class="mb"><div class="ways">
-    <div class="way best">
-      <div class="t"><b data-i18n="tip_w1">BOOSTY</b><span class="badge" data-i18n="tip_any">ANY CARD</span></div>
-      <p data-i18n="tip_w1p"></p>
-      <ol id="tiphow"></ol>
-      <a class="buy" id="tiplink" style="display:inline-block;width:auto;padding:12px 20px" target="_blank" rel="noopener noreferrer" data-i18n="tip_open">OPEN BOOSTY</a>
+  <div class="mb">
+    <p class="tiplead" data-i18n="tip_p"></p>
+    <div class="tipgrid">
+      <div class="tcard intl">
+        <div class="tcard-h">
+          <span class="tico">&#127758;</span>
+          <b data-i18n="tip_w1">BOOSTY</b>
+          <span class="tbadge" data-i18n="tip_any">INTERNATIONAL</span>
+        </div>
+        <p data-i18n="tip_w1p"></p>
+        <div class="tfee"><span data-i18n="tip_fee">+11% FEE</span></div>
+        <a class="tbtn" id="tiplink" target="_blank" rel="noopener noreferrer" data-i18n="tip_open">OPEN BOOSTY</a>
+      </div>
+      <div class="tcard local">
+        <div class="tcard-h">
+          <span class="tico">&#128179;</span>
+          <b data-i18n="tip_w2">DIRECT TRANSFER</b>
+          <span class="tbadge ok" data-i18n="tip_cis">CIS</span>
+        </div>
+        <p data-i18n="tip_w2p"></p>
+        <div class="tfee ok"><span data-i18n="tip_fee2">NO FEE</span></div>
+        <a class="tbtn alt" id="tipdm" target="_blank" rel="noopener noreferrer" data-i18n="tip_dm">ASK ON DISCORD</a>
+      </div>
     </div>
-    <div class="way">
-      <div class="t"><b data-i18n="tip_w2">DIRECT TRANSFER</b><span class="badge warn" data-i18n="tip_cis">CIS ONLY</span></div>
-      <p data-i18n="tip_w2p"></p>
-      <a class="buy" id="tipdm" style="display:inline-block;width:auto;padding:12px 20px" target="_blank" rel="noopener noreferrer" data-i18n="tip_dm">ASK ON DISCORD</a>
-    </div>
-    <div class="warnb" data-i18n="tip_warn"></div>
-  </div></div>
+    <p class="tipnote" data-i18n="tip_note"></p>
+  </div>
 </div>
 
 <div id="toast" role="status" aria-live="polite"></div>
@@ -790,14 +821,13 @@ en:{
  lines_w:'lines',all:'ALL',
  tip_h:'SUPPORT THE DESIGNER',tip_b:'SEND A TIP',
  tip_p:'Not payment for work, a gift, if something here made your day stranger. Always optional.',
- tip_w1:'BOOSTY',tip_any:'ANY CARD',
- tip_w1p:'My Boosty page. You enter your own card there, my details stay private, and there is nothing to copy or mistype.',
- tip_how:['Press the button. Boosty opens in a new tab.','Choose any amount, or a subscription.','Pay with your card. That is all.'],
+ tip_w1:'BOOSTY',tip_any:'INTERNATIONAL',tip_fee:'+11% FEE',
+ tip_w1p:'For supporters outside the CIS. Boosty accepts international cards, but takes roughly 11% on top, so send a little extra if you want a round number to land.',
  tip_open:'OPEN BOOSTY',
- tip_w2:'DIRECT TRANSFER',tip_cis:'CIS ONLY',
- tip_w2p:'Prefer a plain bank transfer? Message me and I will send the details personally.',
+ tip_w2:'DIRECT TRANSFER',tip_cis:'CIS',tip_fee2:'NO FEE',
+ tip_w2p:'If your bank is in Russia or the CIS, a plain card transfer costs nothing. Message me on Discord and I will send the details personally.',
  tip_dm:'ASK ON DISCORD',
- tip_warn:'Card-to-card transfers only work inside Russia and the CIS. Everywhere else, use Boosty above.',
+ tip_note:'Either way, this is a gift and never an invoice. If you would rather support me by ordering something, that works too.',
  toast_copy:'COPIED',toast_saved:'SAVED',toast_loaded:'LOADED',toast_empty:'SLOT EMPTY',
  toast_auto_on:'AUTO ON',toast_auto_off:'AUTO OFF',toast_wiped:'ERASED',toast_cleared:'CLEARED',
  toast_nosave:'NO SAVE FOUND',toast_open:'OPENING',toast_filter:'FILTER',
@@ -842,8 +872,11 @@ en:{
     "Strange ideas take longer. Strange ideas are also worth it."]},
   {q:'"What if the platform updates?"',v:7,a:["Then something breaks. It always eventually does.",
     "Every package includes support for exactly that. Message me and I will patch it."]},
-  {q:'"Any limits?"',v:4,a:["No real people, no minors, nothing against platform rules. Short list, non-negotiable.",
-    "Everything else is open. I have a high tolerance for the unusual."]},
+  {q:'"Any limits?"',v:4,a:[
+    "Only two kinds, and neither is about taste.",
+    "<em>Platform policy</em> — your design has to comply with the rules of the site you are ordering it for.",
+    "<em>Technical</em> — some platforms strip scripts or block certain properties, so we work within what their CSS allows.",
+    "Beyond that, bring me anything. I have a very high tolerance for the unusual."]},
   {q:'"Why Lovely Hell?"',v:9,a:["Because pretty things should have teeth.",
     "And because a basement is only frightening until you decorate it."]},
   {q:'"...Are you real?"',v:14,a:["That is a rude question to ask a character on her own page.",
@@ -903,14 +936,13 @@ ru:{
  lines_w:'реплик',all:'ВСЕ',
  tip_h:'ПОДДЕРЖАТЬ ДИЗАЙНЕРА',tip_b:'ЗАДОНАТИТЬ',
  tip_p:'Это не оплата работы, а подарок, если что-то здесь сделало ваш день чуть страннее. Всегда по желанию.',
- tip_w1:'BOOSTY',tip_any:'ЛЮБАЯ КАРТА',
- tip_w1p:'Моя страница на Boosty. Вы вводите там свою карту, мои реквизиты остаются скрыты, нечего копировать и негде ошибиться.',
- tip_how:['Нажмите кнопку. Boosty откроется в новой вкладке.','Выберите любую сумму или подписку.','Оплатите своей картой. Это всё.'],
+ tip_w1:'BOOSTY',tip_any:'ИЗ-ЗА РУБЕЖА',tip_fee:'КОМИССИЯ 11%',
+ tip_w1p:'Для тех, кто не в СНГ. Boosty принимает международные карты, но берёт сверху около 11%, так что добавьте немного, если хотите, чтобы дошла ровная сумма.',
  tip_open:'ОТКРЫТЬ BOOSTY',
- tip_w2:'ПЕРЕВОД НАПРЯМУЮ',tip_cis:'ТОЛЬКО СНГ',
- tip_w2p:'Хотите обычный банковский перевод? Напишите мне, и я пришлю реквизиты лично.',
+ tip_w2:'ПЕРЕВОД НАПРЯМУЮ',tip_cis:'СНГ',tip_fee2:'БЕЗ КОМИССИИ',
+ tip_w2p:'Если ваш банк в России или СНГ, обычный перевод по карте не стоит ничего. Напишите мне в Discord, и я пришлю реквизиты лично.',
  tip_dm:'СПРОСИТЬ В DISCORD',
- tip_warn:'Переводы с карты на карту работают только внутри России и СНГ. Из других стран используйте Boosty выше.',
+ tip_note:'В любом случае это подарок, а не счёт. Если хотите поддержать заказом — это тоже работает.',
  toast_copy:'СКОПИРОВАНО',toast_saved:'СОХРАНЕНО',toast_loaded:'ЗАГРУЖЕНО',toast_empty:'СЛОТ ПУСТ',
  toast_auto_on:'АВТО ВКЛ',toast_auto_off:'АВТО ВЫКЛ',toast_wiped:'СТЁРТО',toast_cleared:'ОЧИЩЕНО',
  toast_nosave:'СОХРАНЕНИЙ НЕТ',toast_open:'ОТКРЫВАЮ',toast_filter:'ФИЛЬТР',
@@ -955,8 +987,11 @@ ru:{
     "Странные идеи дольше. Странные идеи того стоят."]},
   {q:'«А если платформа обновится?»',v:7,a:["Тогда что-нибудь сломается. Рано или поздно всегда ломается.",
     "В каждый пакет входит поддержка именно на этот случай. Напишите, починю."]},
-  {q:'«Есть ограничения?»',v:4,a:["Никаких реальных людей, никаких несовершеннолетних, ничего против правил площадки.",
-    "Всё остальное открыто. У меня высокая терпимость к необычному."]},
+  {q:'«Есть ограничения?»',v:4,a:[
+    "Всего два вида, и оба не про вкус.",
+    "<em>Политика платформы</em> — дизайн должен соответствовать правилам сайта, для которого вы его заказываете.",
+    "<em>Технические</em> — где-то вырезают скрипты, где-то блокируют часть свойств, работаем в рамках того, что позволяет их CSS.",
+    "В остальном несите что угодно. У меня очень высокая терпимость к необычному."]},
   {q:'«Почему Lovely Hell?»',v:9,a:["Потому что у красивых вещей должны быть зубы.",
     "И потому что подвал страшен ровно до того, как его обставишь."]},
   {q:'«...Ты настоящая?»',v:14,a:["Грубоватый вопрос для персонажа на её собственной странице.",
@@ -1139,7 +1174,6 @@ function build(){
   });
   $('#facts').innerHTML=L.facts.map((f,i)=>
     '<div class="fct"><b>'+f[0]+'</b><span>'+(i===2?'<i class="dot"></i>':'')+f[1]+'</span></div>').join('');
-  $('#tiphow').innerHTML=L.tip_how.map(s=>'<li>'+s+'</li>').join('');
   $('#tiplink').href=U.boosty;$('#tipdm').href=U.discord;
   $('#slot-h').textContent=slotMode==='save'?L.save_h:L.load_h;
   chapter();hud();
@@ -1262,7 +1296,7 @@ $('#opentip').addEventListener('click',()=>CMD.tip());
 
 function paintLog(){const b=$('#logb');
   b.innerHTML=!log.length?'<div class="nada">'+L.empty_log+'</div>'
-    :log.slice().reverse().map(s=>'<div class="ll"><div class="w2">@delvari</div><div class="s">'+s+'</div></div>').join('');}
+    :log.slice().reverse().map(s=>'<div class="ll"><div class="w2">Delvari</div><div class="s">'+s+'</div></div>').join('');}
 $('#logclr').addEventListener('click',()=>{log=[];paintLog();toast(L.toast_cleared);});
 
 function paintCfg(){$$('.seg[data-cfg]').forEach(sg=>{const v=String(S.cfg[sg.dataset.cfg]);
@@ -1344,15 +1378,7 @@ document.addEventListener('keydown',e=>{
 });
 
 /* ══════ BOOT ══════ */
-function boot(){
-  const el=$('#tboot');let i=0;el.innerHTML='';
-  (function n(){
-    if(i>=L.boot.length){$('#tmenu').classList.add('in');return;}
-    const d=mk('div',null,'&gt; '+L.boot[i++]);
-    el.appendChild(d);while(el.children.length>2)el.removeChild(el.firstChild);
-    setTimeout(n,290+Math.random()*180);
-  })();
-}
+function boot(){ $('#tmenu').classList.add('in'); }
 function enter(v){
   ready=true;$('#title').classList.add('gone');$('#app').classList.add('live');
   go(v,true);say(L.idle[0]);
@@ -1383,5 +1409,5 @@ $('#tmenu').addEventListener('click',e=>{
 
 })();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2bc32c8fee4f11a',t:'MTc4NjgzODg0MQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2bc683cdd80ec31',t:'MTc4Njg0MTAzMQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
