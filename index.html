@@ -349,20 +349,20 @@ body.playing .chap{display:block;}
 
 .cb-ex{display:grid;gap:12px;grid-template-columns:1fr 1fr;margin:0 0 20px;}
 @media (max-width:720px){.cb-ex{grid-template-columns:1fr;}}
-.cb-ex .ex{padding:14px 15px;border:1px solid;}
+.cb-ex .ex{display:flex;flex-direction:column;padding:14px 15px;border:1px solid;}
 .cb-ex .ex b{display:block;font-family:var(--px);font-size:7.5px;letter-spacing:.08em;margin-bottom:11px;}
 .cb-ex .good{background:rgba(111,217,138,.07);border-color:rgba(111,217,138,.32);}
 .cb-ex .good b{color:#6fd98a;}
 .cb-ex .bad{background:rgba(240,120,140,.07);border-color:rgba(240,120,140,.32);}
 .cb-ex .bad b{color:#f0788c;}
-.cb-ex pre{margin:0;font-family:var(--tm);font-size:17.5px;line-height:1.58;color:#e9e2ea;
+.cb-ex pre{margin:0;flex:1;font-family:var(--tm);font-size:17.5px;line-height:1.58;color:#e9e2ea;
   white-space:pre-wrap;word-break:break-word;}
-.cb-ex ul{list-style:none;margin:0;padding:0;}
+.cb-ex ul{list-style:none;margin:0;padding:0;flex:1;}
 .cb-ex ul li{font-family:var(--tm);font-size:17.5px;line-height:1.6;color:#e9e2ea;}
 .cb-ex ul.dot li{position:relative;padding-left:18px;}
 .cb-ex ul.dot li::before{content:'';position:absolute;left:2px;top:10px;width:5px;height:5px;
   background:#f0788c;}
-.cb-ex .tok{display:block;margin-top:12px;padding-top:10px;text-align:center;
+.cb-ex .tok{display:block;margin-top:14px;padding-top:11px;text-align:center;
   border-top:1px dashed rgba(255,255,255,.16);
   font-family:var(--px);font-size:7.5px;letter-spacing:.06em;color:#9c93a0;}
 
@@ -468,14 +468,14 @@ body.playing .chap{display:block;}
 .card{position:relative;text-align:left;padding:0;overflow:hidden;background:rgba(18,6,14,.94);
   border:1px solid rgba(255,0,68,.3);box-shadow:5px 5px 0 rgba(0,0,0,.6);}
 .card.hide{display:none;}
-.card .ph{position:relative;aspect-ratio:4/3;overflow:hidden;background:#08040c;}
-.card .ph img{width:100%;height:100%;object-fit:cover;image-rendering:auto;
-  filter:saturate(.7) brightness(.66);transition:filter .3s,transform .4s;}
+.card .ph{position:relative;aspect-ratio:16/10;overflow:hidden;background:#08040c;}
+.card .ph img{width:100%;height:100%;object-fit:cover;object-position:top center;image-rendering:auto;
+  filter:saturate(.82) brightness(.8);transition:filter .3s,transform .4s;}
 .card .ph::after{content:'';position:absolute;inset:0;
   background:linear-gradient(180deg,transparent 55%,rgba(13,7,16,.95));}
 .card:hover{border-color:var(--red);transform:translate(-3px,-3px);
   box-shadow:8px 8px 0 rgba(0,0,0,.7),0 0 26px rgba(255,0,68,.3);}
-.card:hover .ph img{filter:saturate(1.05) brightness(.94);transform:scale(1.05);}
+.card:hover .ph img{filter:saturate(1.05) brightness(1);transform:scale(1.05);}
 .card:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;}
 .card .tg{position:absolute;top:9px;left:9px;z-index:2;}
 .pill{display:inline-block;font-family:var(--px);font-size:7px;padding:5px 7px;letter-spacing:.06em;
@@ -489,6 +489,12 @@ body.playing .chap{display:block;}
 .card .mt{padding:12px 14px 14px;}
 .card .mt b{display:block;font-family:var(--px);font-size:9px;color:#fff;letter-spacing:.03em;
   line-height:1.55;margin-bottom:7px;}
+.card .mt b .emb{font-style:normal;font-size:12px;}
+.lbpost{display:inline-block;font-family:var(--px);font-size:8px;letter-spacing:.08em;color:#fff;
+  padding:10px 16px;background:#4b338f;border:1px solid #a98cff;box-shadow:0 3px 0 #241a52;}
+.lbpost:hover{background:#6244bd;}
+.lbpost:active{transform:translateY(2px);box-shadow:0 1px 0 #241a52;}
+.lbpost:focus-visible{outline:2px solid var(--cyan);outline-offset:2px;}
 .card .mt span{font-size:16px;color:var(--red-2);letter-spacing:.1em;}
 .card .go{display:block;margin-top:10px;font-family:var(--px);font-size:7px;color:var(--mute);letter-spacing:.08em;}
 .card:hover .go{color:var(--red);}
@@ -1052,7 +1058,7 @@ body.playing .chap{display:block;}
 
     <section class="pane" id="p-codex">
       <div class="sheet">
-        <div class="hd"><h2 data-i18n="cod_h">CODEX</h2><p data-i18n="cod_s">SNIPPETS &amp; GUIDES</p><div class="rl"></div></div>
+        <div class="hd"><h2 data-i18n="cod_h">CODEX</h2><div class="rl"></div></div>
         <div class="cdxlist" id="cdxlist"></div>
       </div>
     </section>
@@ -1121,7 +1127,7 @@ body.playing .chap{display:block;}
     <div class="lbf"><img id="lbimg" alt="" /></div>
     <button class="arw" id="lbn">&#9658;</button>
   </div>
-  <div class="lbb"><div id="lbnum"></div><div id="lbcap"></div><div id="lbth"></div></div>
+  <div class="lbb"><div id="lbnum"></div><div id="lbcap"></div><a class="lbpost" id="lbpost" target="_blank" rel="noopener noreferrer"></a><div id="lbth"></div></div>
 </div>
 
 <div class="modal" id="m-log" role="dialog" aria-modal="true">
@@ -1530,7 +1536,7 @@ en:{
  t_start:'ENTER',t_start_s:'chapter one',t_cont:'CONTINUE',t_cont_s:'last save',
  t_gal:'GALLERY',t_gal_s:'my works',t_com:'COMMISSIONS',t_com_s:'order',
  nav_home:'HOME',nav_gal:'GALLERY',nav_cod:'CODEX',nav_pri:'PRICING',nav_con:'CONTACT',
- cod_h:'CODEX',cod_s:'SNIPPETS &amp; GUIDES',cod_open:'READ',cod_copy:'COPY CODE',
+ cod_h:'CODEX',g_post:'READ ON BOOSTY \u2197',cod_open:'READ',cod_copy:'COPY CODE',
  cod_copied:'CODE COPIED',cod_top:'TOP',cod_good:'CORRECT',cod_bad:'REDUNDANT',
  cod_kind_css:'CSS SNIPPET',cod_kind_guide:'GUIDE',cod_toc:'CONTENTS',
  v_read:'READ',skip:'SKIP',next:'NEXT',more:'CONTINUE',
@@ -1643,13 +1649,17 @@ en:{
        ['STEP III','Payment up front. Then I disappear into the code.'],
        ['STEP IV','You get the stylesheet, a short guide, and your revisions.']],
  works:[
-  ['THE VELVET WOUND','GOTHIC ROMANCE','lux','A profile built around a single rose and a great deal of restraint.'],
-  ['STATIC SAINT','ANALOG HORROR','lux','CRT distortion, tracking errors, a saint who does not want to be watched.'],
-  ['HOLLOW LULLABY','PSYCHOLOGICAL','med','A corridor that grows narrower the longer you scroll.'],
-  ['CRIMSON PROTOCOL','SCI-FI DREAD','lux','Cathedral architecture wired into a server rack.'],
-  ['GARDEN OF TEETH','DARK FANTASY','base','Every flower opens. Not all of them should.'],
-  ['LAST TRANSMISSION','FOUND FOOTAGE','med','Signal fading over a red sky. Timestamp still running.'],
-  ['SWEET DECAY','SLOW BURN','etc','Two chairs, one candle, and a conversation that never quite ends.']],
+  ['ARCHIVE','commission for @Wewwa','lux',
+   'Russkaya toska, prefab apartment blocks, neon lights... and that very same video rental place. You watch a tape from there, and later it feels like a dream, or like you made it up, because no one else remembers it existed. But it left a mark on your subconscious. Thank you, my dear, for being a trailblazer and trusting me to turn your profile into something special.','\uD83D\uDCFC'],
+  ['BUNKER 707','commission for @KusPus','lux',
+   'A zombie apocalypse, hidden cameras watching your loved ones, maps tracking infection zones, and a bunker accessible only by ID card. A place where you have to keep a field journal just to maintain your grip on reality and track what is left of the world. Another Lady of Spades who knows exactly what she wants.','\u2623'],
+  ['CUPID','commission for @Heatri','base',
+   'Soft pinks, paper hearts and love letters. A gentle corner for someone who wanted warmth instead of teeth.','\uD83C\uDFF9'],
+  ['MY DIARY','commission for @lililuv_','med',
+   'A dreamy website, secret diaries where you write about your crushes, a hidden corner for a true dreamer.','\uD83C\uDF80'],
+  ['NECTAR LOUNGE','commission for @HoneydEw','med',
+   'Smooth jazz, rugged men: come and savor the sweetest, most intoxicating nectar from Honeydew.','\uD83C\uDF6F']
+ ],
  pkg:{base:'BASE',med:'MEDIUM',lux:'LUXURY',etc:'ELEMENTS'},
  doorgroups:[
    ['DIRECT CONTACT',[['DISCORD','write to me directly'],['TETRATTO','ask me anonymously']]],
@@ -1663,7 +1673,7 @@ ru:{
  t_start:'ВОЙТИ',t_start_s:'глава первая',t_cont:'ПРОДОЛЖИТЬ',t_cont_s:'сохранение',
  t_gal:'ГАЛЕРЕЯ',t_gal_s:'мои работы',t_com:'ЗАКАЗАТЬ',t_com_s:'дизайн',
  nav_home:'ГЛАВНАЯ',nav_gal:'ГАЛЕРЕЯ',nav_cod:'КОДЕКС',nav_pri:'ЦЕНЫ',nav_con:'КОНТАКТЫ',
- cod_h:'КОДЕКС',cod_s:'СНИППЕТЫ И РУКОВОДСТВА',cod_open:'ЧИТАТЬ',cod_copy:'КОПИРОВАТЬ КОД',
+ cod_h:'КОДЕКС',g_post:'ЧИТАТЬ НА BOOSTY \u2197',cod_open:'ЧИТАТЬ',cod_copy:'КОПИРОВАТЬ КОД',
  cod_copied:'КОД СКОПИРОВАН',cod_top:'ВВЕРХ',cod_good:'ПРАВИЛЬНО',cod_bad:'ИЗБЫТОЧНО',
  cod_kind_css:'CSS-СНИППЕТ',cod_kind_guide:'РУКОВОДСТВО',cod_toc:'СОДЕРЖАНИЕ',
  v_read:'ЧТЕНО',skip:'ПРОПУСК',next:'ДАЛЬШЕ',more:'ДАЛЕЕ',
@@ -1775,13 +1785,17 @@ ru:{
        ['ШАГ III','Предоплата. Дальше я исчезаю в коде.'],
        ['ШАГ IV','Вы получаете файл стилей, инструкцию и правки.']],
  works:[
-  ['БАРХАТНАЯ РАНА','ГОТИЧЕСКИЙ РОМАНС','lux','Профиль вокруг одной розы и большого количества сдержанности.'],
-  ['СВЯТОЙ ПОМЕХ','АНАЛОГОВЫЙ ХОРРОР','lux','Искажения ЭЛТ, ошибки трекинга и святой, который не хочет, чтобы на него смотрели.'],
-  ['ПОЛАЯ КОЛЫБЕЛЬНАЯ','ПСИХОЛОГИЧЕСКИЙ','med','Коридор, который сужается тем сильнее, чем дольше вы скроллите.'],
-  ['БАГРОВЫЙ ПРОТОКОЛ','НАУЧНАЯ ЖУТЬ','lux','Архитектура собора, вросшая в серверную стойку.'],
-  ['САД ЗУБОВ','ТЁМНОЕ ФЭНТЕЗИ','base','Раскрывается каждый цветок. Не каждому стоило бы.'],
-  ['ПОСЛЕДНЯЯ ПЕРЕДАЧА','НАЙДЕННАЯ ПЛЁНКА','med','Сигнал гаснет под красным небом. Таймкод всё ещё идёт.'],
-  ['СЛАДКИЙ РАСПАД','МЕДЛЕННОЕ ГОРЕНИЕ','etc','Два кресла, одна свеча и разговор, который никак не кончится.']],
+  ['ARCHIVE','заказ для @Wewwa','lux',
+   'Русская тоска, панельки, неон... и тот самый видеопрокат. Смотришь оттуда кассету, а потом кажется, будто это был сон или ты его выдумал, потому что больше никто не помнит, что он существовал. Но след в подсознании он оставил. Спасибо, дорогая, что стала первопроходцем и доверила мне превратить свой профиль во что-то особенное.','\uD83D\uDCFC'],
+  ['BUNKER 707','заказ для @KusPus','lux',
+   'Зомби-апокалипсис, скрытые камеры, следящие за близкими, карты с зонами заражения и бункер, куда пускают только по пропуску. Место, где приходится вести полевой журнал, чтобы удержать связь с реальностью и отследить, что осталось от мира. Ещё одна пиковая дама, которая точно знает, чего хочет.','\u2623'],
+  ['CUPID','заказ для @Heatri','base',
+   'Мягкие розовые тона, бумажные сердца и любовные письма. Нежный уголок для той, кому хотелось тепла, а не зубов.','\uD83C\uDFF9'],
+  ['MY DIARY','заказ для @lililuv_','med',
+   'Мечтательный сайт, тайные дневники, где пишут о своих влюблённостях, укромный уголок для настоящего мечтателя.','\uD83C\uDF80'],
+  ['NECTAR LOUNGE','заказ для @HoneydEw','med',
+   'Мягкий джаз, брутальные мужчины: приходите отведать самый сладкий и пьянящий нектар от Honeydew.','\uD83C\uDF6F']
+ ],
  pkg:{base:'БАЗА',med:'МЕДИУМ',lux:'ЛЮКС',etc:'ЭЛЕМЕНТЫ'},
  doorgroups:[
    ['ПРЯМАЯ СВЯЗЬ',[['DISCORD','написать мне напрямую'],['TETRATTO','спросить анонимно']]],
@@ -1824,13 +1838,20 @@ function clk(){const d=new Date();
   $('#v-clock').textContent=String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');}
 clk();setInterval(clk,20000);
 
-const IMGS=[['assets/art-03.jpg','assets/art-07.jpg'],
-            ['assets/art-02.jpg','assets/art-06.jpg','assets/art-01.jpg'],
-            ['assets/art-01.jpg'],
-            ['assets/art-04.jpg','assets/art-02.jpg'],
-            ['assets/art-05.jpg'],
-            ['assets/art-06.jpg','assets/art-02.jpg'],
-            ['assets/art-07.jpg','assets/art-03.jpg']];
+const IMGS=[
+  ['assets/works/wewwa-02.jpg','assets/works/wewwa-01.jpg','assets/works/wewwa-04.jpg','assets/works/wewwa-03.jpg'],
+  ['assets/works/kuspus-05.jpg','assets/works/kuspus-08.jpg','assets/works/kuspus-03.jpg','assets/works/kuspus-04.jpg','assets/works/kuspus-09.jpg','assets/works/kuspus-07.jpg','assets/works/kuspus-06.jpg','assets/works/kuspus-02.jpg','assets/works/kuspus-01.jpg'],
+  ['assets/works/heatri-01.jpg','assets/works/heatri-02.jpg'],
+  ['assets/works/lilu-02.jpg','assets/works/lilu-01.jpg','assets/works/lilu-03.jpg'],
+  ['assets/works/honey-01.jpg','assets/works/honey-03.jpg','assets/works/honey-02.jpg']
+];
+const WORK_URL=[
+ 'https://boosty.to/delvari/posts/149030d2-1488-4647-86e4-05c7726cbdae',
+ 'https://boosty.to/delvari/posts/e01d1bd8-6673-4935-9bef-663d2a21180e',
+ '',
+ 'https://boosty.to/delvari/posts/230bbfbc-4767-4fe6-9783-e933c0d6c3eb',
+ 'https://boosty.to/delvari/posts/4740940c-964c-46f2-8d4d-18e670b99b09'
+];
 const DURL=[U.discord,U.janitor,U.saucepan,U.tetratto,U.boosty];
 const DSVG=[
  '<path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.3.5c1.7.4 3.2 1.1 4.6 2a15.7 15.7 0 0 0-13.4 0c1.4-.9 3-1.6 4.6-2L10.6 3a19.8 19.8 0 0 0-4.9 1.4C2.6 9 1.8 13.4 2.2 17.8a19.9 19.9 0 0 0 6 3l1.2-1.9c-.7-.2-1.3-.6-1.9-1l.4-.3a14.2 14.2 0 0 0 12.2 0l.4.3c-.6.4-1.2.8-1.9 1l1.2 1.9c2.2-.7 4.2-1.7 6-3 .5-5.1-.8-9.5-3.5-13.4zM8.9 15.3c-1.2 0-2.1-1.1-2.1-2.4s.9-2.4 2.1-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4zm6.2 0c-1.2 0-2.1-1.1-2.1-2.4s.9-2.4 2.1-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4z"/>',
@@ -2057,7 +2078,7 @@ function build(){
     c.innerHTML='<div class="ph"><span class="tg"><span class="pill '+w[2]+'">'+L.pkg[w[2]]+'</span></span>'+
       (im.length>1?'<span class="cnt">'+im.length+'</span>':'')+
       '<img src="'+im[0]+'" alt="'+w[0]+'" loading="lazy"></div>'+
-      '<div class="mt"><b>'+w[0]+'</b><span>'+w[1]+'</span>'+
+      '<div class="mt"><b>'+(w[4]?'<i class="emb">'+w[4]+'</i> ':'')+w[0]+'</b><span>'+w[1]+'</span>'+
       '<span class="go">&#9658; '+(S.cfg.lang==='ru'?'ОТКРЫТЬ':'OPEN')+'</span></div>';
     c.addEventListener('click',()=>openLb(i));
     g.appendChild(c);
@@ -2199,7 +2220,12 @@ const lb=$('#m-lb'),lbimg=$('#lbimg'),lbnum=$('#lbnum'),lbth=$('#lbth'),
 let cur={i:0,imgs:[]},back=null;
 function openLb(k){
   const w=L.works[k];cur={i:0,imgs:IMGS[k]};back=document.activeElement;
-  lbt.textContent=w[0];lbcap.textContent=w[3];lbth.innerHTML='';
+  lbt.textContent=(w[4]?w[4]+' ':'')+w[0]+'  \u00b7  '+w[1];
+  lbcap.textContent=w[3];
+  const lp=$('#lbpost'), url=WORK_URL[k];
+  if(url){lp.href=url;lp.textContent=L.g_post;lp.style.display='inline-block';}
+  else lp.style.display='none';
+  lbth.innerHTML='';
   cur.imgs.forEach((s,n)=>{const t=mk('button','th','<img src="'+s+'" alt="">');t.type='button';
     t.setAttribute('aria-label',String(n+1));t.addEventListener('click',()=>sl(n));lbth.appendChild(t);});
   lbth.style.display=cur.imgs.length>1?'flex':'none';
@@ -2358,5 +2384,5 @@ $('#tmenu').addEventListener('click',e=>{
 
 })();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2c1b0dad8af75c3',t:'MTc4Njg5NjQzNA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2c2159319d3ad45',t:'MTc4NjkwMDU1OQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
