@@ -603,8 +603,8 @@ body.playing .chap{display:block;}
 
 /* donate modal */
 #m-tip{align-items:center;justify-content:center;}
-#m-tip .mh{width:min(760px,100%);margin:0 auto;}
-#m-tip .mb{flex:0 0 auto;width:min(760px,100%);margin:0 auto;max-height:78vh;
+#m-tip .mh{width:min(940px,100%);margin:0 auto;}
+#m-tip .mb{flex:0 0 auto;width:min(940px,100%);margin:0 auto;max-height:78vh;
   box-shadow:0 0 0 3px #0a050c,0 0 40px rgba(255,0,68,.28),8px 8px 0 rgba(0,0,0,.7);}
 #m-tip .mb::before,#m-tip .mb::after{content:'';position:absolute;width:16px;height:16px;
   border:2px solid var(--red);pointer-events:none;}
@@ -612,8 +612,20 @@ body.playing .chap{display:block;}
 #m-tip .mb::after{bottom:6px;right:6px;border-left:none;border-top:none;}
 #m-tip .mb{position:relative;}
 .tiplead{margin:0 auto 18px;font-size:19px;line-height:1.45;color:var(--pink-d);text-align:center;max-width:52ch;}
-.tipgrid{display:grid;gap:14px;grid-template-columns:1fr 1fr;align-items:stretch;}
+.tipgrid{display:grid;gap:14px;grid-template-columns:repeat(3,1fr);align-items:stretch;}
+@media (max-width:860px){.tipgrid{grid-template-columns:1fr 1fr;}
+  .tcard.yoo{grid-column:1 / -1;}}
 @media (max-width:620px){.tipgrid{grid-template-columns:1fr;}}
+.tcard.yoo{border-color:#8b6df0;}
+.yoowrap{position:relative;padding:7px;background:#0a050c;
+  border:1px solid rgba(139,109,240,.45);
+  box-shadow:inset 0 0 18px rgba(139,109,240,.12);
+  display:flex;justify-content:center;align-items:center;min-height:64px;overflow:hidden;}
+.yoowrap::before,.yoowrap::after{content:'';position:absolute;width:9px;height:9px;
+  border:1px solid #8b6df0;pointer-events:none;z-index:2;}
+.yoowrap::before{top:3px;left:3px;border-right:none;border-bottom:none;}
+.yoowrap::after{bottom:3px;right:3px;border-left:none;border-top:none;}
+.yoowrap iframe{display:block;max-width:100%;border:0;}
 .tcard{display:flex;flex-direction:column;padding:16px;position:relative;
   background:linear-gradient(180deg,rgba(38,8,24,.92),rgba(14,4,12,.96));
   border:1px solid rgba(255,0,68,.3);box-shadow:5px 5px 0 rgba(0,0,0,.55);}
@@ -814,7 +826,7 @@ body.playing .chap{display:block;}
     <div class="panel ccard">
       <div class="ph"><span id="cc-t">CHARACTER FILE</span></div>
       <div class="pb">
-        <div class="ccpic"><img src="assets/avatar.jpg" alt="" /></div>
+        <div class="ccpic"><img src="assets/avatar-card.jpg" alt="" /></div>
         <div class="ccrows" id="cc-rows"></div>
         <div class="ccsec like"><b id="cc-like">LIKES</b><p id="cc-likes"></p></div>
         <div class="ccsec hate"><b id="cc-dis">DISLIKES</b>
@@ -982,6 +994,13 @@ body.playing .chap{display:block;}
         <div class="tfee"><span data-i18n="tip_fee">+11% FEE</span></div>
         <a class="tbtn" id="tiplink" target="_blank" rel="noopener noreferrer" data-i18n="tip_open">OPEN BOOSTY</a>
       </div>
+      <div class="tcard yoo">
+        <div class="tcard-h"><span class="tico">&#128176;</span><b data-i18n="tip_w3">YOOMONEY</b></div>
+        <p data-i18n="tip_w3p"></p>
+        <div class="tfee ok"><span data-i18n="tip_fee3">0% FEE</span></div>
+        <div class="yoowrap"><iframe id="yoo" src="" width="330" height="50"
+          frameborder="0" allowtransparency="true" scrolling="no" title="YooMoney"></iframe></div>
+      </div>
       <div class="tcard local">
         <div class="tcard-h"><span class="tico">&#128179;</span><b data-i18n="tip_w2">DIRECT TRANSFER</b></div>
         <p data-i18n="tip_w2p"></p>
@@ -1007,7 +1026,8 @@ const U={
   tetratto:'https://tetratto.com/@delvari',
   boosty  :'https://boosty.to/delvari',
   steam   :'https://steamcommunity.com/id/thlayli_imp',
-  teletype:'https://teletype.in/@delvari/eCr9VR4qxqj'
+  teletype:'https://teletype.in/@delvari/eCr9VR4qxqj',
+  yoomoney:'https://yoomoney.ru/quickpay/fundraise/button?billNumber=1JMNB009QFF.260816&'
 };
 const TAG='thlayli_imp';
 
@@ -1045,6 +1065,8 @@ en:{
  tip_w1:'BOOSTY',tip_fee:'+11% FEE',
  tip_w1p:'Accepts international bank cards. Please note that Boosty\'s ~11% platform fee must be covered by the sender.',
  tip_open:'OPEN BOOSTY',
+ tip_w3:'YOOMONEY',tip_fee3:'0% FEE',
+ tip_w3p:'Wallets and Russian cards. The safest route for a small gift \u2014 no details to copy, nothing to mistype.',
  tip_w2:'DIRECT TRANSFER',tip_fee2:'0% FEE',
  tip_w2p:'Direct card transfers for RU/CIS banks with zero added fees. Send me a message to get the payment details.',
  tip_dm:'ASK ON DISCORD',
@@ -1171,6 +1193,8 @@ ru:{
  tip_w1:'BOOSTY',tip_fee:'+11% КОМИССИЯ',
  tip_w1p:'Принимает международные банковские карты. Учтите, что комиссию площадки Boosty около 11% оплачивает отправитель.',
  tip_open:'ОТКРЫТЬ BOOSTY',
+ tip_w3:'ЮMONEY',tip_fee3:'0% КОМИССИИ',
+ tip_w3p:'Кошелёк и российские карты. Самый простой способ для небольшого подарка \u2014 ничего не нужно копировать и негде ошибиться.',
  tip_w2:'ПЕРЕВОД НАПРЯМУЮ',tip_fee2:'0% КОМИССИИ',
  tip_w2p:'Прямой перевод по карте для банков РФ и СНГ, без дополнительных комиссий. Напишите мне, чтобы получить реквизиты.',
  tip_dm:'СПРОСИТЬ В DISCORD',
@@ -1582,7 +1606,7 @@ const CMD={
     if(autoOn&&!typing)aTmr=setTimeout(nx,Number(S.cfg.auto));else clearTimeout(aTmr);},
   log(){paintLog();$('#m-log').classList.add('open');},
   config(){paintCfg();$('#m-cfg').classList.add('open');},
-  tip(){$('#m-tip').classList.add('open');},
+  tip(){const f=$('#yoo');if(f&&!f.src)f.src=U.yoomoney;$('#m-tip').classList.add('open');},
   title(){closeRails();$('#title').classList.remove('gone');$('#tmenu').classList.add('in');
     $('#app').classList.remove('live');document.body.classList.remove('playing');ready=false;}
 };
@@ -1707,5 +1731,5 @@ $('#tmenu').addEventListener('click',e=>{
 
 })();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2c093ce589af116',t:'MTc4Njg4NDc1OA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2c10deaa9b7f10d',t:'MTc4Njg4OTc2MA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
