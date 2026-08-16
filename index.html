@@ -830,27 +830,44 @@ body.playing .chap{display:block;}
 #toast.show{opacity:1;transform:none;}
 
 /* ═══════════ EASTER EGG: SHIKI ═══════════ */
+/* retro OS window: hard bevel, no rounding, no soft shadows */
 .catbox{position:absolute;z-index:26;right:clamp(12px,3vw,42px);bottom:clamp(64px,11vh,120px);
-  width:min(196px,34vw);background:rgba(10,3,13,.97);border:1px solid var(--red-d);
-  box-shadow:0 0 26px rgba(255,0,68,.28),5px 5px 0 rgba(0,0,0,.6);
-  animation:catin .34s steps(4) both;}
-.catbox.out{animation:catout .3s steps(4) both;}
-@keyframes catin{from{opacity:0;transform:translateY(14px) scale(.94)}to{opacity:1;transform:none}}
-@keyframes catout{from{opacity:1;transform:none}to{opacity:0;transform:translateY(10px) scale(.96)}}
-.cat-tb{display:flex;align-items:center;gap:6px;padding:6px 6px 6px 10px;
-  background:linear-gradient(180deg,rgba(255,0,68,.24),rgba(255,0,68,.09));
-  border-bottom:1px solid rgba(255,0,68,.28);}
-.cat-tb span{flex:1;font-family:var(--px);font-size:6.5px;color:var(--pink-d);letter-spacing:.08em;}
-.cat-x{flex:0 0 auto;width:19px;height:19px;line-height:1;font-size:15px;color:#fff;
-  background:var(--red-d);border:1px solid var(--red);cursor:pointer;}
-.cat-x:hover{background:var(--red);}
-.cat-x:focus-visible{outline:2px solid var(--cyan);outline-offset:2px;}
-.cat-pic{position:relative;overflow:hidden;background:#080309;}
-.cat-pic img{display:block;width:100%;height:auto;}
+  width:min(232px,40vw);padding:3px;background:#2b2136;
+  border-top:2px solid #6c5680;border-left:2px solid #6c5680;
+  border-right:2px solid #120a19;border-bottom:2px solid #120a19;
+  box-shadow:5px 5px 0 rgba(0,0,0,.62);animation:catin .3s steps(3) both;}
+.catbox.out{animation:catout .26s steps(3) both;}
+@keyframes catin{from{opacity:0;transform:translateY(12px) scale(.95)}to{opacity:1;transform:none}}
+@keyframes catout{from{opacity:1;transform:none}to{opacity:0;transform:translateY(9px) scale(.96)}}
+.cat-tb{display:flex;align-items:center;gap:5px;padding:4px 4px 4px 7px;
+  background:linear-gradient(90deg,var(--red-d),#3a1030);}
+.cat-tb span{flex:1;font-family:var(--px);font-size:6.5px;color:#fff;letter-spacing:.08em;
+  text-shadow:1px 1px 0 rgba(0,0,0,.7);}
+.cat-btn{flex:0 0 auto;width:16px;height:14px;display:grid;place-items:center;
+  font-family:var(--px);font-size:6px;line-height:1;color:#2a1c33;background:#b9a8c6;
+  border-top:1px solid #e6dcec;border-left:1px solid #e6dcec;
+  border-right:1px solid #4a3a57;border-bottom:1px solid #4a3a57;cursor:pointer;}
+.cat-btn.dim{opacity:.5;cursor:default;}
+.cat-x:hover{background:var(--red);color:#fff;}
+.cat-x:active{border-top-color:#4a3a57;border-left-color:#4a3a57;
+  border-right-color:#e6dcec;border-bottom-color:#e6dcec;}
+.cat-x:focus-visible{outline:2px solid var(--cyan);outline-offset:1px;}
+.cat-pic{position:relative;aspect-ratio:1/1;overflow:hidden;background:#080309;
+  border-top:2px solid #120a19;border-left:2px solid #120a19;
+  border-right:2px solid #5d4a70;border-bottom:2px solid #5d4a70;}
+.cat-pic img{display:block;width:100%;height:100%;object-fit:cover;}
 .cat-pic::after{content:'';position:absolute;inset:0;pointer-events:none;
-  background:repeating-linear-gradient(180deg,rgba(0,0,0,.22) 0 1px,transparent 1px 3px);}
-.cat-cap{padding:8px 10px 10px;font-family:var(--tm);font-size:15px;line-height:1.34;
-  color:var(--pink-d);}
+  background:repeating-linear-gradient(180deg,rgba(0,0,0,.26) 0 1px,transparent 1px 3px);}
+.cat-rec{position:absolute;top:6px;left:6px;display:flex;align-items:center;gap:4px;
+  font-family:var(--px);font-size:5.5px;color:#ff5d7e;letter-spacing:.1em;
+  text-shadow:1px 1px 0 rgba(0,0,0,.8);}
+.cat-rec i{width:5px;height:5px;background:var(--red);border-radius:50%;
+  animation:recblink 1.1s steps(2) infinite;}
+@keyframes recblink{0%,100%{opacity:1}50%{opacity:.15}}
+.cat-cap{padding:7px 8px 8px;font-family:var(--tm);font-size:15px;line-height:1.32;
+  color:var(--pink-d);background:#1a1024;
+  border-top:2px solid #120a19;border-left:2px solid #120a19;
+  border-right:2px solid #5d4a70;border-bottom:2px solid #5d4a70;margin-top:3px;}
 .catbox.purr .cat-cap{color:var(--lime);}
 
 /* ═══════════ EASTER EGG: SCREAMER ═══════════ */
@@ -872,6 +889,7 @@ body.playing .chap{display:block;}
 .scr.hit .scr-bars{animation:scrbars .62s steps(2) both;}
 @keyframes scrbars{0%{opacity:0}10%{opacity:.9}100%{opacity:0}}
 
+[hidden]{display:none !important;}
 .ach{position:fixed;right:18px;bottom:18px;z-index:910;display:flex;align-items:center;gap:12px;
   width:min(330px,84vw);padding:12px 14px;background:rgba(10,14,18,.98);
   border:1px solid #2b3a46;border-left:3px solid var(--lime);
@@ -891,7 +909,7 @@ body.playing .chap{display:block;}
   .catbox,.catbox.out,.ach,.ach.out{animation-duration:.01s;}
 }
 @media (max-width:640px){
-  .catbox{right:10px;bottom:auto;top:calc(var(--bar) + 10px);width:132px;}
+  .catbox{right:9px;bottom:auto;top:calc(var(--bar) + 9px);width:min(146px,42vw);}
   .cat-cap{font-size:13.5px;padding:7px 8px 8px;}
   .ach{right:10px;left:10px;width:auto;bottom:12px;}
 }
@@ -1164,8 +1182,11 @@ body.playing .chap{display:block;}
       <!-- easter egg: Shiki -->
       <div class="catbox" id="catbox" hidden>
         <div class="cat-tb"><span>SHIKI.EXE</span>
-          <button class="cat-x" id="cat-x" type="button" aria-label="close">&#215;</button></div>
-        <div class="cat-pic"><img src="assets/shiki.jpg" alt="Shiki" draggable="false" /></div>
+          <span class="cat-btn dim" aria-hidden="true">_</span>
+          <span class="cat-btn dim" aria-hidden="true">&#9633;</span>
+          <button class="cat-btn cat-x" id="cat-x" type="button" aria-label="close">&#215;</button></div>
+        <div class="cat-pic"><img src="assets/shiki.jpg" alt="Shiki" draggable="false" />
+          <span class="cat-rec"><i></i>CAM 03</span></div>
         <div class="cat-cap" id="cat-cap"></div>
       </div>
     </section>
@@ -1671,7 +1692,7 @@ en:{
  g_h:'GALLERY',g_s:'MY WORKS',p_h:'COMMISSIONS',p_s:'PROFILE CSS DESIGN',p_flow:'HOW IT WORKS',
  c_h:'CONTACT',c_s:'OPENS IN A NEW TAB',c_tag:'DISCORD',c_copy:'COPY',
  c_secret:'RESTRICTED AREA',c_secret_p:"You shouldn't be here.",
- cat_cap:'He walked across the keyboard. Twice.',
+ cat_cap:'He found the camera again. He always does.',
  cat_rude:'Hey! How rude! That is my sweet little death demon, you cannot bully the kitty!',
  cat_purr:'...he purred and left on his own. Lucky you.',
  cat_toast:'SHIKI.EXE has joined',
@@ -1827,7 +1848,7 @@ ru:{
  g_h:'ГАЛЕРЕЯ',g_s:'МОИ РАБОТЫ',p_h:'ЗАКАЗАТЬ',p_s:'ОФОРМЛЕНИЕ ПРОФИЛЯ',p_flow:'КАК ЭТО РАБОТАЕТ',
  c_h:'КОНТАКТЫ',c_s:'ОТКРОЕТСЯ В НОВОЙ ВКЛАДКЕ',c_tag:'DISCORD',c_copy:'КОПИЯ',
  c_secret:'ЗАКРЫТАЯ ЗОНА',c_secret_p:'Тебе не стоило сюда заходить.',
- cat_cap:'Он прошёлся по клавиатуре. Дважды.',
+ cat_cap:'Он снова нашёл камеру. Он всегда её находит.',
  cat_rude:'Эй! Как грубо! Это мой милый демон смерти, ты не можешь обижать котика!',
  cat_purr:'...он мурлыкнул и ушёл сам. Твоё счастье.',
  cat_toast:'SHIKI.EXE подключился',
@@ -2662,5 +2683,5 @@ $('#tmenu').addEventListener('click',e=>{
 
 })();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2c3af662a41e84e',t:'MTc4NjkxNzM0Ng=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2c3bdac89a5e84e',t:'MTc4NjkxNzkzMA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
