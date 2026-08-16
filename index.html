@@ -583,14 +583,22 @@ body.playing .chap{display:block;}
   .sysrow .hb{width:52px;height:7px;}
   .sysrow:nth-child(4){display:none;}
 
-  .stagefloor{top:100px;}
-  .sprite{max-width:80%;opacity:.26;transform:translateY(0);}
+  /* sprite gets the upper stage, fully visible */
+  .stagefloor{top:104px;bottom:170px;}
+  .sprite{max-width:62%;opacity:1;transform:translateY(0);}
   @keyframes breathe{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
 
-  .choices{position:absolute;left:0;right:0;top:110px;bottom:0;
-    width:auto;max-height:none;translate:none;
-    padding:4px 10px 16px;gap:7px;overflow-y:auto;-webkit-overflow-scrolling:touch;}
-  .ch{font-size:16.5px;padding:11px 12px;box-shadow:3px 3px 0 rgba(0,0,0,.6);}
+  /* choices: compact scroller, ~3 rows visible, docked at the bottom */
+  .choices{position:absolute;left:8px;right:8px;bottom:8px;top:auto;
+    width:auto;translate:none;height:158px;max-height:158px;
+    padding:6px;gap:6px;overflow-y:auto;-webkit-overflow-scrolling:touch;
+    background:rgba(9,3,13,.90);border:1px solid rgba(255,0,68,.28);
+    box-shadow:0 -6px 22px rgba(0,0,0,.7);
+    scroll-snap-type:y proximity;}
+  .choices::after{content:'';position:sticky;bottom:-6px;display:block;height:14px;margin:-14px -6px -6px;
+    background:linear-gradient(180deg,transparent,rgba(9,3,13,.95));pointer-events:none;}
+  .ch{flex:0 0 auto;font-size:16px;padding:10px 11px;scroll-snap-align:start;
+    box-shadow:2px 2px 0 rgba(0,0,0,.6);}
   .ch:hover,.ch.on{transform:none;}
 
   .sheet{padding:64px 12px 20px;}
@@ -625,7 +633,9 @@ body.playing .chap{display:block;}
 }
 @media (max-width:400px){
   .chap .t{font-size:13.5px;}
-  .ch{font-size:15.5px;}
+  .ch{font-size:15px;padding:9px 10px;}
+  .choices{height:140px;max-height:140px;}
+  .stagefloor{bottom:152px;}
   .t-name{font-size:22px;}
   .sysrow:nth-child(3){display:none;}
 }
@@ -633,6 +643,11 @@ body.playing .chap{display:block;}
   .chap{display:none!important;}
   .sysinfo{display:none;}
   .stagefloor{top:20px;}
+}
+@media (max-width:640px) and (max-height:620px){
+  .choices{height:112px;max-height:112px;}
+  .stagefloor{top:20px;bottom:124px;}
+  .sprite{max-width:44%;}
 }
 
 </style>
@@ -1449,5 +1464,5 @@ $('#tmenu').addEventListener('click',e=>{
 
 })();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2bcc05a3e0c4434',t:'MTc4Njg0NDY0MA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2bfa512af6af10b',t:'MTc4Njg3NDk4MA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
