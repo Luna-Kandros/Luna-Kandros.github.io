@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>DELVARI — Lovely Hell</title>
 <meta name="description" content="Delvari — custom CSS profile design." />
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%230d0710'/><g fill='%23ff0044' shape-rendering='crispEdges'><rect x='2' y='4' width='4' height='1'/><rect x='10' y='4' width='4' height='1'/><rect x='1' y='5' width='6' height='1'/><rect x='9' y='5' width='6' height='1'/><rect x='1' y='6' width='14' height='2'/><rect x='2' y='8' width='12' height='1'/><rect x='3' y='9' width='10' height='1'/><rect x='4' y='10' width='8' height='1'/><rect x='5' y='11' width='6' height='1'/><rect x='6' y='12' width='4' height='1'/><rect x='7' y='13' width='2' height='1'/></g></svg>" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%230d0710'/><g fill='%23ff0044' shape-rendering='crispEdges'><rect x='4' y='5' width='2' height='1'/><rect x='10' y='5' width='2' height='1'/><rect x='3' y='6' width='4' height='1'/><rect x='9' y='6' width='4' height='1'/><rect x='3' y='7' width='10' height='1'/><rect x='4' y='8' width='8' height='1'/><rect x='5' y='9' width='6' height='1'/><rect x='6' y='10' width='4' height='1'/><rect x='7' y='11' width='2' height='1'/></g></svg>" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet">
@@ -242,16 +242,17 @@ body.playing .chap{display:block;}
 .ccrow.wide b{color:var(--pink-d);font-size:14.5px;font-style:italic;}
 .ccsec{margin-top:10px;padding:8px 9px;border-left:3px solid var(--red-d);background:rgba(255,0,68,.05);}
 .ccsec.like{border-left-color:#ff5c8a;}
-.ccsec.hate{border-left-color:var(--lav);background:rgba(157,107,255,.06);}
+.ccsec.hate{border-left-color:#6b5f74;background:rgba(120,110,130,.07);}
 .ccsec b{display:block;font-family:var(--px);font-size:7px;letter-spacing:.1em;margin-bottom:6px;color:var(--red);}
 
-.ccsec.hate b{color:var(--lav);}
+.ccsec.hate b{color:#8d7f96;}
+.ccsec.hate{--hate-slash:#8d7f96;}
 .ccsec b{display:flex;align-items:center;gap:7px;}
-.ccsec b::before{content:'';flex:0 0 auto;width:12px;height:11px;
+.ccsec b::before{content:'';flex:0 0 auto;width:13px;height:11px;
   background:currentColor;
   -webkit-mask:var(--hm) center/contain no-repeat;mask:var(--hm) center/contain no-repeat;}
-.ccsec.like{--hm:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 11'><g fill='%23000' shape-rendering='crispEdges'><rect x='1' y='2' width='3' height='1'/><rect x='8' y='2' width='3' height='1'/><rect x='0' y='3' width='5' height='1'/><rect x='7' y='3' width='5' height='1'/><rect x='0' y='4' width='12' height='2'/><rect x='1' y='6' width='10' height='1'/><rect x='2' y='7' width='8' height='1'/><rect x='3' y='8' width='6' height='1'/><rect x='4' y='9' width='4' height='1'/><rect x='5' y='10' width='2' height='1'/></g></svg>");}
-.ccsec.hate{--hm:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 11'><g fill='%23000' shape-rendering='crispEdges'><rect x='1' y='2' width='3' height='1'/><rect x='8' y='2' width='3' height='1'/><rect x='0' y='3' width='5' height='1'/><rect x='7' y='3' width='5' height='1'/><rect x='0' y='4' width='12' height='2'/><rect x='1' y='6' width='10' height='1'/><rect x='2' y='7' width='8' height='1'/><rect x='3' y='8' width='6' height='1'/><rect x='4' y='9' width='4' height='1'/><rect x='5' y='10' width='2' height='1'/></g><g fill='%23fff'><rect x='9' y='0' width='2' height='1'/><rect x='8' y='1' width='2' height='1'/><rect x='7' y='2' width='2' height='1'/><rect x='6' y='3' width='2' height='1'/><rect x='5' y='4' width='2' height='1'/><rect x='4' y='5' width='2' height='1'/><rect x='3' y='6' width='2' height='1'/><rect x='2' y='7' width='2' height='1'/><rect x='1' y='8' width='2' height='1'/><rect x='0' y='9' width='2' height='1'/></g></svg>");}
+.ccsec.like{--hm:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 10'><g fill='%23000' shape-rendering='crispEdges'><rect x='2' y='1' width='3' height='1'/><rect x='7' y='1' width='3' height='1'/><rect x='1' y='2' width='5' height='1'/><rect x='6' y='2' width='5' height='1'/><rect x='1' y='3' width='10' height='2'/><rect x='2' y='5' width='8' height='1'/><rect x='3' y='6' width='6' height='1'/><rect x='4' y='7' width='4' height='1'/><rect x='5' y='8' width='2' height='1'/></g></svg>");}
+.ccsec.hate{--hm:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 10'><g fill='%23000' shape-rendering='crispEdges'><rect x='2' y='1' width='3' height='1'/><rect x='7' y='1' width='3' height='1'/><rect x='1' y='2' width='5' height='1'/><rect x='6' y='2' width='5' height='1'/><rect x='1' y='3' width='10' height='2'/><rect x='2' y='5' width='8' height='1'/><rect x='3' y='6' width='6' height='1'/><rect x='4' y='7' width='4' height='1'/><rect x='5' y='8' width='2' height='1'/></g><g fill='%23fff'><rect x='8' y='0' width='3' height='1'/><rect x='7' y='1' width='3' height='1'/><rect x='6' y='2' width='3' height='1'/><rect x='5' y='3' width='3' height='1'/><rect x='4' y='4' width='3' height='1'/><rect x='3' y='5' width='3' height='1'/><rect x='2' y='6' width='3' height='1'/><rect x='1' y='7' width='3' height='1'/><rect x='0' y='8' width='3' height='1'/></g></svg>");}
 .ccsec p{margin:0 0 5px;font-size:14.5px;line-height:1.4;color:var(--pink-d);}
 .ccsec a{color:var(--red-2);text-decoration:underline;text-underline-offset:2px;}
 .ccsec a:hover{color:#fff;}
@@ -841,8 +842,9 @@ body.playing .chap{display:block;}
   <header class="top">
     <button class="railbtn lt" id="rb-l" aria-label="Character file">
       <svg viewBox="0 0 16 16" aria-hidden="true"><g fill="currentColor" shape-rendering="crispEdges">
-      <path d="M2 1h12v1H2zM1 2h1v12H1zM14 2h1v12h-1zM2 14h12v1H2z"/>
-      <path d="M5 5h1V4h1v1h2V4h1v1h1v2h-1v1H9v1H8v1H7V9H6V8H5V7z"/>
+      <path d="M1 2h14v1H1zM1 13h14v1H1zM1 3h1v10H1zM14 3h1v10h-1z"/>
+      <path d="M4 5h3v3H4zM3 9h5v3H3z"/>
+      <path d="M9 6h4v1H9zM9 8h4v1H9zM9 10h4v1H9z"/>
       </g></svg></button>
     <div class="logo"><span class="h">&hearts;</span><b>LOVELY HELL</b></div>
     <nav class="tabs" id="tabs">
@@ -1826,5 +1828,5 @@ $('#tmenu').addEventListener('click',e=>{
 
 })();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2c163d3fa0d9dc7',t:'MTc4Njg5MzI3OQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2c173dadaef48d0',t:'MTc4Njg5MzkzNQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
