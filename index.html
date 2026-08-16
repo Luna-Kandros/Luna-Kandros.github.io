@@ -233,17 +233,19 @@ body.playing .chap{display:block;}
   border:2px solid var(--red);box-shadow:0 0 0 3px #0a050c,0 0 18px rgba(255,0,68,.4);}
 .ccpic img{width:100%;height:100%;object-fit:cover;image-rendering:auto;}
 .ccrows{margin-bottom:10px;}
-.ccrow{display:flex;align-items:baseline;gap:7px;padding:4px 0;
-  border-bottom:1px dotted rgba(255,0,68,.18);}
-.ccrow span{font-family:var(--px);font-size:6.5px;color:var(--red);letter-spacing:.06em;flex:0 0 auto;}
-.ccrow b{font-weight:400;font-size:15px;color:var(--pink);margin-left:auto;text-align:right;line-height:1.25;}
+.ccrow{display:grid;grid-template-columns:64px 1fr;align-items:baseline;gap:8px;padding:5px 0;
+  border-bottom:1px dotted rgba(255,0,68,.16);}
+.ccrow span{font-family:var(--px);font-size:6.5px;color:var(--red);letter-spacing:.05em;}
+.ccrow b{font-weight:400;font-size:15.5px;color:var(--pink);line-height:1.3;}
+.ccrow.wide{grid-template-columns:1fr;gap:3px;}
+.ccrow.wide b{color:var(--pink-d);font-size:14.5px;font-style:italic;}
 .ccsec{margin-top:10px;padding:8px 9px;border-left:3px solid var(--red-d);background:rgba(255,0,68,.05);}
 .ccsec.like{border-left-color:#ff5c8a;}
 .ccsec.hate{border-left-color:var(--lav);background:rgba(157,107,255,.06);}
 .ccsec b{display:block;font-family:var(--px);font-size:7px;letter-spacing:.1em;margin-bottom:6px;color:var(--red);}
-.ccsec.like b::before{content:'\2665 ';}
+.ccsec.like b::before{content:'\2665\00a0';}
 .ccsec.hate b{color:var(--lav);}
-.ccsec.hate b::before{content:'\2716 ';}
+.ccsec.hate b::before{content:'\1F494\00a0';font-size:9px;}
 .ccsec p{margin:0 0 5px;font-size:14.5px;line-height:1.4;color:var(--pink-d);}
 .ccsec a{color:var(--red-2);text-decoration:underline;text-underline-offset:2px;}
 .ccsec a:hover{color:#fff;}
@@ -626,6 +628,8 @@ body.playing .chap{display:block;}
 .yoowrap::before{top:3px;left:3px;border-right:none;border-bottom:none;}
 .yoowrap::after{bottom:3px;right:3px;border-left:none;border-top:none;}
 .yoowrap iframe{display:block;max-width:100%;border:0;}
+.yoo-fb{margin-top:9px;background:#3b2a78;border-color:#8b6df0;box-shadow:0 4px 0 #1c1240;}
+.yoo-fb:hover{background:#5a41ad;box-shadow:0 6px 0 #1c1240;}
 .tcard{display:flex;flex-direction:column;padding:16px;position:relative;
   background:linear-gradient(180deg,rgba(38,8,24,.92),rgba(14,4,12,.96));
   border:1px solid rgba(255,0,68,.3);box-shadow:5px 5px 0 rgba(0,0,0,.55);}
@@ -806,7 +810,7 @@ body.playing .chap{display:block;}
 <!-- ═══════ APP ═══════ -->
 <div id="app">
   <header class="top">
-    <button class="railbtn lt" id="rb-l" aria-label="Status panel">&#9776;</button>
+    <button class="railbtn lt" id="rb-l" aria-label="Character file">&#128100;</button>
     <div class="logo"><span class="h">&hearts;</span><b>LOVELY HELL</b></div>
     <nav class="tabs" id="tabs">
       <button class="tab" data-view="home" aria-current="page"><span class="k">01</span><span class="n" data-i18n="nav_home">HOME</span></button>
@@ -819,7 +823,7 @@ body.playing .chap{display:block;}
       <span class="it"><span class="lovebar" id="v-love"></span></span>
       <span class="it ck"><b id="v-clock">--:--</b></span>
     </div>
-    <button class="railbtn" id="rb-r" aria-label="Quick menu">&#9881;</button>
+    <button class="railbtn" id="rb-r" aria-label="Quick menu">&#9776;</button>
   </header>
 
   <aside class="rail rail-l" id="rail-l">
@@ -841,7 +845,7 @@ body.playing .chap{display:block;}
   </aside>
 
   <aside class="rail rail-r" id="rail-r">
-    <div class="panel"><div class="ph"><span>&#9881; QUICK MENU</span></div>
+    <div class="panel"><div class="ph"><span>&#9646;&#9646; QUICK MENU</span></div>
       <div class="pb"><div class="qm" id="r-qm">
         <button class="qbtn" data-cmd="save"><i>&#128190;</i>SAVE</button>
         <button class="qbtn" data-cmd="load"><i>&#128194;</i>LOAD</button>
@@ -986,7 +990,6 @@ body.playing .chap{display:block;}
 <div class="modal" id="m-tip" role="dialog" aria-modal="true">
   <div class="mh"><h4 data-i18n="tip_head">PAYMENTS &amp; TRANSFERS</h4><button class="xb" data-x data-i18n="close">CLOSE</button></div>
   <div class="mb">
-    <p class="tiplead" data-i18n="tip_lead">Choose your preferred payment method below.</p>
     <div class="tipgrid">
       <div class="tcard intl">
         <div class="tcard-h"><span class="tico">&#127758;</span><b data-i18n="tip_w1">BOOSTY</b></div>
@@ -998,8 +1001,13 @@ body.playing .chap{display:block;}
         <div class="tcard-h"><span class="tico">&#128176;</span><b data-i18n="tip_w3">YOOMONEY</b></div>
         <p data-i18n="tip_w3p"></p>
         <div class="tfee ok"><span data-i18n="tip_fee3">0% FEE</span></div>
-        <div class="yoowrap"><iframe id="yoo" src="" width="330" height="50"
-          frameborder="0" allowtransparency="true" scrolling="no" title="YooMoney"></iframe></div>
+        <div class="yoowrap"><iframe id="yoo"
+            src="https://yoomoney.ru/quickpay/fundraise/button?billNumber=1JMNB009QFF.260816&amp;"
+            width="330" height="50" frameborder="0" allowtransparency="true"
+            scrolling="no" loading="lazy" title="YooMoney"></iframe>
+          <noscript></noscript></div>
+          <a class="tbtn yoo-fb" id="yoo-fb" target="_blank" rel="noopener noreferrer"
+             href="https://yoomoney.ru/fundraise/1JMNB009QFF.260816" data-i18n="tip_yoo_fb">OPEN YOOMONEY</a>
       </div>
       <div class="tcard local">
         <div class="tcard-h"><span class="tico">&#128179;</span><b data-i18n="tip_w2">DIRECT TRANSFER</b></div>
@@ -1050,7 +1058,7 @@ en:{
  empty_log:'NOTHING SAID YET',slot_empty:'EMPTY',slot_write:'click to save',slot_none:'nothing here',
  lines_w:'lines',all:'ALL',cur:'USD',
  cc_t:'CHARACTER FILE',
- cc:[['NAME','Aria'],['AGE','20+'],['GENDER','F'],['AVATAR','Bibi from "I Love Amy"'],['LANGUAGES','ru / eng']],
+ cc:[['NAME','Aria'],['AGE','20+'],['GENDER','F'],['LANGUAGES','ru / eng'],['AVATAR','Bibi from "I Love Amy"']],
  cc_like:'LIKES',
  cc_likes:'Cats, horror games, otome games, non-human',
  cc_dis:'DISLIKES',
@@ -1065,7 +1073,7 @@ en:{
  tip_w1:'BOOSTY',tip_fee:'+11% FEE',
  tip_w1p:'Accepts international bank cards. Please note that Boosty\'s ~11% platform fee must be covered by the sender.',
  tip_open:'OPEN BOOSTY',
- tip_w3:'YOOMONEY',tip_fee3:'0% FEE',
+ tip_w3:'YOOMONEY',tip_fee3:'0% FEE',tip_yoo_fb:'\u2661 OPEN YOOMONEY \u2661',
  tip_w3p:'Wallets and Russian cards. The safest route for a small gift \u2014 no details to copy, nothing to mistype.',
  tip_w2:'DIRECT TRANSFER',tip_fee2:'0% FEE',
  tip_w2p:'Direct card transfers for RU/CIS banks with zero added fees. Send me a message to get the payment details.',
@@ -1178,7 +1186,7 @@ ru:{
  empty_log:'ПОКА ПУСТО',slot_empty:'ПУСТО',slot_write:'нажмите, чтобы записать',slot_none:'нечего грузить',
  lines_w:'реплик',all:'ВСЕ',cur:'РУБ',
  cc_t:'КАРТОЧКА ПЕРСОНАЖА',
- cc:[['ИМЯ','Ария'],['ВОЗРАСТ','20+'],['ПОЛ','Ж'],['АВАТАР','Биби из «Я люблю Эми»'],['ЯЗЫКИ','ru / eng']],
+ cc:[['ИМЯ','Ария'],['ВОЗРАСТ','20+'],['ПОЛ','Ж'],['ЯЗЫКИ','ru / eng'],['АВАТАР','Биби из «Я люблю Эми»']],
  cc_like:'ЛЮБИТ',
  cc_likes:'Кошки, хоррор игры, отоме игры, non-human',
  cc_dis:'НЕ ЛЮБИТ',
@@ -1193,7 +1201,7 @@ ru:{
  tip_w1:'BOOSTY',tip_fee:'+11% КОМИССИЯ',
  tip_w1p:'Принимает международные банковские карты. Учтите, что комиссию площадки Boosty около 11% оплачивает отправитель.',
  tip_open:'ОТКРЫТЬ BOOSTY',
- tip_w3:'ЮMONEY',tip_fee3:'0% КОМИССИИ',
+ tip_w3:'ЮMONEY',tip_fee3:'0% КОМИССИИ',tip_yoo_fb:'\u2661 ОТКРЫТЬ ЮMONEY \u2661',
  tip_w3p:'Кошелёк и российские карты. Самый простой способ для небольшого подарка \u2014 ничего не нужно копировать и негде ошибиться.',
  tip_w2:'ПЕРЕВОД НАПРЯМУЮ',tip_fee2:'0% КОМИССИИ',
  tip_w2p:'Прямой перевод по карте для банков РФ и СНГ, без дополнительных комиссий. Напишите мне, чтобы получить реквизиты.',
@@ -1464,7 +1472,8 @@ function build(){
 
   /* character file */
   $('#cc-t').textContent=L.cc_t;
-  $('#cc-rows').innerHTML=L.cc.map(r=>'<div class="ccrow"><span>'+r[0]+'</span><b>'+r[1]+'</b></div>').join('');
+  $('#cc-rows').innerHTML=L.cc.map((r,i)=>
+    '<div class="ccrow'+(i===L.cc.length-1?' wide':'')+'"><span>'+r[0]+'</span><b>'+r[1]+'</b></div>').join('');
   $('#cc-like').textContent=L.cc_like;
   $('#cc-likes').textContent=L.cc_likes;
   $('#cc-dis').textContent=L.cc_dis;
@@ -1606,7 +1615,7 @@ const CMD={
     if(autoOn&&!typing)aTmr=setTimeout(nx,Number(S.cfg.auto));else clearTimeout(aTmr);},
   log(){paintLog();$('#m-log').classList.add('open');},
   config(){paintCfg();$('#m-cfg').classList.add('open');},
-  tip(){const f=$('#yoo');if(f&&!f.src)f.src=U.yoomoney;$('#m-tip').classList.add('open');},
+  tip(){$('#m-tip').classList.add('open');},
   title(){closeRails();$('#title').classList.remove('gone');$('#tmenu').classList.add('in');
     $('#app').classList.remove('live');document.body.classList.remove('playing');ready=false;}
 };
@@ -1731,5 +1740,5 @@ $('#tmenu').addEventListener('click',e=>{
 
 })();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2c10deaa9b7f10d',t:'MTc4Njg4OTc2MA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2c13e598e52b7a8',t:'MTc4Njg5MTc0NA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
