@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>DELVARI — Lovely Hell</title>
 <meta name="description" content="Delvari — custom CSS profile design." />
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%230d0710'/><path d='M3 5h2V4h1V3h2v1h1V3h2v1h1v3h-1v1h-1v1h-1v1h-1v1h-1v-1h-1v-1h-1v-1h-1V8H3z' fill='%23ff0044'/></svg>" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%230d0710'/><g fill='%23ff0044' shape-rendering='crispEdges'><rect x='2' y='4' width='4' height='1'/><rect x='10' y='4' width='4' height='1'/><rect x='1' y='5' width='6' height='1'/><rect x='9' y='5' width='6' height='1'/><rect x='1' y='6' width='14' height='2'/><rect x='2' y='8' width='12' height='1'/><rect x='3' y='9' width='10' height='1'/><rect x='4' y='10' width='8' height='1'/><rect x='5' y='11' width='6' height='1'/><rect x='6' y='12' width='4' height='1'/><rect x='7' y='13' width='2' height='1'/></g></svg>" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet">
@@ -247,11 +247,11 @@ body.playing .chap{display:block;}
 
 .ccsec.hate b{color:var(--lav);}
 .ccsec b{display:flex;align-items:center;gap:7px;}
-.ccsec b::before{content:'';flex:0 0 auto;width:11px;height:10px;
+.ccsec b::before{content:'';flex:0 0 auto;width:12px;height:11px;
   background:currentColor;
   -webkit-mask:var(--hm) center/contain no-repeat;mask:var(--hm) center/contain no-repeat;}
-.ccsec.like{--hm:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 10'><path d='M1 1h3v1h3V1h3v3H9v1H8v1H7v1H6v1H5V7H4V6H3V5H2V4H1z' fill='%23000'/></svg>");}
-.ccsec.hate{--hm:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 10'><path d='M1 1h3v1h1v1H4v1h1v1H4v1h1v1H4v1H3V7H2V6H1V4h1V3H1z' fill='%23000'/><path d='M7 1h3v3H9v1H8v1H7v1H6v1V7h1V6H6V5h1V4H6V3h1z' fill='%23000'/></svg>");}
+.ccsec.like{--hm:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 11'><g fill='%23000' shape-rendering='crispEdges'><rect x='1' y='2' width='3' height='1'/><rect x='8' y='2' width='3' height='1'/><rect x='0' y='3' width='5' height='1'/><rect x='7' y='3' width='5' height='1'/><rect x='0' y='4' width='12' height='2'/><rect x='1' y='6' width='10' height='1'/><rect x='2' y='7' width='8' height='1'/><rect x='3' y='8' width='6' height='1'/><rect x='4' y='9' width='4' height='1'/><rect x='5' y='10' width='2' height='1'/></g></svg>");}
+.ccsec.hate{--hm:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 11'><g fill='%23000' shape-rendering='crispEdges'><rect x='1' y='2' width='3' height='1'/><rect x='8' y='2' width='3' height='1'/><rect x='0' y='3' width='5' height='1'/><rect x='7' y='3' width='5' height='1'/><rect x='0' y='4' width='12' height='2'/><rect x='1' y='6' width='10' height='1'/><rect x='2' y='7' width='8' height='1'/><rect x='3' y='8' width='6' height='1'/><rect x='4' y='9' width='4' height='1'/><rect x='5' y='10' width='2' height='1'/></g><g fill='%23fff'><rect x='9' y='0' width='2' height='1'/><rect x='8' y='1' width='2' height='1'/><rect x='7' y='2' width='2' height='1'/><rect x='6' y='3' width='2' height='1'/><rect x='5' y='4' width='2' height='1'/><rect x='4' y='5' width='2' height='1'/><rect x='3' y='6' width='2' height='1'/><rect x='2' y='7' width='2' height='1'/><rect x='1' y='8' width='2' height='1'/><rect x='0' y='9' width='2' height='1'/></g></svg>");}
 .ccsec p{margin:0 0 5px;font-size:14.5px;line-height:1.4;color:var(--pink-d);}
 .ccsec a{color:var(--red-2);text-decoration:underline;text-underline-offset:2px;}
 .ccsec a:hover{color:#fff;}
@@ -462,7 +462,6 @@ body.playing .chap{display:block;}
 .tipbox .row{display:flex;align-items:center;gap:13px;flex-wrap:wrap;}
 .tipbox h4{margin:0;font-family:var(--px);font-size:11px;color:#fff;letter-spacing:.05em;
   text-shadow:2px 2px 0 var(--red-dd);}
-.tipbox p{margin:13px 0 0;font-size:18px;line-height:1.42;color:var(--pink-d);}
 .tipbox .buy{margin-left:auto;padding:12px 20px;width:auto;}
 .vault{margin-top:18px;background:rgba(8,3,11,.9);border:1px solid #2a1020;}
 .vault summary{list-style:none;cursor:pointer;padding:12px 15px;font-family:var(--px);font-size:8px;
@@ -627,6 +626,7 @@ body.playing .chap{display:block;}
 .tcard.yoo .tfee{color:#c4aaff;background:rgba(139,109,240,.09);border-color:rgba(139,109,240,.4);}
 /* custom YooMoney form */
 .yooform{display:flex;flex-direction:column;gap:10px;}
+.yoohint{font-size:14.5px;color:var(--mute);text-align:center;letter-spacing:.02em;}
 .yoosums{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;}
 .yoosum{padding:9px 4px;font-family:var(--px);font-size:7.5px;color:var(--pink-d);
   background:rgba(139,109,240,.08);border:1px solid rgba(139,109,240,.35);transition:.16s;}
@@ -663,6 +663,8 @@ body.playing .chap{display:block;}
 .tcard.local{border-color:rgba(126,231,135,.35);}
 .tcard-h{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:13px;}
 .tico{font-size:20px;line-height:1;}
+.tico.yoo-ico{font-family:var(--px);font-size:15px;color:#a98cff;
+  text-shadow:0 0 10px rgba(139,109,240,.7);}
 .tcard-h b{font-family:var(--px);font-size:11px;color:#fff;letter-spacing:.05em;}
 .tcard p{margin:0 0 14px;font-size:16.5px;line-height:1.4;color:var(--pink-d);flex:1;}
 .tfee{margin-bottom:13px;padding:8px 10px;font-family:var(--px);font-size:8px;letter-spacing:.08em;
@@ -947,7 +949,6 @@ body.playing .chap{display:block;}
         <div class="tipbox">
           <div class="row"><h4 data-i18n="tip_h">SUPPORT THE DESIGNER</h4>
             <button class="buy" id="opentip" data-i18n="tip_b">SEND A TIP</button></div>
-          <p data-i18n="tip_p"></p>
         </div>
         <details class="vault">
           <summary><span data-i18n="c_secret">RESTRICTED AREA</span></summary>
@@ -1032,7 +1033,7 @@ body.playing .chap{display:block;}
         <a class="tbtn" id="tiplink" target="_blank" rel="noopener noreferrer" data-i18n="tip_open">OPEN BOOSTY</a>
       </div>
       <div class="tcard yoo">
-        <div class="tcard-h"><span class="tico">&#9825;</span><b data-i18n="tip_w3">YOOMONEY</b></div>
+        <div class="tcard-h"><span class="tico yoo-ico">&#8381;</span><b data-i18n="tip_w3">YOOMONEY</b></div>
         <p data-i18n="tip_w3p"></p>
         <form class="yooform" method="POST" action="https://yoomoney.ru/quickpay/confirm" target="_blank">
           <input type="hidden" name="receiver" id="yoo-rcv" value="" />
@@ -1040,6 +1041,7 @@ body.playing .chap{display:block;}
           <input type="hidden" name="label" value="delvari-site-tip" />
           <input type="hidden" name="successURL" value="" />
 
+          <div class="yoohint" data-i18n="tip_hint">Pick an amount or type your own</div>
           <div class="yoosums" id="yoo-sums"></div>
           <label class="yooamt">
             <span data-i18n="tip_amt">AMOUNT</span>
@@ -1048,15 +1050,8 @@ body.playing .chap{display:block;}
             <i>&#8381;</i>
           </label>
 
-          <div class="yootype" id="yoo-type">
-            <label class="on"><input type="radio" name="paymentType" value="PC" checked />
-              <span data-i18n="tip_pc">WALLET</span></label>
-            <label><input type="radio" name="paymentType" value="AC" />
-              <span data-i18n="tip_ac">BANK CARD</span></label>
-          </div>
-
+          <input type="hidden" name="paymentType" value="AC" />
           <button type="submit" class="tbtn yoo-go" data-i18n="tip_send">&#9825; SEND A TIP &#9825;</button>
-          <p class="yoonote" id="yoo-note"></p>
         </form>
       </div>
       <div class="tcard local">
@@ -1088,6 +1083,7 @@ const U={
   yoomoney:'https://yoomoney.ru/fundraise/1JMO3J6DB3G.260816'
 };
 const TAG='thlayli_imp';
+/* номер кошелька ЮMoney */
 const YOO_WALLET='4100119601298460';
 
 const T={
@@ -1118,15 +1114,13 @@ en:{
  cc_dis2:'[REDACTED]',
 
  tip_h:'PAYMENTS &amp; TRANSFERS',tip_b:'\u2661 TIP ME \u2661',
- tip_p:'Want to pay for a service or send a tip?',
  tip_head:'PAYMENTS &amp; TRANSFERS',
  tip_w1:'BOOSTY',tip_fee:'+11% FEE',
  tip_w1p:'Accepts international bank cards. Please note that Boosty\'s ~11% platform fee must be covered by the sender.',
  tip_open:'OPEN BOOSTY',
  tip_w3:'YOOMONEY',tip_fee3:'1% / 3% FEE',tip_yoo_fb:'\u2661 OPEN YOOMONEY \u2661',
- tip_amt:'AMOUNT',tip_pc:'WALLET',tip_ac:'BANK CARD',tip_send:'\u2661 SEND A TIP \u2661',
- tip_note_pc:'Wallet transfer. A 1% service fee is taken from the received amount.',
- tip_note_ac:'Card payment. A 3% service fee is taken from the received amount.',
+ tip_amt:'AMOUNT',tip_send:'\u2661 SEND A TIP \u2661',
+ tip_hint:'Pick an amount or type your own',
  tip_w3p:'Wallets and Russian cards. The safest route for a small gift \u2014 no details to copy, nothing to mistype.',
  tip_w2:'DIRECT TRANSFER',tip_fee2:'0% FEE',
  tip_w2p:'Direct card transfers for RU/CIS banks with zero added fees. Send me a message to get the payment details.',
@@ -1248,15 +1242,13 @@ ru:{
  cc_dis2:'[ЗАБЛОКИРОВАНО]',
 
  tip_h:'ПЛАТЕЖИ И ПЕРЕВОДЫ',tip_b:'\u2661 ЗАДОНАТИТЬ \u2661',
- tip_p:'Хотите оплатить услугу или задонатить?',
  tip_head:'ПЛАТЕЖИ И ПЕРЕВОДЫ',
  tip_w1:'BOOSTY',tip_fee:'+11% КОМИССИЯ',
  tip_w1p:'Принимает международные банковские карты. Учтите, что комиссию площадки Boosty около 11% оплачивает отправитель.',
  tip_open:'ОТКРЫТЬ BOOSTY',
  tip_w3:'ЮMONEY',tip_fee3:'КОМИССИЯ 1% / 3%',tip_yoo_fb:'\u2661 ОТКРЫТЬ ЮMONEY \u2661',
- tip_amt:'СУММА',tip_pc:'КОШЕЛЁК',tip_ac:'КАРТА',tip_send:'\u2661 ПОДАРИТЬ \u2661',
- tip_note_pc:'Перевод из кошелька. Сервис удержит 1% из полученной суммы.',
- tip_note_ac:'Оплата картой. Сервис удержит 3% из полученной суммы.',
+ tip_amt:'СУММА',tip_send:'\u2661 ПОДАРИТЬ \u2661',
+ tip_hint:'Выберите сумму или впишите свою',
  tip_w3p:'Кошелёк и российские карты. Самый простой способ для небольшого подарка \u2014 ничего не нужно копировать и негде ошибиться.',
  tip_w2:'ПЕРЕВОД НАПРЯМУЮ',tip_fee2:'0% КОМИССИИ',
  tip_w2p:'Прямой перевод по карте для банков РФ и СНГ, без дополнительных комиссий. Напишите мне, чтобы получить реквизиты.',
@@ -1431,11 +1423,6 @@ const affect=n=>{S.aff=Math.max(0,Math.min(100,S.aff+n));hud();};
 
 /* ══════ YOOMONEY CUSTOM FORM ══════ */
 const YOO_PRESETS=[100,300,500,1000];
-function yooNote(){
-  const t=document.querySelector('#yoo-type input:checked');
-  const n=$('#yoo-note');if(!n||!t)return;
-  n.textContent = t.value==='AC' ? L.tip_note_ac : L.tip_note_pc;
-}
 function buildYoo(){
   const rcv=$('#yoo-rcv'),card=document.querySelector('.tcard.yoo');
   if(!card)return;
@@ -1466,15 +1453,10 @@ function buildYoo(){
       sums.appendChild(b);
     });
     $('#yoo-sum').addEventListener('input',()=>$$('.yoosum').forEach(x=>x.classList.remove('on')));
-    $('#yoo-type').addEventListener('change',e=>{
-      $$('#yoo-type label').forEach(l=>l.classList.toggle('on',l.contains(e.target)));
-      yooNote();
-    });
     document.querySelector('.yooform').addEventListener('submit',()=>{
       toast(L.toast_open+' YOOMONEY');affect(5);
     });
   }
-  yooNote();
 }
 
 /* ══════ HUD RAILS ══════ */
@@ -1844,5 +1826,5 @@ $('#tmenu').addEventListener('click',e=>{
 
 })();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2c1526e2a9b9dc7',t:'MTc4Njg5MjU2Ng=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2c163d3fa0d9dc7',t:'MTc4Njg5MzI3OQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
