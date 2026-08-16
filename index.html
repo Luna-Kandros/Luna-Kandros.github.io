@@ -2094,7 +2094,7 @@ $('#r-qm').addEventListener('click',e=>{
 function slog(txt,kind){
   const b=$('#r-log');if(!b)return;
   const d=mk('div',kind||'');d.textContent=txt;
-  b.appendChild(d);while(b.children.length>12)b.removeChild(b.firstChild);
+  b.appendChild(d);while(b.children.length>12&&b.firstElementChild)b.removeChild(b.firstElementChild);
   b.scrollTop=b.scrollHeight;
 }
 
