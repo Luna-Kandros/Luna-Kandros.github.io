@@ -183,6 +183,7 @@ body.playing .chap{display:block;}
 .sysrow .hb i{display:block;height:100%;background:var(--red);box-shadow:0 0 7px var(--red);
   transition:width .5s steps(6);}
 .sysrow .hb.lv i{background:var(--lav);box-shadow:0 0 7px var(--lav);}
+.sysrow.mlove{display:none;}
 
 .pane{position:absolute;inset:0;opacity:0;visibility:hidden;pointer-events:none;}
 .pane.on{opacity:1;visibility:visible;pointer-events:auto;animation:pin .28s steps(3) both;}
@@ -546,6 +547,8 @@ body.playing .chap{display:block;}
   .logo b{font-size:8px;}
   .logo{padding:0 10px;}
   .tray .it.rd{display:none;}
+  .tray{gap:9px;padding:0 10px;}
+  .lovebar i{width:5px;height:12px;}
 }
 @media (max-width:820px){
   :root{--av:104px;--box:112px;}
@@ -564,13 +567,14 @@ body.playing .chap{display:block;}
 @media (max-width:640px){
   body{font-size:18px;}
   :root{--g:9px;--bar:40px;--box:auto;--nt:26px;}
-  .tab{padding:0 10px;}
+  /* tabs must always fit: tray is dropped, love % lives in SYS instead */
+  .tray{display:none;}
+  .logo{padding:0 9px;border-right-color:rgba(255,0,68,.3);}
+  .logo b{font-size:7px;}
+  .tabs{flex:1 1 auto;justify-content:space-between;}
+  .tab{flex:1 1 0;justify-content:center;padding:0 4px;min-width:0;}
   .tab .k{display:none;}
-  .tab .n{font-size:8px;}
-  .tray{padding:0 9px;gap:8px;}
-  .lovebar i{width:5px;height:12px;}
-  .lovepct{font-size:7px;}
-  .tray .it.ck{display:none;}
+  .tab .n{font-size:8px;letter-spacing:.02em;}
 
   .chap{top:calc(var(--bar) + 6px);padding:6px 16px;max-width:94vw;}
   .chap .n{font-size:7px;letter-spacing:2px;margin-bottom:3px;}
@@ -578,6 +582,9 @@ body.playing .chap{display:block;}
 
   .sysinfo{top:72px;left:10px;right:10px;display:flex;flex-wrap:wrap;
     align-items:center;gap:6px 12px;z-index:24;}
+  .sysrow.mlove{display:flex!important;}
+  .sysrow.mlove .lovebar i{width:6px;height:11px;}
+  .sysrow.mlove .lovepct{font-size:7px;margin-left:4px;}
   .sysrow{margin:0;padding-left:7px;gap:6px;border-left-width:2px;}
   .sysrow .k{font-size:6px;}
   .sysrow .v{font-size:13px;}
@@ -703,6 +710,7 @@ body.playing .chap{display:block;}
       <div class="sysrow"><span class="k">SYS.LOVE</span><span class="hb"><i id="sy-aff" style="width:20%"></i></span></div>
       <div class="sysrow"><span class="k">SYS.LORE</span><span class="hb lv"><i id="sy-lore" style="width:0%"></i></span></div>
       <div class="sysrow"><span class="k">SYS.DATE</span><span class="v">SINCE JUL 20, 2024</span></div>
+      <div class="sysrow mlove"><span class="k">SYS.READ</span><span class="lovebar" id="v-love-m"></span></div>
     </div>
 
     <section class="pane on" id="p-home">
@@ -1139,8 +1147,10 @@ function hud(){
   const pct=Math.max(0,Math.min(100,S.aff));
   $('#v-read').textContent=S.read.length+'/'+L.lines.length;
   const seg=10,fl=Math.round(pct/100*seg);
-  $('#v-love').innerHTML=Array.from({length:seg},(_,i)=>'<i class="'+(i<fl?'on':'')+'"></i>').join('')
+  const meter=Array.from({length:seg},(_,i)=>'<i class="'+(i<fl?'on':'')+'"></i>').join('')
     +'<span class="lovepct">'+pct+'%</span>';
+  $('#v-love').innerHTML=meter;
+  const lm=$('#v-love-m'); if(lm) lm.innerHTML=meter;
   $('#sy-aff').style.width=pct+'%';
   $('#sy-lore').style.width=Math.round(S.read.length/L.lines.length*100)+'%';
   $('#sy-zone').textContent=L.zones[S.view];
@@ -1464,5 +1474,5 @@ $('#tmenu').addEventListener('click',e=>{
 
 })();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2bfbd9a0b65ec41',t:'MTc4Njg3NTk4NA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2bfc7334b31f3ab',t:'MTc4Njg3NjM3OA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
