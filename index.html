@@ -500,11 +500,12 @@ body.playing .chap{display:block;}
 .card.soon{opacity:.75;cursor:default;}
 .card.soon:hover{transform:none;border-color:rgba(255,0,68,.3);box-shadow:5px 5px 0 rgba(0,0,0,.6);}
 .card.soon .ph{background:repeating-linear-gradient(45deg,#130b1c 0 10px,#0d0714 10px 20px);}
-.soonic{font-size:44px;opacity:.72;
-  filter:sepia(1) saturate(3) hue-rotate(180deg) brightness(1.05);}
-.card.soon .mt b .emb{filter:sepia(1) saturate(3) hue-rotate(180deg) brightness(1.05);}
+.soonic{font-size:44px;opacity:.72; filter: sepia(1) saturate(3) hue-rotate(180deg) brightness(1.05);}
+.card.soon .mt b .emb{filter: sepia(1) saturate(3) hue-rotate(180deg) brightness(1.05);}
 .soonbadge{position:absolute;top:9px;right:9px;z-index:2;font-family:var(--px);font-size:7px;
   letter-spacing:.1em;color:#0a050c;background:var(--amber);padding:5px 8px;}
+
+.card[aria-label="BLUE CTHULHU"] .mt b .emb, .card[aria-label="ГОЛУБОЙ КТУЛХУ"] .mt b .emb {filter: sepia(1) saturate(3) hue-rotate(180deg) brightness(1.05);}
 
 /* ═══════════ PRICING ═══════════ */
 .note{padding:16px 18px;margin-bottom:22px;font-size:19px;line-height:1.45;color:var(--pink-d);
